@@ -1,7 +1,8 @@
-import {Project, Point, Node} from "../swmm_model/types";
+import {Project, Point, Node, Subcatchment} from "../swmm_model/types";
 import createPoint from "../swmm_model/point";
 import divider from "../swmm_model/divider";
 import storage_unit from "../swmm_model/storage_unit";
+import subcatchment from "../swmm_model/subcatchment";
 
 class GraphHelper {
   private project: Project;
@@ -32,17 +33,21 @@ class GraphHelper {
     const junctions: Node[] = this.project.junctions || [];
     const outfalls: Node[] = this.project.outfalls || [];
     const dividers: Node[] = this.project.dividers || [];
-    const storageUnits: Node[] = this.project.storageUnits || [];
-    const nodes = junctions.concat(outfalls).concat(dividers).concat(storageUnits);
+    const storages: Node[] = this.project.storages || [];
+    const subcatchments: Subcatchment[] = this.project.subcatchments || [];
+    const nodes = junctions.concat(outfalls).concat(dividers).concat(storages);
 
-    const xArray: number[] = nodes.map(j => j.position.x);
+    let allPts = nodes.map(n => n.position);
+    subcatchments.forEach(s => { allPts = allPts.concat(s.vertices); });
+
+    const xArray: number[] = allPts.map(pt => pt.x);
     let minX: number = Math.min(...xArray);
     let maxX: number = Math.max(...xArray);
     const width = maxX - minX;
     minX = minX - width * 0.05;
     maxX = maxX + width * 0.05;
 
-    const yArray: number[] = nodes.map(j => j.position.y);
+    const yArray: number[] = allPts.map(pt => pt.y);
     let minY: number = Math.min(...yArray);
     let maxY: number = Math.max(...yArray);
     const height = maxY - minY;
