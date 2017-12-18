@@ -61,6 +61,13 @@ const mapStateToProps = state => {
           activeFeature,
           activeId,
         };
+      case CONSTS.DIVIDER_FEATURE:
+        return {
+          items: state.project.dividers,
+          idPrefix: CONSTS.DIVIDER_ID_PREFIX,
+          activeFeature,
+          activeId,
+        };
       case CONSTS.SUBCATCHMENT_FEATURE:
         return {
           items: state.project.subcatchments,

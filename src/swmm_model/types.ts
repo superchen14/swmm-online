@@ -1,30 +1,31 @@
 interface Point {
-  x: number,
-  y: number,
+  x: number;
+  y: number;
 }
 
 interface Entity {
-  name: string,
+  name: string;
 }
 
 interface Node extends Entity {
-  position: Point,
+  position: Point;
 }
 
 interface Link extends Entity {
-  inletNode: Node,
-  outletNode: Node,
-  vertices: Point[],
+  inletNode: Node;
+  outletNode: Node;
+  vertices: Point[];
 }
 
 interface Subcatchment extends Entity {
-  vertices: Point[],
+  vertices: Point[];
 }
 
 interface Project
 {
   junctions: Node[];
   outfalls: Node[];
+  dividers: Node[];
   conduits: Link[];
   subcatchments: Subcatchment[];
 }

@@ -3,6 +3,7 @@ import createPoint from "../swmm_model/point";
 import createJunction from "../swmm_model/junction";
 import createOutfall from "../swmm_model/outfall";
 import createConduit from "../swmm_model/conduit";
+import createDivider from "../swmm_model/divider";
 import createSubcatchment from "../swmm_model/subcatchment";
 import createProject from "../swmm_model/project";
 
@@ -56,6 +57,13 @@ function parseOutfall(line, idPointsMap): Node {
   const outfallName = items[0];
   const position = idPointsMap[outfallName];
   return createOutfall(outfallName, position);
+}
+
+function parseDivider(line, idPointsMap): Node {
+  const items = line.match(/[^ ]+/g);
+  const dividerName = items[0];
+  const position = idPointsMap[dividerName];
+  return createDivider(dividerName, position);
 }
 
 function parseConduit(line, idVerticesMap, nodes): Link {
@@ -113,6 +121,10 @@ class INPhelper {
     title = "OUTFALLS";
     const outfallLines = inpData[title] || [];
     project.outfalls = outfallLines.map(line => parseOutfall(line, idPointsMap));
+
+    title = "DIVIDERS";
+    const dividersLines = inpData[title] || [];
+    project.dividers = dividersLines.map(line => parseDivider(line, idPointsMap));
 
     title = "VERTICES";
     const idVerticesMap = parseVertices(inpData[title] || []);

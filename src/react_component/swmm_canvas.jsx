@@ -6,6 +6,7 @@ import { setActiveIdAction } from "./actions";
 import JunctionGraph from "./graph/junction_graph.jsx";
 import OutfallGraph from "./graph/outfall_graph.jsx";
 import ConduitGraph from "./graph/conduit_graph.jsx";
+import DividerGraph from "./graph/divider_graph.jsx";
 import SubcatchmentGraph from "./graph/subcatchment_graph.jsx";
 import CONSTS from "./consts";
 
@@ -18,6 +19,7 @@ class SwmmCanvas extends React.Component {
     const {graphHelper, project, activeId, activeFeature, setActiveId} = this.props;
     const junctions = project.junctions || [];
     const outfalls = project.outfalls || [];
+    const dividers = project.dividers || [];
     const conduits = project.conduits || [];
     const subcatchments = project.subcatchments || [];
 
@@ -42,6 +44,18 @@ class SwmmCanvas extends React.Component {
                 y ={pt.y}
                 isActive={isActive}
                 setActiveId={setActiveId(CONSTS.OUTFALL_FEATURE, outfall.name)}
+                />;
+    };
+
+    const getDividerGraph = divider => {
+      const pt = graphHelper.getPointOnCanvas(divider.position);
+      const isActive = activeId === divider.name && activeFeature === CONSTS.DIVIDER_FEATURE;
+      return <DividerGraph
+                key={CONSTS.DIVIDER_GRAPH_ID_PREFIX + divider.name}
+                x={pt.x}
+                y ={pt.y}
+                isActive={isActive}
+                setActiveId={setActiveId(CONSTS.DIVIDER_FEATURE, divider.name)}
                 />;
     };
 
@@ -75,6 +89,7 @@ class SwmmCanvas extends React.Component {
           { subcatchments.map(getSubcatchmentGraph) }
           { junctions.map(getJunctionGraph) }
           { outfalls.map(getOutfallGraph) }
+          { dividers.map(getDividerGraph) }
           { conduits.map(getConduitGraph) }
         </Layer>
       </Stage>
