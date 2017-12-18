@@ -7,6 +7,7 @@ import JunctionGraph from "./graph/junction_graph.jsx";
 import OutfallGraph from "./graph/outfall_graph.jsx";
 import ConduitGraph from "./graph/conduit_graph.jsx";
 import DividerGraph from "./graph/divider_graph.jsx";
+import StorageGraph from "./graph/storage_graph.jsx";
 import SubcatchmentGraph from "./graph/subcatchment_graph.jsx";
 import CONSTS from "./consts";
 
@@ -20,6 +21,7 @@ class SwmmCanvas extends React.Component {
     const junctions = project.junctions || [];
     const outfalls = project.outfalls || [];
     const dividers = project.dividers || [];
+    const storages = project.storages || [];
     const conduits = project.conduits || [];
     const subcatchments = project.subcatchments || [];
 
@@ -59,6 +61,18 @@ class SwmmCanvas extends React.Component {
                 />;
     };
 
+    const getStorageGraph = storage => {
+      const pt = graphHelper.getPointOnCanvas(storage.position);
+      const isActive = activeId === storage.name && activeFeature === CONSTS.STORAGE_FEATURE;
+      return <StorageGraph
+                key={CONSTS.STORAGE_GRAPH_ID_PREFIX + storage.name}
+                x={pt.x}
+                y ={pt.y}
+                isActive={isActive}
+                setActiveId={setActiveId(CONSTS.STORAGE_FEATURE, storage.name)}
+                />;
+    };
+
     const getConduitGraph = conduit => {
       let pts = [conduit.inletNode.position].concat(conduit.vertices).concat(conduit.outletNode.position);
       pts = pts.map(pt => graphHelper.getPointOnCanvas(pt));
@@ -90,6 +104,7 @@ class SwmmCanvas extends React.Component {
           { junctions.map(getJunctionGraph) }
           { outfalls.map(getOutfallGraph) }
           { dividers.map(getDividerGraph) }
+          { storages.map(getStorageGraph) }
           { conduits.map(getConduitGraph) }
         </Layer>
       </Stage>

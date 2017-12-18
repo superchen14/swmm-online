@@ -1,6 +1,7 @@
 import {Project, Point, Node} from "../swmm_model/types";
 import createPoint from "../swmm_model/point";
 import divider from "../swmm_model/divider";
+import storage_unit from "../swmm_model/storage_unit";
 
 class GraphHelper {
   private project: Project;
@@ -31,7 +32,8 @@ class GraphHelper {
     const junctions: Node[] = this.project.junctions || [];
     const outfalls: Node[] = this.project.outfalls || [];
     const dividers: Node[] = this.project.dividers || [];
-    const nodes = junctions.concat(outfalls).concat(dividers);
+    const storageUnits: Node[] = this.project.storageUnits || [];
+    const nodes = junctions.concat(outfalls).concat(dividers).concat(storageUnits);
 
     const xArray: number[] = nodes.map(j => j.position.x);
     let minX: number = Math.min(...xArray);

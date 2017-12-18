@@ -4,6 +4,7 @@ import createJunction from "../swmm_model/junction";
 import createOutfall from "../swmm_model/outfall";
 import createConduit from "../swmm_model/conduit";
 import createDivider from "../swmm_model/divider";
+import createStorage from "../swmm_model/storage";
 import createSubcatchment from "../swmm_model/subcatchment";
 import createProject from "../swmm_model/project";
 
@@ -66,6 +67,13 @@ function parseDivider(line, idPointsMap): Node {
   return createDivider(dividerName, position);
 }
 
+function parseStorage(line, idPointsMap): Node {
+  const items = line.match(/[^ ]+/g);
+  const storageUnitName = items[0];
+  const position = idPointsMap[storageUnitName];
+  return createStorage(storageUnitName, position);
+}
+
 function parseConduit(line, idVerticesMap, nodes): Link {
   const items = line.match(/[^ ]+/g);
   const conduitName = items[0];
@@ -108,6 +116,9 @@ class INPhelper {
         dataLines.push(line);
       }
     });
+    if (dataTitle.length > 0) {
+      inpData[dataTitle] = dataLines;
+    }
 
     const project: Project = createProject();
 
@@ -123,14 +134,19 @@ class INPhelper {
     project.outfalls = outfallLines.map(line => parseOutfall(line, idPointsMap));
 
     title = "DIVIDERS";
-    const dividersLines = inpData[title] || [];
-    project.dividers = dividersLines.map(line => parseDivider(line, idPointsMap));
+    const dividerLines = inpData[title] || [];
+    project.dividers = dividerLines.map(line => parseDivider(line, idPointsMap));
+
+    title = "STORAGE";
+    const storageUnitLines = inpData[title] || [];
+    project.storages = storageUnitLines.map(line => parseStorage(line, idPointsMap));
 
     title = "VERTICES";
     const idVerticesMap = parseVertices(inpData[title] || []);
 
+    const nodes = (project.junctions).concat(project.outfalls).concat(project.dividers).concat(project.storages);
+
     title = "CONDUITS";
-    const nodes = (project.junctions).concat(project.outfalls);
     const conduitLines = inpData[title] || [];
     project.conduits = conduitLines.map(line => parseConduit(line, idVerticesMap, nodes));
 

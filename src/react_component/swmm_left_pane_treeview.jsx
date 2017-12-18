@@ -15,6 +15,7 @@ class SwmmLeftPaneTreeView extends React.Component {
     const outfallSpanClassName = activeFeature === CONSTS.OUTFALL_FEATURE ? "selected" : "";
     const conduitSpanClassName = activeFeature === CONSTS.CONDUIT_FEATURE ? "selected" : "";
     const dividerSpanClassName = activeFeature === CONSTS.DIVIDER_FEATURE ? "selected" : "";
+    const storageSpanClassName = activeFeature === CONSTS.STORAGE_FEATURE ? "selected" : "";
     const subcatchmentSpanClassName = activeFeature === CONSTS.SUBCATCHMENT_FEATURE ? "selected" : "";
 
     return (
@@ -39,7 +40,9 @@ class SwmmLeftPaneTreeView extends React.Component {
             <div className="treeview-leaf-node">
               <span onClick={setActiveFeature(CONSTS.DIVIDER_FEATURE)} className={dividerSpanClassName}>Dividers</span>
             </div>
-            <div className="treeview-leaf-node"><span onClick={setActiveFeature(CONSTS.NONE_FEATURE)}>Storage Units</span></div>
+            <div className="treeview-leaf-node">
+              <span onClick={setActiveFeature(CONSTS.STORAGE_FEATURE)} className={storageSpanClassName}>Storage Units</span>
+            </div>
           </details>
           <details className="treeview-node">
             <summary>Links</summary>

@@ -75,6 +75,13 @@ const mapStateToProps = state => {
           activeFeature,
           activeId,
         };
+      case CONSTS.STORAGE_FEATURE:
+        return {
+          items: state.project.storages,
+          idPrefix: CONSTS.STORAGE_ID_PREFIX,
+          activeFeature,
+          activeId
+        };
     }
   }
 

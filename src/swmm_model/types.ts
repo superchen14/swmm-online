@@ -26,6 +26,7 @@ interface Project
   junctions: Node[];
   outfalls: Node[];
   dividers: Node[];
+  storages: Node[];
   conduits: Link[];
   subcatchments: Subcatchment[];
 }
