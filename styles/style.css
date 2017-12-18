@@ -1,0 +1,143 @@
+body {
+  background:#eee;
+}
+
+#swmm-app {
+  background: white;
+  width: 1102px;
+  height: 700px;
+  border: 1px solid #cccccc;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+
+#left-pane {
+  width: 180px;
+  border-right: 1px solid #cccccc;
+  height: 100%;
+  float: left;
+}
+
+#left-pane-header {
+  height: 45px;
+  background-color: rgb(247, 247, 247);
+  border-bottom: 1px solid #cccccc;
+}
+
+#left-pane-title {
+  height: 45px;
+  display: inline-block;
+  font-weight: 700;
+  font-size: 14px;
+  width: 50%;
+  padding: 13px;
+  cursor: default;
+}
+
+#left-pane-list-header {
+  height: 45px;
+  background-color: rgb(247, 247, 247);
+  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid #cccccc;
+}
+
+#left-pane-list {
+  height: 258px;
+  overflow: auto;
+}
+
+#left-pane-menu {
+  color: black;
+}
+
+#left-pane-treeview {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  height: 350px;
+  overflow: auto;
+}
+
+#main-pane {
+  width: 920px;
+  height: 100%;
+  float: right;
+}
+
+#main-pane-header {
+  height: 45px;
+  background-color: rgb(247, 247, 247);
+  border-bottom: 1px solid #cccccc;
+}
+
+#main-pane-body {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 20px;
+  width: 920px;
+  height: 600px;
+}
+
+#swmm-file-input {
+  display: none;
+}
+
+#swmm-menu {
+  background-color: rgb(247, 247, 247);
+}
+
+summary {
+  display: list-item;
+}
+
+.treeview-root-node {
+  cursor: pointer;
+  padding-top: 5px;
+}
+
+.treeview-node {
+  cursor: pointer;
+  padding-top: 5px;
+  margin-left: 20px;
+}
+
+.treeview-leaf-node {
+  margin-left: 20px;
+  height: 24px;
+  padding-top: 4px;
+}
+
+.treeview-leaf-node .selected {
+  background: #cccccc;
+  height: 20px;
+}
+
+.treeview-leaf-node .selected:hover {
+  background: #cccccc;
+}
+
+.treeview-leaf-node span:hover {
+  background: #f0f0f0;
+}
+
+.list-item {
+  border-bottom: 1px dotted #ddd;
+  height: 30px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
+.list-item:hover {
+  background-color: #f0f0f0;
+}
+
+.list-item.selected {
+  background-color: #e8eff6;
+}
+
+.list-item.selected:hover {
+  background-color: #e8eff6;
+}

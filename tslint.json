@@ -1,0 +1,37 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {},
+  "rules": {
+    // okay
+    "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
+    "quotemark": [false],
+    "no-trailing-whitespace": false,
+    "max-line-length": [true, 165],
+    "member-access": [false],
+    "object-literal-sort-keys": false,
+    "member-ordering": [false],
+    "interface-over-type-literal": [false],
+    "array-type": [true, "array"],
+    "max-classes-per-file": [true, 5],
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "interface-name": [false],
+    "ordered-imports": [false],
+    "no-namespace": [false],
+    "whitespace": [
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-separator",
+      "check-type",
+      // "check-typecast", // This is the only one we *don't* want - everything else we like
+      "check-preblock"
+    ],
+    "no-this-assignment": [true, {"allow-destructuring": true}],
+    "prefer-template": [true, "allow-single-concat"]
+  },
+  "rulesDirectory": []
+}

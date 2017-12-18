@@ -1,0 +1,312 @@
+[TITLE]
+;;Project Title/Notes
+
+[OPTIONS]
+;;Option             Value
+FLOW_UNITS           CFS
+INFILTRATION         CURVE_NUMBER
+FLOW_ROUTING         DYNWAVE
+LINK_OFFSETS         DEPTH
+MIN_SLOPE            0
+ALLOW_PONDING        YES
+SKIP_STEADY_STATE    NO
+
+START_DATE           01/01/2015
+START_TIME           00:00:00
+REPORT_START_DATE    01/01/2015
+REPORT_START_TIME    00:00:00
+END_DATE             01/02/2015
+END_TIME             23:00:00
+SWEEP_START          01/01
+SWEEP_END            12/31
+DRY_DAYS             0
+REPORT_STEP          00:05:00
+WET_STEP             00:05:00
+DRY_STEP             01:00:00
+ROUTING_STEP         0:00:30 
+
+INERTIAL_DAMPING     PARTIAL
+NORMAL_FLOW_LIMITED  BOTH
+FORCE_MAIN_EQUATION  H-W
+VARIABLE_STEP        0.75
+LENGTHENING_STEP     0
+MIN_SURFAREA         12.557
+MAX_TRIALS           20
+HEAD_TOLERANCE       0.005
+SYS_FLOW_TOL         5
+LAT_FLOW_TOL         5
+MINIMUM_STEP         0.5
+THREADS              1
+
+[EVAPORATION]
+;;Data Source    Parameters
+;;-------------- ----------------
+CONSTANT         0.0
+DRY_ONLY         NO
+
+[RAINGAGES]
+;;Name           Format    Interval SCF      Source    
+;;-------------- --------- ------ ------ ----------
+Rain             VOLUME    1:00     1.0      TIMESERIES RainSeries      
+
+[SUBCATCHMENTS]
+;;Name           Rain Gage        Outlet           Area     %Imperv  Width    %Slope   CurbLen  SnowPack        
+;;-------------- ---------------- ---------------- -------- -------- -------- -------- -------- ----------------
+TestSubCatch     Rain             1                10       25       500      0.5      0                        
+
+[SUBAREAS]
+;;Subcatchment   N-Imperv   N-Perv     S-Imperv   S-Perv     PctZero    RouteTo    PctRouted 
+;;-------------- ---------- ---------- ---------- ---------- ---------- ---------- ----------
+TestSubCatch     0.01       0.1        0.05       0.05       25         OUTLET    
+
+[INFILTRATION]
+;;Subcatchment   CurveNum              DryTime   
+;;-------------- ---------- ---------- ----------
+TestSubCatch     98         0.5        4         
+
+[JUNCTIONS]
+;;Name           Elevation  MaxDepth   InitDepth  SurDepth   Aponded   
+;;-------------- ---------- ---------- ---------- ---------- ----------
+1                0          0          0          0          0         
+2                0          0          0          0          0         
+3                0          0          0          0          0         
+4                0          0          0          0          0         
+
+[OUTFALLS]
+;;Name           Elevation  Type       Stage Data       Gated    Route To        
+;;-------------- ---------- ---------- ---------------- -------- ----------------
+5                0          FREE                        NO                       
+
+[CONDUITS]
+;;Name           From Node        To Node          Length     Roughness  InOffset   OutOffset  InitFlow   MaxFlow   
+;;-------------- ---------------- ---------------- ---------- ---------- ---------- ---------- ---------- ----------
+1                1                2                400        0.01       0          0          0          0         
+2                2                3                400        0.01       0          0          0          0         
+3                3                4                400        0.01       0          0          0          0         
+4                4                5                400        0.01       0          0          0          0         
+
+[XSECTIONS]
+;;Link           Shape        Geom1            Geom2      Geom3      Geom4      Barrels    Culvert   
+;;-------------- ------------ ---------------- ---------- ---------- ---------- ---------- ----------
+1                CIRCULAR     5                0          0          0          1                    
+2                CIRCULAR     5                0          0          0          1                    
+3                CIRCULAR     5                0          0          0          1                    
+4                CIRCULAR     5                0          0          0          1                    
+
+[TIMESERIES]
+;;Name           Date       Time       Value     
+;;-------------- ---------- ---------- ----------
+RainSeries       1/1/2015   0:00       0.01      
+RainSeries       1/1/2015   1:00       0.02      
+RainSeries       1/1/2015   2:00       0.03      
+RainSeries       1/1/2015   3:00       0.04      
+RainSeries       1/1/2015   4:00       0.05      
+RainSeries       1/1/2015   5:00       0.06      
+RainSeries       1/1/2015   6:00       0.07      
+RainSeries       1/1/2015   7:00       0.08      
+RainSeries       1/1/2015   8:00       0.09      
+RainSeries       1/1/2015   9:00       0.1       
+RainSeries       1/1/2015   10:00      0.11      
+RainSeries       1/1/2015   11:00      0.12      
+RainSeries       1/1/2015   12:00      0.13      
+RainSeries       1/1/2015   13:00      0.14      
+RainSeries       1/1/2015   14:00      0.15      
+RainSeries       1/1/2015   15:00      0.16      
+RainSeries       1/1/2015   16:00      0.17      
+RainSeries       1/1/2015   17:00      0.18      
+RainSeries       1/1/2015   18:00      0.19      
+RainSeries       1/1/2015   19:00      0.2       
+RainSeries       1/1/2015   20:00      0.21      
+RainSeries       1/1/2015   21:00      0.22      
+RainSeries       1/1/2015   22:00      0.23      
+RainSeries       1/1/2015   23:00      0.24      
+RainSeries       1/2/2015   0:00       0.25      
+RainSeries       1/2/2015   1:00       0.26      
+RainSeries       1/2/2015   2:00       0.27      
+RainSeries       1/2/2015   3:00       0.28      
+RainSeries       1/2/2015   4:00       0.29      
+RainSeries       1/2/2015   5:00       0.3       
+RainSeries       1/2/2015   6:00       0.31      
+RainSeries       1/2/2015   7:00       0.32      
+RainSeries       1/2/2015   8:00       0.33      
+RainSeries       1/2/2015   9:00       0.34      
+RainSeries       1/2/2015   10:00      0.35      
+RainSeries       1/2/2015   11:00      0.36      
+RainSeries       1/2/2015   12:00      0.37      
+RainSeries       1/2/2015   13:00      0.38      
+RainSeries       1/2/2015   14:00      0.39      
+RainSeries       1/2/2015   15:00      0.4       
+RainSeries       1/2/2015   16:00      0.41      
+RainSeries       1/2/2015   17:00      0.42      
+RainSeries       1/2/2015   18:00      0.43      
+RainSeries       1/2/2015   19:00      0.44      
+RainSeries       1/2/2015   20:00      0.45      
+RainSeries       1/2/2015   21:00      0.46      
+RainSeries       1/2/2015   22:00      0.47      
+RainSeries       1/2/2015   23:00      0.48      
+RainSeries       1/3/2015   0:00       0.49      
+RainSeries       1/3/2015   1:00       0.5       
+RainSeries       1/3/2015   2:00       0.51      
+RainSeries       1/3/2015   3:00       0.52      
+RainSeries       1/3/2015   4:00       0.53      
+RainSeries       1/3/2015   5:00       0.54      
+RainSeries       1/3/2015   6:00       0.55      
+RainSeries       1/3/2015   7:00       0.56      
+RainSeries       1/3/2015   8:00       0.57      
+RainSeries       1/3/2015   9:00       0.58      
+RainSeries       1/3/2015   10:00      0.59      
+RainSeries       1/3/2015   11:00      0.6       
+RainSeries       1/3/2015   12:00      0.61      
+RainSeries       1/3/2015   13:00      0.62      
+RainSeries       1/3/2015   14:00      0.63      
+RainSeries       1/3/2015   15:00      0.64      
+RainSeries       1/3/2015   16:00      0.65      
+RainSeries       1/3/2015   17:00      0.66      
+RainSeries       1/3/2015   18:00      0.67      
+RainSeries       1/3/2015   19:00      0.68      
+RainSeries       1/3/2015   20:00      0.69      
+RainSeries       1/3/2015   21:00      0.7       
+RainSeries       1/3/2015   22:00      0.71      
+RainSeries       1/3/2015   23:00      0.72      
+RainSeries       1/4/2015   0:00       0.73      
+RainSeries       1/4/2015   1:00       0.74      
+RainSeries       1/4/2015   2:00       0.75      
+RainSeries       1/4/2015   3:00       0.76      
+RainSeries       1/4/2015   4:00       0.77      
+RainSeries       1/4/2015   5:00       0.78      
+RainSeries       1/4/2015   6:00       0.79      
+RainSeries       1/4/2015   7:00       0.8       
+RainSeries       1/4/2015   8:00       0.81      
+RainSeries       1/4/2015   9:00       0.82      
+RainSeries       1/4/2015   10:00      0.83      
+RainSeries       1/4/2015   11:00      0.84      
+RainSeries       1/4/2015   12:00      0.84      
+RainSeries       1/4/2015   13:00      0.83      
+RainSeries       1/4/2015   14:00      0.82      
+RainSeries       1/4/2015   15:00      0.81      
+RainSeries       1/4/2015   16:00      0.8       
+RainSeries       1/4/2015   17:00      0.79      
+RainSeries       1/4/2015   18:00      0.78      
+RainSeries       1/4/2015   19:00      0.77      
+RainSeries       1/4/2015   20:00      0.76      
+RainSeries       1/4/2015   21:00      0.75      
+RainSeries       1/4/2015   22:00      0.74      
+RainSeries       1/4/2015   23:00      0.73      
+RainSeries       1/5/2015   0:00       0.72      
+RainSeries       1/5/2015   1:00       0.71      
+RainSeries       1/5/2015   2:00       0.7       
+RainSeries       1/5/2015   3:00       0.69      
+RainSeries       1/5/2015   4:00       0.68      
+RainSeries       1/5/2015   5:00       0.67      
+RainSeries       1/5/2015   6:00       0.66      
+RainSeries       1/5/2015   7:00       0.65      
+RainSeries       1/5/2015   8:00       0.64      
+RainSeries       1/5/2015   9:00       0.63      
+RainSeries       1/5/2015   10:00      0.62      
+RainSeries       1/5/2015   11:00      0.61      
+RainSeries       1/5/2015   12:00      0.6       
+RainSeries       1/5/2015   13:00      0.59      
+RainSeries       1/5/2015   14:00      0.58      
+RainSeries       1/5/2015   15:00      0.57      
+RainSeries       1/5/2015   16:00      0.56      
+RainSeries       1/5/2015   17:00      0.55      
+RainSeries       1/5/2015   18:00      0.54      
+RainSeries       1/5/2015   19:00      0.53      
+RainSeries       1/5/2015   20:00      0.52      
+RainSeries       1/5/2015   21:00      0.51      
+RainSeries       1/5/2015   22:00      0.5       
+RainSeries       1/5/2015   23:00      0.49      
+RainSeries       1/6/2015   0:00       0.48      
+RainSeries       1/6/2015   1:00       0.47      
+RainSeries       1/6/2015   2:00       0.46      
+RainSeries       1/6/2015   3:00       0.45      
+RainSeries       1/6/2015   4:00       0.44      
+RainSeries       1/6/2015   5:00       0.43      
+RainSeries       1/6/2015   6:00       0.42      
+RainSeries       1/6/2015   7:00       0.41      
+RainSeries       1/6/2015   8:00       0.4       
+RainSeries       1/6/2015   9:00       0.39      
+RainSeries       1/6/2015   10:00      0.38      
+RainSeries       1/6/2015   11:00      0.37      
+RainSeries       1/6/2015   12:00      0.36      
+RainSeries       1/6/2015   13:00      0.35      
+RainSeries       1/6/2015   14:00      0.34      
+RainSeries       1/6/2015   15:00      0.33      
+RainSeries       1/6/2015   16:00      0.32      
+RainSeries       1/6/2015   17:00      0.31      
+RainSeries       1/6/2015   18:00      0.3       
+RainSeries       1/6/2015   19:00      0.29      
+RainSeries       1/6/2015   20:00      0.28      
+RainSeries       1/6/2015   21:00      0.27      
+RainSeries       1/6/2015   22:00      0.26      
+RainSeries       1/6/2015   23:00      0.25      
+RainSeries       1/7/2015   0:00       0.24      
+RainSeries       1/7/2015   1:00       0.23      
+RainSeries       1/7/2015   2:00       0.22      
+RainSeries       1/7/2015   3:00       0.21      
+RainSeries       1/7/2015   4:00       0.2       
+RainSeries       1/7/2015   5:00       0.19      
+RainSeries       1/7/2015   6:00       0.18      
+RainSeries       1/7/2015   7:00       0.17      
+RainSeries       1/7/2015   8:00       0.16      
+RainSeries       1/7/2015   9:00       0.15      
+RainSeries       1/7/2015   10:00      0.14      
+RainSeries       1/7/2015   11:00      0.13      
+RainSeries       1/7/2015   12:00      0.12      
+RainSeries       1/7/2015   13:00      0.11      
+RainSeries       1/7/2015   14:00      0.1       
+RainSeries       1/7/2015   15:00      0.09      
+RainSeries       1/7/2015   16:00      0.08      
+RainSeries       1/7/2015   17:00      0.07      
+RainSeries       1/7/2015   18:00      0.06      
+RainSeries       1/7/2015   19:00      0.05      
+RainSeries       1/7/2015   20:00      0.04      
+RainSeries       1/7/2015   21:00      0.03      
+RainSeries       1/7/2015   22:00      0.02      
+RainSeries       1/7/2015   23:00      0.01      
+
+[REPORT]
+;;Reporting Options
+INPUT      NO
+CONTROLS   NO
+SUBCATCHMENTS ALL
+NODES ALL
+LINKS ALL
+
+[TAGS]
+
+[MAP]
+DIMENSIONS 0.000 0.000 10000.000 10000.000
+Units      None
+
+[COORDINATES]
+;;Node           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+1                -2329.463          7880.987          
+2                921.626            5936.139          
+3                5130.624           4412.192          
+4                8309.144           4121.916          
+5                12126.270          4165.457          
+
+[VERTICES]
+;;Link           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+
+[Polygons]
+;;Subcatchment   X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+TestSubCatch     -3592.163          9100.145          
+TestSubCatch     -3592.163          9100.145          
+TestSubCatch     -3505.080          7735.849          
+TestSubCatch     -3084.180          7474.601          
+TestSubCatch     -2314.949          7880.987          
+TestSubCatch     -950.653           9158.200          
+TestSubCatch     -2547.170          9462.990          
+TestSubCatch     -3156.749          9492.017          
+TestSubCatch     -3548.621          9114.659          
+
+[SYMBOLS]
+;;Gage           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+Rain             3563.135           6197.388          
+
