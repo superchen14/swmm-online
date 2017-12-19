@@ -9,7 +9,7 @@ import createPump from "../swmm_model/pump";
 import createSubcatchment from "../swmm_model/subcatchment";
 import createProject from "../swmm_model/project";
 
-const isCommentLine = line => line.startsWith(";;");
+const isCommentLine = line => line.startsWith(";");
 const isEmptyLine = line => line.trim().length === 0;
 const isUsefulLine = line => !isCommentLine(line) && !isEmptyLine(line);
 const isTitleLine = line => line.startsWith("[") && line.endsWith("]");
