@@ -83,13 +83,33 @@ DRY_ONLY         NO
 ;;Name           From Node        To Node          Length     Roughness  InOffset   OutOffset  InitFlow   MaxFlow   
 ;;-------------- ---------------- ---------------- ---------- ---------- ---------- ---------- ---------- ----------
 1                1                3                400        0.01       0          0          0          0         
-2                3                4                400        0.01       0          0          0          0         
+
+[PUMPS]
+;;Name           From Node        To Node          Pump Curve       Status   Sartup Shutoff 
+;;-------------- ---------------- ---------------- ---------------- ------ -------- --------
+2                3                4                *                ON       0        0       
+
+[ORIFICES]
+;;Name           From Node        To Node          Type         Offset     Qcoeff     Gated    CloseTime 
+;;-------------- ---------------- ---------------- ------------ ---------- ---------- -------- ----------
+3                1                4                SIDE         0          0.65       NO       0         
+
+[WEIRS]
+;;Name           From Node        To Node          Type         CrestHt    Qcoeff     Gated    EndCon   EndCoeff   Surcharge  RoadWidth  RoadSurf  
+;;-------------- ---------------- ---------------- ------------ ---------- ---------- -------- -------- ---------- ---------- ---------- ----------
+4                1                2                TRANSVERSE   0          3.33       NO       0        0          YES       
+
+[OUTLETS]
+;;Name           From Node        To Node          Offset     Type            QTable/Qcoeff    Qexpon     Gated   
+;;-------------- ---------------- ---------------- ---------- --------------- ---------------- ---------- --------
+5                4                2                0          FUNCTIONAL/DEPTH 10.0             0.5        NO      
 
 [XSECTIONS]
 ;;Link           Shape        Geom1            Geom2      Geom3      Geom4      Barrels    Culvert   
 ;;-------------- ------------ ---------------- ---------- ---------- ---------- ---------- ----------
 1                CIRCULAR     1                0          0          0          1                    
-2                CIRCULAR     1                0          0          0          1                    
+3                CIRCULAR     1                0          0          0
+4                RECT_OPEN    1                1          0          0         
 
 [REPORT]
 ;;Reporting Options
@@ -116,6 +136,7 @@ Units      None
 [VERTICES]
 ;;Link           X-Coord            Y-Coord           
 ;;-------------- ------------------ ------------------
+5                6637.821           5961.538          
 
 [Polygons]
 ;;Subcatchment   X-Coord            Y-Coord           

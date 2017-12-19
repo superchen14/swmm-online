@@ -54,24 +54,10 @@ const mapStateToProps = state => {
           activeFeature,
           activeId,
         };
-      case CONSTS.CONDUIT_FEATURE:
-        return {
-          items: state.project.conduits,
-          idPrefix: CONSTS.CONDUIT_ID_PREFIX,
-          activeFeature,
-          activeId,
-        };
       case CONSTS.DIVIDER_FEATURE:
         return {
           items: state.project.dividers,
           idPrefix: CONSTS.DIVIDER_ID_PREFIX,
-          activeFeature,
-          activeId,
-        };
-      case CONSTS.SUBCATCHMENT_FEATURE:
-        return {
-          items: state.project.subcatchments,
-          idPrefix: CONSTS.SUBCATCHMENT_ID_PREFIX,
           activeFeature,
           activeId,
         };
@@ -81,6 +67,27 @@ const mapStateToProps = state => {
           idPrefix: CONSTS.STORAGE_ID_PREFIX,
           activeFeature,
           activeId
+        };
+      case CONSTS.CONDUIT_FEATURE:
+        return {
+          items: state.project.conduits,
+          idPrefix: CONSTS.CONDUIT_ID_PREFIX,
+          activeFeature,
+          activeId,
+        };
+      case CONSTS.PUMP_FEATURE:
+        return {
+          items: state.project.pumps,
+          idPrefix: CONSTS.PUMP_ID_PREFIX,
+          activeFeature,
+          activeId,
+        };
+      case CONSTS.SUBCATCHMENT_FEATURE:
+        return {
+          items: state.project.subcatchments,
+          idPrefix: CONSTS.SUBCATCHMENT_ID_PREFIX,
+          activeFeature,
+          activeId,
         };
     }
   }

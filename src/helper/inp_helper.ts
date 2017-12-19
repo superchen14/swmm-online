@@ -2,9 +2,10 @@ import {Point, Node, Link, Subcatchment, Project} from "../swmm_model/types";
 import createPoint from "../swmm_model/point";
 import createJunction from "../swmm_model/junction";
 import createOutfall from "../swmm_model/outfall";
-import createConduit from "../swmm_model/conduit";
 import createDivider from "../swmm_model/divider";
 import createStorage from "../swmm_model/storage";
+import createConduit from "../swmm_model/conduit";
+import createPump from "../swmm_model/pump";
 import createSubcatchment from "../swmm_model/subcatchment";
 import createProject from "../swmm_model/project";
 
@@ -83,6 +84,15 @@ function parseConduit(line, idVerticesMap, nodes): Link {
   return createConduit(conduitName, inletNode, outletNode, idVerticesMap[conduitName] || []);
 }
 
+function parsePump(line, idVerticesMap, nodes): Link {
+  const items = line.match(/[^ ]+/g);
+  const pumpName = items[0];
+  const inletNode = nodes.find(node => node.name === items[1]);
+  const outletNode = nodes.find(node => node.name === items[2]);
+
+  return createPump(pumpName, inletNode, outletNode, idVerticesMap[pumpName] || []);
+}
+
 function parseSubcatchment(line, idPolygonsMap): Subcatchment {
   const items = line.match(/[^ ]+/g);
   const subcatchmentName = items[0];
@@ -149,6 +159,10 @@ class INPhelper {
     title = "CONDUITS";
     const conduitLines = inpData[title] || [];
     project.conduits = conduitLines.map(line => parseConduit(line, idVerticesMap, nodes));
+
+    title = "PUMPS";
+    const pumpLines = inpData[title] || [];
+    project.pumps = pumpLines.map(line => parsePump(line, idVerticesMap, nodes));
 
     title = "Polygons";
     const idPolygonsMap = parseVertices(inpData[title] || []);

@@ -28,6 +28,7 @@ interface Project
   dividers: Node[];
   storages: Node[];
   conduits: Link[];
+  pumps: Link[];
   subcatchments: Subcatchment[];
 }
 
