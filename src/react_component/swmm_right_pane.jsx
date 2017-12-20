@@ -13,7 +13,7 @@ class SwmmRightPane extends React.Component {
     let spanClass = "glyphicon glyphicon-pushpin ";
     if (isRightPanePinned) spanClass = spanClass + "right-pane-pinned";
     return (
-    <div id="right-pane">
+    <div className="right-pane">
       <div id="pane-header">
         <div id="right-pane-title" onClick={togglePin}>
         <span className={spanClass}></span>

@@ -13,9 +13,10 @@ class SwmmApp extends React.Component {
   }
 
   render() {
-    const appWidth = this.props.isRightPaneEnabled ? 1302 : 1102;
+    const appWidth = this.props.isRightPanePinned ? 1302 : 1102;
     return(
       <div id="swmm-app" style={{width: appWidth}}>
+        <div id="swmm-app-dock">
         <div id="left-pane">
           <div id="pane-header">
             <div id="pane-title">Project</div>
@@ -33,24 +34,29 @@ class SwmmApp extends React.Component {
             <ConnectedSwmmCanvas/>
           </div>
         </div>
-        {this.props.isRightPaneEnabled && <ConnectedSwmmRightPane/>}
+        {this.props.isRightPaneVisible && <ConnectedSwmmRightPane/>}
+        </div>
       </div>
     );
   }
 }
 
 SwmmApp.propTypes = {
-  isRightPaneEnabled: PropTypes.bool.isRequired,
+  isRightPanePinned: PropTypes.bool.isRequired,
+  isRightPaneVisible: PropTypes.bool.isRequired,
 };
 
-const isRightPaneVisible = state => {
-  const isRightPaneEnabled = (state && state.ui && state.ui.isRightPaneEnabled) || false;
-  const isRightPanePinned = (state && state.ui && state.ui.isRightPanePinned) || false;
-  return isRightPaneEnabled || isRightPanePinned;
-};
+const isRightPanePinned = state => (state && state.ui && state.ui.isRightPanePinned) || false;
+
+const isRightPaneEnabled = state => (state && state.ui && state.ui.isRightPaneEnabled) || false;
+
+const isRightPaneVisible = state => isRightPaneEnabled(state) || isRightPanePinned(state);
 
 const ConnectedSwmmApp = connect(
-  state => ({ isRightPaneEnabled: isRightPaneVisible(state) }),
+  state => ({
+    isRightPanePinned: isRightPanePinned(state),
+    isRightPaneVisible: isRightPaneVisible(state),
+  }),
   () => ({})
 )(SwmmApp);
 

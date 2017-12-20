@@ -87,11 +87,18 @@ body {
   height: 600px;
 }
 
-#right-pane {
+#swmm-app-dock {
+  position: relative;
+  height: 700px;
+}
+
+.right-pane {
   width: 200px;
   border-left: 1px solid #cccccc;
   height: 100%;
-  float: left;
+  float: right;
+  position: absolute;
+  right: 0px;
 }
 
 #swmm-file-input {
