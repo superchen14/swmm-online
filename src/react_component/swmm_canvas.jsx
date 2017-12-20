@@ -10,6 +10,7 @@ import StorageGraph from "./graph/storage_graph.jsx";
 import ConduitGraph from "./graph/conduit_graph.jsx";
 import PumpGraph from "./graph/pump_graph.jsx";
 import OrificeGraph from "./graph/orifice_graph.jsx";
+import WeirGraph from "./graph/weir_graph.jsx";
 import SubcatchmentGraph from "./graph/subcatchment_graph.jsx";
 import CONSTS from "./consts";
 
@@ -27,6 +28,7 @@ class SwmmCanvas extends React.Component {
     const conduits = project.conduits || [];
     const pumps = project.pumps || [];
     const orifices = project.orifices || [];
+    const weirs = project.weirs || [];
     const subcatchments = project.subcatchments || [];
 
     const getJunctionGraph = junction => {
@@ -113,6 +115,18 @@ class SwmmCanvas extends React.Component {
                 />;
     };
 
+    const getWeirGraph = weir => {
+      let pts = [weir.inletNode.position].concat(weir.vertices).concat(weir.outletNode.position);
+      pts = pts.map(pt => graphHelper.getPointOnCanvas(pt));
+      const isActive = activeId === weir.name && activeFeature === CONSTS.WEIR_FEATURE;
+      return <WeirGraph
+                key={CONSTS.WEIR_GRAPH_ID_PREFIX + weir.name}
+                isActive={isActive}
+                points={pts}
+                setActiveId={setActiveId(CONSTS.WEIR_FEATURE, weir.name)}
+                />;
+    };
+
     const getSubcatchmentGraph = subcatchment => {
       let pts = subcatchment.vertices;
       pts = pts.map(pt => graphHelper.getPointOnCanvas(pt));
@@ -136,6 +150,7 @@ class SwmmCanvas extends React.Component {
           { conduits.map(getConduitGraph) }
           { pumps.map(getPumpGraph) }
           { orifices.map(getOrificeGraph) }
+          { weirs.map(getWeirGraph) }
         </Layer>
       </Stage>
     );

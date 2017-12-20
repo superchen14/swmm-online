@@ -30,6 +30,7 @@ interface Project
   conduits: Link[];
   pumps: Link[];
   orifices: Link[];
+  weirs: Link[];
   subcatchments: Subcatchment[];
 }
 

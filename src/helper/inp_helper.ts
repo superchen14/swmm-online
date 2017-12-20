@@ -103,6 +103,15 @@ function parseOrifice(line, idVerticesMap, nodes): Link {
   return createOrifice(orificeName, inletNode, outletNode, idVerticesMap[orificeName] || []);
 }
 
+function parseWeir(line, idVerticesMap, nodes): Link {
+  const items = line.match(/[^ ]+/g);
+  const weirName = items[0];
+  const inletNode = nodes.find(node => node.name === items[1]);
+  const outletNode = nodes.find(node => node.name === items[2]);
+
+  return createOrifice(weirName, inletNode, outletNode, idVerticesMap[weirName] || []);
+}
+
 function parseSubcatchment(line, idPolygonsMap): Subcatchment {
   const items = line.match(/[^ ]+/g);
   const subcatchmentName = items[0];
@@ -177,6 +186,10 @@ class INPhelper {
     title = "ORIFICES";
     const orificeLines = inpData[title] || [];
     project.orifices = orificeLines.map(line => parseOrifice(line, idVerticesMap, nodes));
+
+    title = "WEIRS";
+    const weirLines = inpData[title] || [];
+    project.weirs = weirLines.map(line => parseWeir(line, idVerticesMap, nodes));
 
     title = "Polygons";
     const idPolygonsMap = parseVertices(inpData[title] || []);

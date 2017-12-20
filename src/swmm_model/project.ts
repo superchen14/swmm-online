@@ -9,6 +9,7 @@ function createProject(): Project {
     storages: [],
     pumps: [],
     orifices: [],
+    weirs: [],
     subcatchments: []
   };
 }

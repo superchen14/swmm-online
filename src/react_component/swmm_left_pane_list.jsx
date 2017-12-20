@@ -89,6 +89,13 @@ const mapStateToProps = state => {
           activeFeature,
           activeId,
         };
+      case CONSTS.WEIR_FEATURE:
+        return {
+          items: state.project.weirs,
+          idPrefix: CONSTS.WEIR_ID_PREFIX,
+          activeFeature,
+          activeId
+        }
       case CONSTS.SUBCATCHMENT_FEATURE:
         return {
           items: state.project.subcatchments,

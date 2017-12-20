@@ -18,6 +18,7 @@ class SwmmLeftPaneTreeView extends React.Component {
     const conduitSpanClassName = activeFeature === CONSTS.CONDUIT_FEATURE ? "selected" : "";
     const pumpSpanClassName = activeFeature === CONSTS.PUMP_FEATURE ? "selected" : "";
     const orificeSpanClassName = activeFeature === CONSTS.ORIFICE_FEATURE ? "selected" : "";
+    const weirSpanClassName = activeFeature === CONSTS.WEIR_FEATURE ? "selected" : "";
     const subcatchmentSpanClassName = activeFeature === CONSTS.SUBCATCHMENT_FEATURE ? "selected" : "";
 
     return (
@@ -57,7 +58,9 @@ class SwmmLeftPaneTreeView extends React.Component {
             <div className="treeview-leaf-node">
               <span onClick={setActiveFeature(CONSTS.ORIFICE_FEATURE)} className={orificeSpanClassName}>Orifices</span>
             </div>
-            <div className="treeview-leaf-node"><span onClick={setActiveFeature(CONSTS.NONE_FEATURE)}>Weirs</span></div>
+            <div className="treeview-leaf-node">
+              <span onClick={setActiveFeature(CONSTS.WEIR_FEATURE)} className={weirSpanClassName}>Weirs</span>
+            </div>
             <div className="treeview-leaf-node"><span onClick={setActiveFeature(CONSTS.NONE_FEATURE)}>Outlets</span></div>
           </details>
         </details>
