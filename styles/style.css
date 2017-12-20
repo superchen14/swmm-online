@@ -19,13 +19,13 @@ body {
   float: left;
 }
 
-#left-pane-header {
+#pane-header {
   height: 45px;
   background-color: rgb(247, 247, 247);
   border-bottom: 1px solid #cccccc;
 }
 
-#left-pane-title {
+#pane-title {
   height: 45px;
   display: inline-block;
   font-weight: 700;
@@ -33,6 +33,20 @@ body {
   width: 50%;
   padding: 13px;
   cursor: default;
+}
+
+#right-pane-title {
+  height: 45px;
+  display: inline-block;
+  font-weight: 700;
+  font-size: 14px;
+  width: 20%;
+  padding: 13px;
+  cursor: pointer;
+}
+
+.right-pane-pinned {
+  transform:rotate(-45deg);
 }
 
 #left-pane-list-header {
@@ -62,13 +76,7 @@ body {
 #main-pane {
   width: 920px;
   height: 100%;
-  float: right;
-}
-
-#main-pane-header {
-  height: 45px;
-  background-color: rgb(247, 247, 247);
-  border-bottom: 1px solid #cccccc;
+  float: left;
 }
 
 #main-pane-body {
@@ -77,6 +85,13 @@ body {
   padding-top: 20px;
   width: 920px;
   height: 600px;
+}
+
+#right-pane {
+  width: 200px;
+  border-left: 1px solid #cccccc;
+  height: 100%;
+  float: left;
 }
 
 #swmm-file-input {
@@ -125,9 +140,15 @@ summary {
   border-bottom: 1px dotted #ddd;
   height: 30px;
   padding-left: 10px;
+  padding-right: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
   cursor: pointer;
+}
+
+span.edit-item {
+  float: right;
+  visibility: hidden;
 }
 
 .list-item:hover {
@@ -136,6 +157,10 @@ summary {
 
 .list-item.selected {
   background-color: #e8eff6;
+}
+
+.list-item.selected .edit-item {
+  visibility: visible
 }
 
 .list-item.selected:hover {

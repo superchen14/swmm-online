@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { Layer, Stage } from "react-konva";
-import { setActiveIdAction } from "./actions";
+import { setActiveItemAction } from "./actions";
 import JunctionGraph from "./graph/junction_graph.jsx";
 import OutfallGraph from "./graph/outfall_graph.jsx";
 import DividerGraph from "./graph/divider_graph.jsx";
@@ -188,7 +188,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setActiveId: (activeFeature, activeId) => () => dispatch(setActiveIdAction(activeFeature, activeId))
+  setActiveId: (activeFeature, activeId) => () => dispatch(setActiveItemAction(activeFeature, activeId))
 });
 
 const ConnectedSwmmCanvas = connect(mapStateToProps, mapDispatchToProps)(SwmmCanvas);

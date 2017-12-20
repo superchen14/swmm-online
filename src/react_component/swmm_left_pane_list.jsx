@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import CONSTS from "./consts";
-import { setActiveIdAction } from "./actions";
+import { setActiveItemAction, editActiveItemAction } from "./actions";
 
 class SwmmLeftPaneList extends React.Component {
   constructor(props) {
@@ -10,7 +10,11 @@ class SwmmLeftPaneList extends React.Component {
   }
 
   render() {
-    const {items, idPrefix, activeFeature, activeId, setActiveId} = this.props;
+    const {items, idPrefix, activeFeature, activeId, setActiveId, editActiveId, shouldShowEditIcon} = this.props;
+    const onEdit = (activeFeature, activeId) => e => {
+      editActiveId(activeFeature, activeId);
+      e.stopPropagation();
+    }
     return (
       <div id="left-pane-list">
         {items.map(item => {
@@ -18,7 +22,8 @@ class SwmmLeftPaneList extends React.Component {
           if (item.name === activeId) { className = className + " selected"; }
           return (
             <div key={idPrefix + item.name} className={className} onClick={setActiveId(activeFeature, item.name)}>
-              {item.name}
+              <span>{item.name}</span>
+              {shouldShowEditIcon && <span className="glyphicon glyphicon-edit edit-item" onClick={onEdit(activeFeature, item.name)}/>}
             </div>
           );
         })}
@@ -32,11 +37,21 @@ SwmmLeftPaneList.propTypes = {
   idPrefix: PropTypes.string.isRequired,
   activeFeature: PropTypes.string.isRequired,
   activeId: PropTypes.string.isRequired,
-  setActiveId: PropTypes.func.isRequired
+  shouldShowEditIcon: PropTypes.bool.isRequired,
+  setActiveId: PropTypes.func.isRequired,
+  editActiveId: PropTypes.func.isRequired,
+};
+
+const isRightPaneVisible = state => {
+  const isRightPaneEnabled = (state && state.ui && state.ui.isRightPaneEnabled) || false;
+  const isRightPanePinned = (state && state.ui && state.ui.isRightPanePinned) || false;
+  return isRightPaneEnabled || isRightPanePinned;
 };
 
 const mapStateToProps = state => {
   if (state && state.ui && state.project && state.ui.activeFeature !== CONSTS.NONE_FEATURE) {
+    const shouldShowEditIcon = !isRightPaneVisible(state);
+
     const activeId = state.ui.activeId;
     const activeFeature = state.ui.activeFeature;
     switch(activeFeature) {
@@ -46,6 +61,7 @@ const mapStateToProps = state => {
           idPrefix: CONSTS.JUNCTION_ID_PREFIX,
           activeFeature,
           activeId,
+          shouldShowEditIcon,
         };
       case CONSTS.OUTFALL_FEATURE:
         return {
@@ -53,6 +69,7 @@ const mapStateToProps = state => {
           idPrefix: CONSTS.OUTFALL_ID_PREFIX,
           activeFeature,
           activeId,
+          shouldShowEditIcon,
         };
       case CONSTS.DIVIDER_FEATURE:
         return {
@@ -60,13 +77,15 @@ const mapStateToProps = state => {
           idPrefix: CONSTS.DIVIDER_ID_PREFIX,
           activeFeature,
           activeId,
+          shouldShowEditIcon,
         };
       case CONSTS.STORAGE_FEATURE:
         return {
           items: state.project.storages,
           idPrefix: CONSTS.STORAGE_ID_PREFIX,
           activeFeature,
-          activeId
+          activeId,
+          shouldShowEditIcon,
         };
       case CONSTS.CONDUIT_FEATURE:
         return {
@@ -74,6 +93,7 @@ const mapStateToProps = state => {
           idPrefix: CONSTS.CONDUIT_ID_PREFIX,
           activeFeature,
           activeId,
+          shouldShowEditIcon,
         };
       case CONSTS.PUMP_FEATURE:
         return {
@@ -81,6 +101,7 @@ const mapStateToProps = state => {
           idPrefix: CONSTS.PUMP_ID_PREFIX,
           activeFeature,
           activeId,
+          shouldShowEditIcon,
         };
       case CONSTS.ORIFICE_FEATURE:
         return {
@@ -88,20 +109,23 @@ const mapStateToProps = state => {
           idPrefix: CONSTS.ORIFICE_ID_PREFIX,
           activeFeature,
           activeId,
+          shouldShowEditIcon,
         };
       case CONSTS.WEIR_FEATURE:
         return {
           items: state.project.weirs,
           idPrefix: CONSTS.WEIR_ID_PREFIX,
           activeFeature,
-          activeId
+          activeId,
+          shouldShowEditIcon,
         }
       case CONSTS.OUTLET_FEATURE:
         return {
           items: state.project.outlets,
           idPrefix: CONSTS.OUTLET_ID_PREFIX,
           activeFeature,
-          activeId
+          activeId,
+          shouldShowEditIcon,
         };
       case CONSTS.SUBCATCHMENT_FEATURE:
         return {
@@ -109,15 +133,17 @@ const mapStateToProps = state => {
           idPrefix: CONSTS.SUBCATCHMENT_ID_PREFIX,
           activeFeature,
           activeId,
+          shouldShowEditIcon,
         };
     }
   }
 
-  return {items: [], idPrefix: "", activeId: "", activeFeature: CONSTS.NONE_FEATURE};
+  return {items: [], idPrefix: "", activeId: "", activeFeature: CONSTS.NONE_FEATURE, shouldShowEditIcon: true};
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  setActiveId: (activeFeature, activeId) => () => dispatch(setActiveIdAction(activeFeature, activeId))
+  setActiveId: (activeFeature, activeId) => () => dispatch(setActiveItemAction(activeFeature, activeId)),
+  editActiveId: (activeFeature, activeId) => dispatch(editActiveItemAction(activeFeature, activeId)),
 });
 const ConnectedSwmmLeftPaneList = connect(mapStateToProps, mapDispatchToProps)(SwmmLeftPaneList);
 
