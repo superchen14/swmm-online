@@ -35,14 +35,25 @@ body {
   cursor: default;
 }
 
-#right-pane-title {
+#right-pane-pin-btn {
   height: 45px;
-  display: inline-block;
   font-weight: 700;
   font-size: 14px;
   width: 20%;
   padding: 13px;
   cursor: pointer;
+  display: inline-block;
+}
+
+#right-pane-close-btn {
+  height: 45px;
+  font-weight: 700;
+  font-size: 14px;
+  width: 20%;
+  padding: 13px;
+  cursor: pointer;
+  float: right;
+  display: inline-block;
 }
 
 .right-pane-pinned {

@@ -5,3 +5,4 @@ export const setActiveFeatureAction = activeFeature => ({type: CONSTS.SET_ACTIVE
 export const setActiveItemAction = (activeFeature, activeId) => ({type: CONSTS.SET_ACTIVE_ITEM, activeFeature, activeId});
 export const editActiveItemAction = (activeFeature, activeId) => ({type: CONSTS.EDIT_ACTIVE_ITEM, activeFeature, activeId});
 export const togglePinRightPaneAction = () => ({type: CONSTS.TOGGLE_PIN_RIGHT_PANE});
+export const closeRightPaneAction = () => ({type: CONSTS.CLOSE_RIGHT_PANE});
