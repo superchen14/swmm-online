@@ -9,6 +9,7 @@ import DividerGraph from "./graph/divider_graph.jsx";
 import StorageGraph from "./graph/storage_graph.jsx";
 import ConduitGraph from "./graph/conduit_graph.jsx";
 import PumpGraph from "./graph/pump_graph.jsx";
+import OrificeGraph from "./graph/orifice_graph.jsx";
 import SubcatchmentGraph from "./graph/subcatchment_graph.jsx";
 import CONSTS from "./consts";
 
@@ -25,6 +26,7 @@ class SwmmCanvas extends React.Component {
     const storages = project.storages || [];
     const conduits = project.conduits || [];
     const pumps = project.pumps || [];
+    const orifices = project.orifices || [];
     const subcatchments = project.subcatchments || [];
 
     const getJunctionGraph = junction => {
@@ -99,6 +101,18 @@ class SwmmCanvas extends React.Component {
                 />;
     };
 
+    const getOrificeGraph = orifice => {
+      let pts = [orifice.inletNode.position].concat(orifice.vertices).concat(orifice.outletNode.position);
+      pts = pts.map(pt => graphHelper.getPointOnCanvas(pt));
+      const isActive = activeId === orifice.name && activeFeature === CONSTS.ORIFICE_FEATURE;
+      return <OrificeGraph
+                key={CONSTS.ORIFICE_GRAPH_ID_PREFIX + orifice.name}
+                isActive={isActive}
+                points={pts}
+                setActiveId={setActiveId(CONSTS.ORIFICE_FEATURE, orifice.name)}
+                />;
+    };
+
     const getSubcatchmentGraph = subcatchment => {
       let pts = subcatchment.vertices;
       pts = pts.map(pt => graphHelper.getPointOnCanvas(pt));
@@ -121,6 +135,7 @@ class SwmmCanvas extends React.Component {
           { storages.map(getStorageGraph) }
           { conduits.map(getConduitGraph) }
           { pumps.map(getPumpGraph) }
+          { orifices.map(getOrificeGraph) }
         </Layer>
       </Stage>
     );

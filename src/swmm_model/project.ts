@@ -8,6 +8,7 @@ function createProject(): Project {
     dividers: [],
     storages: [],
     pumps: [],
+    orifices: [],
     subcatchments: []
   };
 }

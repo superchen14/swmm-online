@@ -6,6 +6,7 @@ import createDivider from "../swmm_model/divider";
 import createStorage from "../swmm_model/storage";
 import createConduit from "../swmm_model/conduit";
 import createPump from "../swmm_model/pump";
+import createOrifice from "../swmm_model/orifice";
 import createSubcatchment from "../swmm_model/subcatchment";
 import createProject from "../swmm_model/project";
 
@@ -93,6 +94,15 @@ function parsePump(line, idVerticesMap, nodes): Link {
   return createPump(pumpName, inletNode, outletNode, idVerticesMap[pumpName] || []);
 }
 
+function parseOrifice(line, idVerticesMap, nodes): Link {
+  const items = line.match(/[^ ]+/g);
+  const orificeName = items[0];
+  const inletNode = nodes.find(node => node.name === items[1]);
+  const outletNode = nodes.find(node => node.name === items[2]);
+
+  return createOrifice(orificeName, inletNode, outletNode, idVerticesMap[orificeName] || []);
+}
+
 function parseSubcatchment(line, idPolygonsMap): Subcatchment {
   const items = line.match(/[^ ]+/g);
   const subcatchmentName = items[0];
@@ -163,6 +173,10 @@ class INPhelper {
     title = "PUMPS";
     const pumpLines = inpData[title] || [];
     project.pumps = pumpLines.map(line => parsePump(line, idVerticesMap, nodes));
+
+    title = "ORIFICES";
+    const orificeLines = inpData[title] || [];
+    project.orifices = orificeLines.map(line => parseOrifice(line, idVerticesMap, nodes));
 
     title = "Polygons";
     const idPolygonsMap = parseVertices(inpData[title] || []);

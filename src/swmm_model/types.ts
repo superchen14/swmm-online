@@ -29,6 +29,7 @@ interface Project
   storages: Node[];
   conduits: Link[];
   pumps: Link[];
+  orifices: Link[];
   subcatchments: Subcatchment[];
 }
 
