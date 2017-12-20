@@ -7,6 +7,8 @@ import createStorage from "../swmm_model/storage";
 import createConduit from "../swmm_model/conduit";
 import createPump from "../swmm_model/pump";
 import createOrifice from "../swmm_model/orifice";
+import createWeir from "../swmm_model/weir";
+import createOutlet from "../swmm_model/outlet";
 import createSubcatchment from "../swmm_model/subcatchment";
 import createProject from "../swmm_model/project";
 
@@ -109,7 +111,16 @@ function parseWeir(line, idVerticesMap, nodes): Link {
   const inletNode = nodes.find(node => node.name === items[1]);
   const outletNode = nodes.find(node => node.name === items[2]);
 
-  return createOrifice(weirName, inletNode, outletNode, idVerticesMap[weirName] || []);
+  return createWeir(weirName, inletNode, outletNode, idVerticesMap[weirName] || []);
+}
+
+function parseOutlet(line, idVerticesMap, nodes): Link {
+  const items = line.match(/[^ ]+/g);
+  const outletName = items[0];
+  const inletNode = nodes.find(node => node.name === items[1]);
+  const outletNode = nodes.find(node => node.name === items[2]);
+
+  return createOutlet(outletName, inletNode, outletNode, idVerticesMap[outletName] || []);
 }
 
 function parseSubcatchment(line, idPolygonsMap): Subcatchment {
@@ -190,6 +201,10 @@ class INPhelper {
     title = "WEIRS";
     const weirLines = inpData[title] || [];
     project.weirs = weirLines.map(line => parseWeir(line, idVerticesMap, nodes));
+
+    title = "OUTLETS";
+    const outletLines = inpData[title] || [];
+    project.outlets = outletLines.map(line => parseOutlet(line, idVerticesMap, nodes));
 
     title = "Polygons";
     const idPolygonsMap = parseVertices(inpData[title] || []);

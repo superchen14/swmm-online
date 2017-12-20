@@ -10,6 +10,7 @@ function createProject(): Project {
     pumps: [],
     orifices: [],
     weirs: [],
+    outlets: [],
     subcatchments: []
   };
 }
