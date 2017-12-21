@@ -37,6 +37,13 @@ const reducer = (state, action) => {
         newState.ui.isRightPanePinned = !newState.ui.isRightPanePinned;
       }
       return newState;
+    case CONSTS.CLOSE_RIGHT_PANE:
+      newState = Object.assign({}, state);
+      if (newState && newState.ui) {
+        newState.ui.isRightPanePinned = false;
+        newState.ui.isRightPaneEnabled= false;
+      }
+      return newState;
     default:
       return state;
   }
