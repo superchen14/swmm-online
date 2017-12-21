@@ -6,6 +6,7 @@ import ConnectedSwmmLeftPaneMenu from "./swmm_left_pane_menu.jsx";
 import ConnectedSwmmLeftPaneTreeView from "./swmm_left_pane_treeview.jsx";
 import ConnectedSwmmLeftPaneList from "./swmm_left_pane_list.jsx";
 import ConnectedSwmmRightPane from "./swmm_right_pane.jsx";
+import { updateListFilterAction } from "./actions";
 
 class SwmmApp extends React.Component {
   constructor(props) {
@@ -24,6 +25,10 @@ class SwmmApp extends React.Component {
           </div>
           <ConnectedSwmmLeftPaneTreeView/>
           <div id="left-pane-list-header">
+          </div>
+          <div id="left-pane-list-filter">
+            <input onInput={this.props.updateListFilter} value={this.props.listFilter}/>
+            <span className="glyphicon glyphicon-filter filter-icon"/>
           </div>
           <ConnectedSwmmLeftPaneList/>
         </div>
@@ -44,6 +49,8 @@ class SwmmApp extends React.Component {
 SwmmApp.propTypes = {
   isRightPanePinned: PropTypes.bool.isRequired,
   isRightPaneVisible: PropTypes.bool.isRequired,
+  updateListFilter: PropTypes.func.isRequired,
+  listFilter: PropTypes.string.isRequired,
 };
 
 const isRightPanePinned = state => (state && state.ui && state.ui.isRightPanePinned) || false;
@@ -56,8 +63,11 @@ const ConnectedSwmmApp = connect(
   state => ({
     isRightPanePinned: isRightPanePinned(state),
     isRightPaneVisible: isRightPaneVisible(state),
+    listFilter: state && state.ui && state.ui.listFilter ? state.ui.listFilter : "",
   }),
-  () => ({})
+  dispatch => ({
+    updateListFilter: e => dispatch(updateListFilterAction(e.target.value)),
+  })
 )(SwmmApp);
 
 export default ConnectedSwmmApp;

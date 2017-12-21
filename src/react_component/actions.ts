@@ -6,3 +6,4 @@ export const setActiveItemAction = (activeFeature, activeId) => ({type: CONSTS.S
 export const editActiveItemAction = (activeFeature, activeId) => ({type: CONSTS.EDIT_ACTIVE_ITEM, activeFeature, activeId});
 export const togglePinRightPaneAction = () => ({type: CONSTS.TOGGLE_PIN_RIGHT_PANE});
 export const closeRightPaneAction = () => ({type: CONSTS.CLOSE_RIGHT_PANE});
+export const updateListFilterAction = text => ({type: CONSTS.UPDATE_LIST_FILTER, text});

@@ -11,6 +11,7 @@ import CONSTS from "./consts";
 
 const reducer = (state, action) => {
   let isRightPanePinned = (state && state.ui && state.ui.isRightPanePinned) || false;
+  let listFilter = state && state.ui && state.ui.listFilter ? state.ui.listFilter : "";
   switch(action.type) {
     case CONSTS.LOAD_PROJECT:
       return {project: action.project, graphHelper: new GraphHelper(action.project)};
@@ -23,13 +24,13 @@ const reducer = (state, action) => {
       const isSameId = state.ui && state.ui.activeId && state.ui.activeId === action.activeId;
       let activeId = isSameId ? "" : action.activeId;
       let activeFeature = action.activeFeature;
-      newState.ui = {activeId, activeFeature, isRightPaneEnabled: false, isRightPanePinned};
+      newState.ui = {activeId, activeFeature, isRightPaneEnabled: false, isRightPanePinned, listFilter};
       return newState;
     case CONSTS.EDIT_ACTIVE_ITEM:
       newState = Object.assign({}, state);
       activeId = action.activeId;
       activeFeature = action.activeFeature;
-      newState.ui = {activeId, activeFeature, isRightPaneEnabled: true, isRightPanePinned};
+      newState.ui = {activeId, activeFeature, isRightPaneEnabled: true, isRightPanePinned, listFilter};
       return newState;
     case CONSTS.TOGGLE_PIN_RIGHT_PANE:
       newState = Object.assign({}, state);
@@ -41,7 +42,13 @@ const reducer = (state, action) => {
       newState = Object.assign({}, state);
       if (newState && newState.ui) {
         newState.ui.isRightPanePinned = false;
-        newState.ui.isRightPaneEnabled= false;
+        newState.ui.isRightPaneEnabled = false;
+      }
+      return newState;
+    case CONSTS.UPDATE_LIST_FILTER:
+      newState = Object.assign({}, state);
+      if(newState && newState.ui) {
+        newState.ui.listFilter = action.text;
       }
       return newState;
     default:

@@ -67,8 +67,26 @@ body {
   border-top: 1px solid #cccccc;
 }
 
+#left-pane-list-filter {
+  height: 30px;
+  border-bottom: 1px solid #cccccc;
+  position: relative;
+}
+
+#left-pane-list-filter input {
+  height: 30px;
+  width: 100%;
+  padding-left: 20px;
+}
+
+#left-pane-list-filter .filter-icon {
+  position: absolute;
+  left: 4px;
+  top: 8px;
+}
+
 #left-pane-list {
-  height: 258px;
+  height: 228px;
   overflow: auto;
 }
 

@@ -10,14 +10,14 @@ class SwmmLeftPaneList extends React.Component {
   }
 
   render() {
-    const {items, idPrefix, activeFeature, activeId, setActiveId, editActiveId, shouldShowEditIcon} = this.props;
+    const {items, idPrefix, activeFeature, activeId, setActiveId, editActiveId, shouldShowEditIcon, listFilter} = this.props;
     const onEdit = (activeFeature, activeId) => e => {
       editActiveId(activeFeature, activeId);
       e.stopPropagation();
     }
     return (
       <div id="left-pane-list">
-        {items.map(item => {
+        { items.filter(i => listFilter === null || i.name.indexOf(listFilter) != -1).map(item => {
           let className = "list-item";
           if (item.name === activeId) { className = className + " selected"; }
           return (
@@ -33,6 +33,7 @@ class SwmmLeftPaneList extends React.Component {
 }
 
 SwmmLeftPaneList.propTypes = {
+  listFilter: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
   idPrefix: PropTypes.string.isRequired,
   activeFeature: PropTypes.string.isRequired,
@@ -49,6 +50,11 @@ const isRightPaneVisible = state => {
 };
 
 const mapStateToProps = state => {
+  let listFilter = "";
+  if (state && state.ui && state.ui.listFilter) {
+    listFilter = state.ui.listFilter;
+  }
+
   if (state && state.ui && state.project && state.ui.activeFeature !== CONSTS.NONE_FEATURE) {
     const shouldShowEditIcon = !isRightPaneVisible(state);
 
@@ -62,6 +68,7 @@ const mapStateToProps = state => {
           activeFeature,
           activeId,
           shouldShowEditIcon,
+          listFilter,
         };
       case CONSTS.OUTFALL_FEATURE:
         return {
@@ -70,6 +77,7 @@ const mapStateToProps = state => {
           activeFeature,
           activeId,
           shouldShowEditIcon,
+          listFilter,
         };
       case CONSTS.DIVIDER_FEATURE:
         return {
@@ -78,6 +86,7 @@ const mapStateToProps = state => {
           activeFeature,
           activeId,
           shouldShowEditIcon,
+          listFilter,
         };
       case CONSTS.STORAGE_FEATURE:
         return {
@@ -86,6 +95,7 @@ const mapStateToProps = state => {
           activeFeature,
           activeId,
           shouldShowEditIcon,
+          listFilter,
         };
       case CONSTS.CONDUIT_FEATURE:
         return {
@@ -94,6 +104,7 @@ const mapStateToProps = state => {
           activeFeature,
           activeId,
           shouldShowEditIcon,
+          listFilter,
         };
       case CONSTS.PUMP_FEATURE:
         return {
@@ -102,6 +113,7 @@ const mapStateToProps = state => {
           activeFeature,
           activeId,
           shouldShowEditIcon,
+          listFilter,
         };
       case CONSTS.ORIFICE_FEATURE:
         return {
@@ -110,6 +122,7 @@ const mapStateToProps = state => {
           activeFeature,
           activeId,
           shouldShowEditIcon,
+          listFilter,
         };
       case CONSTS.WEIR_FEATURE:
         return {
@@ -118,6 +131,7 @@ const mapStateToProps = state => {
           activeFeature,
           activeId,
           shouldShowEditIcon,
+          listFilter,
         }
       case CONSTS.OUTLET_FEATURE:
         return {
@@ -126,6 +140,7 @@ const mapStateToProps = state => {
           activeFeature,
           activeId,
           shouldShowEditIcon,
+          listFilter,
         };
       case CONSTS.SUBCATCHMENT_FEATURE:
         return {
@@ -134,11 +149,12 @@ const mapStateToProps = state => {
           activeFeature,
           activeId,
           shouldShowEditIcon,
+          listFilter,
         };
     }
   }
 
-  return {items: [], idPrefix: "", activeId: "", activeFeature: CONSTS.NONE_FEATURE, shouldShowEditIcon: true};
+  return {items: [], idPrefix: "", activeId: "", activeFeature: CONSTS.NONE_FEATURE, shouldShowEditIcon: true, listFilter};
 };
 
 const mapDispatchToProps = (dispatch) => ({
