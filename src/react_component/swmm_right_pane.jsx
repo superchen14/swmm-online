@@ -30,6 +30,7 @@ class SwmmRightPane extends React.Component {
 SwmmRightPane.propTypes = {
   isRightPanePinned: PropTypes.bool.isRequired,
   togglePin: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
