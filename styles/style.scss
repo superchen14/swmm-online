@@ -1,12 +1,22 @@
+$menu-item-hover-background-color: #f0f0f0;
+
+@import "../node_modules/bulma/bulma.sass";
+
+// patch bulma styles
+.menu-list a {
+  font-size: 14px;
+}
+
+.menu-list li ul {
+  margin-top: 0px;
+}
+
 $borderColor: #cccccc;
 $treeNodeHoverColor: #f0f0f0;
 $treeNodeSelectedColor: #cccccc;
 $listItemHoverColor: #f0f0f0;
-$listItemSelectedColor: #e8eff6;
-
-body {
-  background:#eee;
-}
+$listItemSelectedColor: #3273dc;
+$listItemSelectedFontColor: white;
 
 #swmm-app {
   background: white;
@@ -101,11 +111,11 @@ body {
 }
 
 #left-pane-treeview {
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
   height: 350px;
+  width: 180px;
   overflow: auto;
+  border-right: 1px solid $borderColor;
 }
 
 #main-pane {
@@ -148,36 +158,6 @@ summary {
   display: list-item;
 }
 
-.treeview-root-node {
-  cursor: pointer;
-  padding-top: 5px;
-}
-
-.treeview-node {
-  cursor: pointer;
-  padding-top: 5px;
-  margin-left: 20px;
-}
-
-.treeview-leaf-node {
-  margin-left: 20px;
-  height: 24px;
-  padding-top: 4px;
-
-  .selected {
-    background: $treeNodeSelectedColor;
-    height: 20px;
-
-    &:hover {
-      background: $treeNodeSelectedColor;
-    }
-  }
-
-  span:hover {
-    background: $treeNodeHoverColor;
-  }
-}
-
 .list-item {
   border-bottom: 1px dotted #ddd;
   height: 30px;
@@ -190,6 +170,7 @@ summary {
   &:hover { background-color: $listItemHoverColor; }
   &.selected {
     background-color: $listItemSelectedColor;
+    color: $listItemSelectedFontColor;
 
     .edit-item {
       visibility: visible;

@@ -11,62 +11,38 @@ class SwmmLeftPaneTreeView extends React.Component {
 
   render() {
     const { activeFeature, setActiveFeature } = this.props;
-    const junctionSpanClassName = activeFeature === CONSTS.JUNCTION_FEATURE ? "selected" : "";
-    const outfallSpanClassName = activeFeature === CONSTS.OUTFALL_FEATURE ? "selected" : "";
-    const dividerSpanClassName = activeFeature === CONSTS.DIVIDER_FEATURE ? "selected" : "";
-    const storageSpanClassName = activeFeature === CONSTS.STORAGE_FEATURE ? "selected" : "";
-    const conduitSpanClassName = activeFeature === CONSTS.CONDUIT_FEATURE ? "selected" : "";
-    const pumpSpanClassName = activeFeature === CONSTS.PUMP_FEATURE ? "selected" : "";
-    const orificeSpanClassName = activeFeature === CONSTS.ORIFICE_FEATURE ? "selected" : "";
-    const weirSpanClassName = activeFeature === CONSTS.WEIR_FEATURE ? "selected" : "";
-    const outletSpanClassName = activeFeature === CONSTS.OUTLET_FEATURE ? "selected" : "";
-    const subcatchmentSpanClassName = activeFeature === CONSTS.SUBCATCHMENT_FEATURE ? "selected" : "";
+    const getClassName = (myFeature) => activeFeature === myFeature ? "is-active" : "";
 
     return (
-      <div id="left-pane-treeview">
-        <details open className="treeview-root-node">
-          <summary>Hydrology</summary>
-          <div className="treeview-leaf-node"><span onClick={setActiveFeature(CONSTS.NONE_FEATURE)}>Rain Gages</span></div>
-          <div className="treeview-leaf-node">
-            <span onClick={setActiveFeature(CONSTS.SUBCATCHMENT_FEATURE)} className={subcatchmentSpanClassName}>Subcatchments</span>
-          </div>
-        </details>
-        <details open className="treeview-root-node">
-          <summary>Hydraulics</summary>
-          <details className="treeview-node">
-            <summary>Nodes</summary>
-            <div className="treeview-leaf-node">
-              <span onClick={setActiveFeature(CONSTS.JUNCTION_FEATURE)} className={junctionSpanClassName}>Junctions</span>
-            </div>
-            <div className="treeview-leaf-node">
-              <span onClick={setActiveFeature(CONSTS.OUTFALL_FEATURE)} className={outfallSpanClassName}>Outfalls</span>
-            </div>
-            <div className="treeview-leaf-node">
-              <span onClick={setActiveFeature(CONSTS.DIVIDER_FEATURE)} className={dividerSpanClassName}>Dividers</span>
-            </div>
-            <div className="treeview-leaf-node">
-              <span onClick={setActiveFeature(CONSTS.STORAGE_FEATURE)} className={storageSpanClassName}>Storage Units</span>
-            </div>
-          </details>
-          <details className="treeview-node">
-            <summary>Links</summary>
-            <div className="treeview-leaf-node">
-              <span onClick={setActiveFeature(CONSTS.CONDUIT_FEATURE)} className={conduitSpanClassName}>Conduits</span>
-            </div>
-            <div className="treeview-leaf-node">
-              <span onClick={setActiveFeature(CONSTS.PUMP_FEATURE)} className={pumpSpanClassName}>Pumps</span>
-            </div>
-            <div className="treeview-leaf-node">
-              <span onClick={setActiveFeature(CONSTS.ORIFICE_FEATURE)} className={orificeSpanClassName}>Orifices</span>
-            </div>
-            <div className="treeview-leaf-node">
-              <span onClick={setActiveFeature(CONSTS.WEIR_FEATURE)} className={weirSpanClassName}>Weirs</span>
-            </div>
-            <div className="treeview-leaf-node">
-              <span onClick={setActiveFeature(CONSTS.OUTLET_FEATURE)} className={outletSpanClassName}>Outlets</span></div>
-          </details>
-        </details>
-      </div>
+      <aside id="left-pane-treeview" className="menu">
+        <p className="menu-label">Hydrology</p>
+        <ul className="menu-list">
+          <a onClick={setActiveFeature(CONSTS.NONE_FEATURE)}>Rain Gages</a>
+          <a onClick={setActiveFeature(CONSTS.SUBCATCHMENT_FEATURE)} className={getClassName(CONSTS.SUBCATCHMENT_FEATURE)}>Subcatchments</a>
+        </ul>
+        <p className="menu-label">Hydraulics</p>
+        <ul className="menu-list">
+          <li>
+            <a>Nodes</a>
+            <ul>
+              <li><a onClick={setActiveFeature(CONSTS.JUNCTION_FEATURE)} className={getClassName(CONSTS.JUNCTION_FEATURE)}>Junctions</a></li>
+              <li><a onClick={setActiveFeature(CONSTS.OUTFALL_FEATURE)} className={getClassName(CONSTS.OUTFALL_FEATURE)}>Outfalls</a></li>
+              <li><a onClick={setActiveFeature(CONSTS.DIVIDER_FEATURE)} className={getClassName(CONSTS.DIVIDER_FEATURE)}>Dividers</a></li>
+              <li><a onClick={setActiveFeature(CONSTS.STORAGE_FEATURE)} className={getClassName(CONSTS.STORAGE_FEATURE)}>Storages</a></li>
+            </ul>
+          </li>
+          <li>
+            <a>Links</a>
+            <ul>
+              <li><a onClick={setActiveFeature(CONSTS.CONDUIT_FEATURE)} className={getClassName(CONSTS.CONDUIT_FEATURE)}>Conduits</a></li>
+              <li><a onClick={setActiveFeature(CONSTS.PUMP_FEATURE)} className={getClassName(CONSTS.PUMP_FEATURE)}>Pumps</a></li>
+              <li><a onClick={setActiveFeature(CONSTS.ORIFICE_FEATURE)} className={getClassName(CONSTS.ORIFICE_FEATURE)}>Orifices</a></li>
+              <li><a onClick={setActiveFeature(CONSTS.WEIR_FEATURE)} className={getClassName(CONSTS.WEIR_FEATURE)}>Weirs</a></li>
+              <li><a onClick={setActiveFeature(CONSTS.OUTLET_FEATURE)} className={getClassName(CONSTS.OUTLET_FEATURE)}>Outlets</a></li>
+            </ul>
+          </li>
+        </ul>
+      </aside>
     );
   }
 }
