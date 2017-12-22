@@ -2,7 +2,7 @@ $menu-item-hover-background-color: #f0f0f0;
 
 @import "../node_modules/bulma/bulma.sass";
 
-// patch bulma styles
+// START patch bulma styles
 .menu-list a {
   font-size: 14px;
 }
@@ -10,6 +10,7 @@ $menu-item-hover-background-color: #f0f0f0;
 .menu-list li ul {
   margin-top: 0px;
 }
+// END patch bulma styles
 
 $borderColor: #cccccc;
 $treeNodeHoverColor: #f0f0f0;
