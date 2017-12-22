@@ -1,3 +1,9 @@
+$borderColor: #cccccc;
+$treeNodeHoverColor: #f0f0f0;
+$treeNodeSelectedColor: #cccccc;
+$listItemHoverColor: #f0f0f0;
+$listItemSelectedColor: #e8eff6;
+
 body {
   background:#eee;
 }
@@ -6,7 +12,7 @@ body {
   background: white;
   width: 1102px;
   height: 700px;
-  border: 1px solid #cccccc;
+  border: 1px solid $borderColor;
   margin-left: auto;
   margin-right: auto;
   margin-top: 30px;
@@ -14,7 +20,7 @@ body {
 
 #left-pane {
   width: 180px;
-  border-right: 1px solid #cccccc;
+  border-right: 1px solid $borderColor;
   height: 100%;
   float: left;
 }
@@ -22,7 +28,7 @@ body {
 #pane-header {
   height: 45px;
   background-color: rgb(247, 247, 247);
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid $borderColor;
 }
 
 #pane-title {
@@ -63,26 +69,26 @@ body {
 #left-pane-list-header {
   height: 45px;
   background-color: rgb(247, 247, 247);
-  border-bottom: 1px solid #cccccc;
-  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid $borderColor;
+  border-top: 1px solid $borderColor;
 }
 
 #left-pane-list-filter {
   height: 30px;
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid $borderColor;
   position: relative;
-}
 
-#left-pane-list-filter input {
-  height: 30px;
-  width: 100%;
-  padding-left: 20px;
-}
+  input {
+    height: 30px;
+    width: 100%;
+    padding-left: 20px;
+  }
 
-#left-pane-list-filter .filter-icon {
-  position: absolute;
-  left: 4px;
-  top: 8px;
+  .filter-icon {
+    position: absolute;
+    left: 4px;
+    top: 8px;
+  }
 }
 
 #left-pane-list {
@@ -123,7 +129,7 @@ body {
 
 .right-pane {
   width: 200px;
-  border-left: 1px solid #cccccc;
+  border-left: 1px solid $borderColor;
   height: 100%;
   float: right;
   position: absolute;
@@ -157,19 +163,19 @@ summary {
   margin-left: 20px;
   height: 24px;
   padding-top: 4px;
-}
 
-.treeview-leaf-node .selected {
-  background: #cccccc;
-  height: 20px;
-}
+  .selected {
+    background: $treeNodeSelectedColor;
+    height: 20px;
 
-.treeview-leaf-node .selected:hover {
-  background: #cccccc;
-}
+    &:hover {
+      background: $treeNodeSelectedColor;
+    }
+  }
 
-.treeview-leaf-node span:hover {
-  background: #f0f0f0;
+  span:hover {
+    background: $treeNodeHoverColor;
+  }
 }
 
 .list-item {
@@ -180,25 +186,20 @@ summary {
   padding-top: 5px;
   padding-bottom: 5px;
   cursor: pointer;
+
+  &:hover { background-color: $listItemHoverColor; }
+  &.selected {
+    background-color: $listItemSelectedColor;
+
+    .edit-item {
+      visibility: visible;
+    }
+
+    &:hover { background-color: $listItemSelectedColor; }
+  }
 }
 
 span.edit-item {
   float: right;
   visibility: hidden;
-}
-
-.list-item:hover {
-  background-color: #f0f0f0;
-}
-
-.list-item.selected {
-  background-color: #e8eff6;
-}
-
-.list-item.selected .edit-item {
-  visibility: visible
-}
-
-.list-item.selected:hover {
-  background-color: #e8eff6;
 }

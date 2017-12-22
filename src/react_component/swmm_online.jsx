@@ -1,5 +1,5 @@
 require("../../node_modules/bootstrap/dist/css/bootstrap.css");
-require("../../styles/style.css");
+require("../../styles/style.scss");
 
 import React from "react";
 import ReactDOM from "react-dom";
