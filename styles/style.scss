@@ -10,6 +10,24 @@ $menu-item-hover-background-color: #f0f0f0;
 .menu-list li ul {
   margin-top: 0px;
 }
+
+.panel {
+  border: 0px;
+}
+
+.panel-block {
+  height: 30px;
+  border-right: 0px;
+  border-left: 0px;
+  padding-right: 0px;
+  &.is-active {
+    border-left: 1px solid #3273dc;
+  }
+}
+
+a:hover {
+  text-decoration: none;
+}
 // END patch bulma styles
 
 $borderColor: #cccccc;
@@ -84,26 +102,8 @@ $listItemSelectedFontColor: white;
   border-top: 1px solid $borderColor;
 }
 
-#left-pane-list-filter {
-  height: 30px;
-  border-bottom: 1px solid $borderColor;
-  position: relative;
-
-  input {
-    height: 30px;
-    width: 100%;
-    padding-left: 20px;
-  }
-
-  .filter-icon {
-    position: absolute;
-    left: 4px;
-    top: 8px;
-  }
-}
-
 #left-pane-list {
-  height: 228px;
+  height: 227px;
   overflow: auto;
 }
 
@@ -153,35 +153,4 @@ $listItemSelectedFontColor: white;
 
 #swmm-menu {
   background-color: rgb(247, 247, 247);
-}
-
-summary {
-  display: list-item;
-}
-
-.list-item {
-  border-bottom: 1px dotted #ddd;
-  height: 30px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  cursor: pointer;
-
-  &:hover { background-color: $listItemHoverColor; }
-  &.selected {
-    background-color: $listItemSelectedColor;
-    color: $listItemSelectedFontColor;
-
-    .edit-item {
-      visibility: visible;
-    }
-
-    &:hover { background-color: $listItemSelectedColor; }
-  }
-}
-
-span.edit-item {
-  float: right;
-  visibility: hidden;
 }

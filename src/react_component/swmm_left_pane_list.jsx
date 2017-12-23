@@ -17,16 +17,19 @@ class SwmmLeftPaneList extends React.Component {
     }
     return (
       <div id="left-pane-list">
+        <nav className="panel">
         { items.filter(i => listFilter === null || i.name.indexOf(listFilter) != -1).map(item => {
-          let className = "list-item";
-          if (item.name === activeId) { className = className + " selected"; }
+          let className = "panel-block";
+          const isSelected = item.name === activeId;
+          if (isSelected) { className = className + " is-active"; }
           return (
-            <div key={idPrefix + item.name} className={className} onClick={setActiveId(activeFeature, item.name)}>
-              <span>{item.name}</span>
-              {shouldShowEditIcon && <span className="glyphicon glyphicon-edit edit-item" onClick={onEdit(activeFeature, item.name)}/>}
-            </div>
+            <a key={idPrefix + item.name} className={className} onClick={setActiveId(activeFeature, item.name)}>
+              <div style={{width: "90%"}}>{item.name}</div>
+              {shouldShowEditIcon && isSelected && <span className="panel-icon glyphicon glyphicon-edit edit-item" onClick={onEdit(activeFeature, item.name)}/>}
+            </a>
           );
         })}
+        </nav>
       </div>
     );
   }

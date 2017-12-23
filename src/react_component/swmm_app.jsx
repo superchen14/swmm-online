@@ -26,9 +26,12 @@ class SwmmApp extends React.Component {
           <ConnectedSwmmLeftPaneTreeView/>
           <div id="left-pane-list-header">
           </div>
-          <div id="left-pane-list-filter">
-            <input onInput={this.props.updateListFilter} value={this.props.listFilter}/>
-            <span className="glyphicon glyphicon-filter filter-icon"/>
+          <div>
+            <p className="control has-icons-left">
+              <input className="input is-small" type="text" placeholder="search" onInput={this.props.updateListFilter} value={this.props.listFilter}/>
+              <span className="icon is-small is-left glyphicon glyphicon-filter">
+              </span>
+            </p>
           </div>
           <ConnectedSwmmLeftPaneList/>
         </div>
