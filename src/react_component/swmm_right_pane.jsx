@@ -22,6 +22,19 @@ class SwmmRightPane extends React.Component {
           <span className="glyphicon glyphicon-remove"></span>
         </div>
       </div>
+      <div id="right-pane-body">
+        <table className="table is-hoverable is-bordered">
+          <thead>
+            <tr><th>Property</th><th>Value</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Id</th><th>Test</th></tr>
+            <tr><th>Id</th><th>Test</th></tr>
+            <tr><th>Id</th><th>Test</th></tr>
+            <tr><th>Id</th><th>Test</th></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     );
   }

@@ -37,6 +37,15 @@ $listItemHoverColor: #f0f0f0;
 $listItemSelectedColor: #3273dc;
 $listItemSelectedFontColor: white;
 
+body {
+  font-size: 14px;
+}
+
+tbody th {
+  font-weight: normal;
+  width: 50%;
+}
+
 #swmm-app {
   background: white;
   width: 1102px;
@@ -145,6 +154,10 @@ $listItemSelectedFontColor: white;
   float: right;
   position: absolute;
   right: 0px;
+}
+
+#right-pane-body {
+  height: 653px;
 }
 
 #swmm-file-input {
