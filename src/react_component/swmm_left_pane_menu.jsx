@@ -35,20 +35,12 @@ class SwmmLeftPaneMenu extends React.Component {
   }
 
   render() {
-    const dropdownClassName = this.state.isMenuExpanded ? "dropdown open" : "dropdown";
-
     return (
-      <div style={{float: "right"}}>
-        <ul className="nav navbar-nav">
-          <li className={dropdownClassName}>
-            <a href="#" id="swmm-menu">
-              <i className="fa fa-cog" id="left-pane-menu" onClick={this.toggleMenu}/>
-            </a>
-            <ul className="dropdown-menu">
-              <li><a href="#" onClick={this.openInpFile}>Open...</a></li>
-            </ul>
-          </li>
-        </ul>
+      <div className="navbar-item has-dropdown is-hoverable" id="swmm-dropdown-menu">
+        <a className="navbar-link">Menu</a>
+        <div className="navbar-dropdown" id="swmm-dropdown-list">
+          <a className="navbar-item" onClick={this.openInpFile}>Open...</a>
+        </div>
         <div>
           <input
             id="swmm-file-input"

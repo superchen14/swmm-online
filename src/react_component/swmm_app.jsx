@@ -20,7 +20,6 @@ class SwmmApp extends React.Component {
         <div id="swmm-app-dock">
         <div id="left-pane">
           <div id="pane-header">
-            <div id="pane-title">Project</div>
             <ConnectedSwmmLeftPaneMenu/>
           </div>
           <ConnectedSwmmLeftPaneTreeView/>

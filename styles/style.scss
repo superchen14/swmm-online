@@ -69,16 +69,6 @@ tbody th {
   border-bottom: 1px solid $borderColor;
 }
 
-#pane-title {
-  height: 45px;
-  display: inline-block;
-  font-weight: 700;
-  font-size: 14px;
-  width: 50%;
-  padding: 13px;
-  cursor: default;
-}
-
 #right-pane-pin-btn {
   height: 45px;
   font-weight: 700;
@@ -164,7 +154,17 @@ tbody th {
   display: none;
 }
 
-#swmm-menu {
-  background-color: rgb(247, 247, 247);
-  height: 40px;
+#swmm-dropdown-menu {
+  height: 44px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+#swmm-dropdown-list {
+  border: 1px solid $borderColor;
+  font-weight: 400;
+}
+
+#swmm-property-list {
+  width: 100%;
 }
