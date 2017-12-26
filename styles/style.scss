@@ -168,3 +168,17 @@ tbody th {
 #swmm-property-list {
   width: 100%;
 }
+
+.content{
+  p {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  a {
+    color: #3273dc;
+    &:hover {
+      color: #3273dc;
+    }
+  }
+}
