@@ -42,8 +42,7 @@ class SwmmLeftPaneMenu extends React.Component {
         <ul className="nav navbar-nav">
           <li className={dropdownClassName}>
             <a href="#" id="swmm-menu">
-              <span className="glyphicon glyphicon-menu-hamburger" id="left-pane-menu" onClick={this.toggleMenu}>
-              </span>
+              <i className="fa fa-cog" id="left-pane-menu" onClick={this.toggleMenu}/>
             </a>
             <ul className="dropdown-menu">
               <li><a href="#" onClick={this.openInpFile}>Open...</a></li>

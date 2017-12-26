@@ -1,5 +1,6 @@
 require("../../node_modules/bootstrap/dist/css/bootstrap.css");
 require("../../styles/style.scss");
+require('font-awesome-webpack');
 
 import React from "react";
 import ReactDOM from "react-dom";

@@ -25,7 +25,7 @@ class SwmmLeftPaneList extends React.Component {
           return (
             <a key={idPrefix + item.name} className={className} onClick={setActiveId(activeFeature, item.name)}>
               <div style={{width: "90%"}}>{item.name}</div>
-              {shouldShowEditIcon && isSelected && <span className="panel-icon glyphicon glyphicon-edit edit-item" onClick={onEdit(activeFeature, item.name)}/>}
+              {shouldShowEditIcon && isSelected && <i className="panel-icon fa fa-edit edit-item" onClick={onEdit(activeFeature, item.name)}/>}
             </a>
           );
         })}

@@ -11,16 +11,16 @@ class SwmmRightPane extends React.Component {
 
   render() {
     const {isRightPanePinned, togglePin, close} = this.props;
-    let spanClass = "glyphicon glyphicon-pushpin ";
-    if (isRightPanePinned) spanClass = spanClass + "right-pane-pinned";
+    let spanClass = "fa fa-thumb-tack ";
+    if (!isRightPanePinned) spanClass = spanClass + "right-pane-unpinned";
     return (
     <div className="right-pane">
       <div id="pane-header">
         <div id="right-pane-pin-btn" onClick={togglePin}>
-          <span className={spanClass}></span>
+          <i className={spanClass}/>
         </div>
         <div id="right-pane-close-btn" onClick={close}>
-          <span className="glyphicon glyphicon-remove"></span>
+          <i className="fa fa-remove"/>
         </div>
       </div>
       <div id="right-pane-body">

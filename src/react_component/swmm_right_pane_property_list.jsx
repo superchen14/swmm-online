@@ -44,7 +44,6 @@ const getActiveItem = state => {
     if (activeFeature !== CONSTS.NONE_FEATURE &&activeId !== "") {
       switch(activeFeature) {
       case CONSTS.JUNCTION_FEATURE:
-        debugger;
         const junction = project.junctions.find(j => j.name === activeId);
         return junction;
       }

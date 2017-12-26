@@ -100,8 +100,8 @@ tbody th {
   display: inline-block;
 }
 
-.right-pane-pinned {
-  transform:rotate(-45deg);
+.right-pane-unpinned {
+  transform:rotate(45deg);
 }
 
 #left-pane-list-header {
