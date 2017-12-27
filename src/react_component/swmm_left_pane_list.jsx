@@ -157,7 +157,7 @@ const mapStateToProps = state => {
     }
   }
 
-  return {items: [], idPrefix: "", activeId: "", activeFeature: CONSTS.NONE_FEATURE, shouldShowEditIcon: true, listFilter};
+  return {items: [], idPrefix: "", activeId: CONSTS.EMPTY_STRING, activeFeature: CONSTS.NONE_FEATURE, shouldShowEditIcon: true, listFilter};
 };
 
 const mapDispatchToProps = (dispatch) => ({

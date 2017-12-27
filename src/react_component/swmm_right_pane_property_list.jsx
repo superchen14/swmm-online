@@ -32,21 +32,19 @@ class SwmmRightPanePropertyList extends React.Component{
 }
 
 SwmmRightPanePropertyList.propTypes = {
-  activeItem: PropTypes.object.isRequired,
+  activeItem: PropTypes.object,
   activeFeature: PropTypes.string.isRequired,
 }
 
 const getActiveItem = state => {
-  if (state && state.ui && state.ui.activeFeature && state.ui.activeId && state.project) {
-    const project = state.project;
-    const activeId = state.ui.activeId;
-    const activeFeature = state.ui.activeFeature;
-    if (activeFeature !== CONSTS.NONE_FEATURE &&activeId !== "") {
-      switch(activeFeature) {
-      case CONSTS.JUNCTION_FEATURE:
-        const junction = project.junctions.find(j => j.name === activeId);
-        return junction;
-      }
+  const project = state.project;
+  const activeId = state.ui.activeId;
+  debugger;
+  const activeFeature = state.ui.activeFeature;
+  if (activeFeature !== CONSTS.NONE_FEATURE &&activeId !== CONSTS.EMPTY_STRING) {
+    switch(activeFeature) {
+    case CONSTS.JUNCTION_FEATURE:
+      return project.junctions.find(j => j.name === activeId);
     }
   }
 

@@ -183,8 +183,8 @@ SwmmCanvas.propTypes = {
 const mapStateToProps = state => ({
   project: state && state.project ? state.project : {},
   graphHelper: state && state.graphHelper ? state.graphHelper : {},
-  activeId: state && state.ui ? state.ui.activeId : "",
-  activeFeature: state && state.ui ? state.ui.activeFeature : "",
+  activeId: state && state.ui ? state.ui.activeId : CONSTS.EMPTY_STRING,
+  activeFeature: state && state.ui ? state.ui.activeFeature : CONSTS.NONE_FEATURE,
 });
 
 const mapDispatchToProps = dispatch => ({

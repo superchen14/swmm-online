@@ -10,54 +10,53 @@ import GraphHelper from "../helper/graph_helper";
 import CONSTS from "./consts";
 
 const reducer = (state, action) => {
-  let isRightPanePinned = (state && state.ui && state.ui.isRightPanePinned) || false;
-  let listFilter = state && state.ui && state.ui.listFilter ? state.ui.listFilter : "";
+  let newState = Object.assign({}, state);
   switch(action.type) {
     case CONSTS.LOAD_PROJECT:
-      return {project: action.project, graphHelper: new GraphHelper(action.project)};
+      newState.project = action.project;
+      newState.graphHelper = new GraphHelper(action.project);
+      return newState;
     case CONSTS.SET_ACTIVE_FEATURE:
-      let newState = Object.assign({}, state);
-      newState.ui = {activeFeature: action.activeFeature, activeId: "", isRightPaneEnabled: false, isRightPanePinned};
+      newState.ui.activeFeature = action.activeFeature;
+      newState.ui.activeId = CONSTS.EMPTY_STRING;
       return newState;
     case CONSTS.SET_ACTIVE_ITEM:
-      newState = Object.assign({}, state);
-      const isSameId = state.ui && state.ui.activeId && state.ui.activeId === action.activeId;
-      let activeId = isSameId ? "" : action.activeId;
-      let activeFeature = action.activeFeature;
-      newState.ui = {activeId, activeFeature, isRightPaneEnabled: false, isRightPanePinned, listFilter};
+      const isSameId = state.ui.activeId === action.activeId;
+      newState.ui.activeId = isSameId ? CONSTS.EMPTY_STRING : action.activeId;
+      newState.ui.activeFeature = action.activeFeature;
+      newState.ui.isRightPaneEnabled = false;
       return newState;
     case CONSTS.EDIT_ACTIVE_ITEM:
-      newState = Object.assign({}, state);
-      activeId = action.activeId;
-      activeFeature = action.activeFeature;
-      newState.ui = {activeId, activeFeature, isRightPaneEnabled: true, isRightPanePinned, listFilter};
+      newState.ui.isRightPaneEnabled = true;
       return newState;
     case CONSTS.TOGGLE_PIN_RIGHT_PANE:
-      newState = Object.assign({}, state);
-      if (newState && newState.ui) {
-        newState.ui.isRightPanePinned = !newState.ui.isRightPanePinned;
-      }
+      newState.ui.isRightPanePinned = !newState.ui.isRightPanePinned;
       return newState;
     case CONSTS.CLOSE_RIGHT_PANE:
-      newState = Object.assign({}, state);
-      if (newState && newState.ui) {
-        newState.ui.isRightPanePinned = false;
-        newState.ui.isRightPaneEnabled = false;
-      }
+      newState.ui.isRightPanePinned = false;
+      newState.ui.isRightPaneEnabled = false;
       return newState;
     case CONSTS.UPDATE_LIST_FILTER:
-      newState = Object.assign({}, state);
-      if(newState && newState.ui) {
-        newState.ui.listFilter = action.text;
-      }
+      newState.ui.listFilter = action.text;
       return newState;
     default:
       return state;
   }
 };
 
+const initState = {
+  project: null,
+  graphHelper: null,
+  ui: {
+    activeFeature: CONSTS.NONE_FEATURE,
+    activeId: CONSTS.EMPTY_STRING,
+    isRightPaneEnabled: false,
+    isRightPanePinned: false,
+    listFilter: CONSTS.EMPTY_STRING,
+  }
+};
 const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || (a => a);
-const store = createStore(reducer, {}, enhancer(applyMiddleware()));
+const store = createStore(reducer, initState, enhancer(applyMiddleware()));
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedSwmmApp/>

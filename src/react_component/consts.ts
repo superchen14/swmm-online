@@ -1,4 +1,7 @@
 const CONSTS = {
+  // common string
+  EMPTY_STRING: "",
+
   // action types
   LOAD_PROJECT: "LOAD_PROJECT",
   SET_ACTIVE_ITEM: "SET_ACTIVE_ITEM",

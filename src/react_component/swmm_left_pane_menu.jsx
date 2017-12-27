@@ -24,7 +24,6 @@ class SwmmLeftPaneMenu extends React.Component {
 
   openInpFile() {
     this.fileInput.click();
-    this.toggleMenu();
   }
 
   onInpFileOpened(e) {
