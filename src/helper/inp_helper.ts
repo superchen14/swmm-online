@@ -61,21 +61,24 @@ function parseOutfall(line, idPointsMap): Node {
   const items = line.match(/[^ ]+/g);
   const outfallName = items[0];
   const position = idPointsMap[outfallName];
-  return createOutfall(outfallName, position);
+  const invertElevation = Number.parseFloat(items[1]);
+  return createOutfall(outfallName, position, invertElevation);
 }
 
 function parseDivider(line, idPointsMap): Node {
   const items = line.match(/[^ ]+/g);
   const dividerName = items[0];
   const position = idPointsMap[dividerName];
-  return createDivider(dividerName, position);
+  const invertElevation = Number.parseFloat(items[1]);
+  return createDivider(dividerName, position, invertElevation);
 }
 
 function parseStorage(line, idPointsMap): Node {
   const items = line.match(/[^ ]+/g);
   const storageUnitName = items[0];
   const position = idPointsMap[storageUnitName];
-  return createStorage(storageUnitName, position);
+  const invertElevation = Number.parseFloat(items[1]);
+  return createStorage(storageUnitName, position, invertElevation);
 }
 
 function parseConduit(line, idVerticesMap, nodes): Link {
