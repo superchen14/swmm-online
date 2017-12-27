@@ -39,7 +39,6 @@ SwmmRightPanePropertyList.propTypes = {
 const getActiveItem = state => {
   const project = state.project;
   const activeId = state.ui.activeId;
-  debugger;
   const activeFeature = state.ui.activeFeature;
   if (activeFeature !== CONSTS.NONE_FEATURE &&activeId !== CONSTS.EMPTY_STRING) {
     switch(activeFeature) {

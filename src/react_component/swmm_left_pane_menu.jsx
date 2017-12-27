@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import INPHelper from "../helper/inp_helper";
+import sampleInpText from "../helper/sample_inp";
 import { loadProjectAction } from "./actions";
 
 class SwmmLeftPaneMenu extends React.Component {
@@ -12,6 +13,7 @@ class SwmmLeftPaneMenu extends React.Component {
     this.toggleAboutSwmmModal = this.toggleAboutSwmmModal.bind(this);
     this.openInpFile = this.openInpFile.bind(this);
     this.onInpFileOpened = this.onInpFileOpened.bind(this);
+    this.loadSampleFile = this.loadSampleFile.bind(this);
   }
 
   toggleAboutMeModal() {
@@ -40,6 +42,12 @@ class SwmmLeftPaneMenu extends React.Component {
     fileReader.readAsText(file);
   }
 
+  loadSampleFile() {
+    const inpHelper = new INPHelper(sampleInpText);
+    const project = inpHelper.parse();
+    this.props.loadProject(project);
+  }
+
   render() {
     const aboutMeModalClassName = this.state.isAboutMeModalActive ? "modal is-active" : "modal";
     const aboutSwmmModalClassName = this.state.isSwmmModalActive ? "modal is-active" : "modal";
@@ -48,6 +56,7 @@ class SwmmLeftPaneMenu extends React.Component {
         <a className="navbar-link">Menu</a>
         <div className="navbar-dropdown" id="swmm-dropdown-list">
           <a className="navbar-item" onClick={this.openInpFile}>Open...</a>
+          <a className="navbar-item" onClick={this.loadSampleFile}>Load Sample INP File</a>
           <a className="navbar-item" onClick={this.toggleAboutSwmmModal}>About SWMM-Online</a>
           <a className="navbar-item" onClick={this.toggleAboutMeModal}>About Author</a>
         </div>
