@@ -9,12 +9,17 @@ class SwmmLeftPaneMenu extends React.Component {
     super(props);
     this.state = { isAboutMeModalActive: false };
     this.toggleAboutMeModal = this.toggleAboutMeModal.bind(this);
+    this.toggleAboutSwmmModal = this.toggleAboutSwmmModal.bind(this);
     this.openInpFile = this.openInpFile.bind(this);
     this.onInpFileOpened = this.onInpFileOpened.bind(this);
   }
 
   toggleAboutMeModal() {
     this.setState({ isAboutMeModalActive: !this.state.isAboutMeModalActive });
+  }
+
+  toggleAboutSwmmModal() {
+    this.setState({ isSwmmModalActive: !this.state.isSwmmModalActive });
   }
 
   openInpFile() {
@@ -36,12 +41,14 @@ class SwmmLeftPaneMenu extends React.Component {
 
   render() {
     const aboutMeModalClassName = this.state.isAboutMeModalActive ? "modal is-active" : "modal";
+    const aboutSwmmModalClassName = this.state.isSwmmModalActive ? "modal is-active" : "modal";
     return (
       <div className="navbar-item has-dropdown is-hoverable" id="swmm-dropdown-menu">
         <a className="navbar-link">Menu</a>
         <div className="navbar-dropdown" id="swmm-dropdown-list">
           <a className="navbar-item" onClick={this.openInpFile}>Open...</a>
-          <a className="navbar-item" onClick={this.toggleAboutMeModal}>About Me</a>
+          <a className="navbar-item" onClick={this.toggleAboutSwmmModal}>About SWMM-Online</a>
+          <a className="navbar-item" onClick={this.toggleAboutMeModal}>About Author</a>
         </div>
         <div>
           <input
@@ -55,26 +62,40 @@ class SwmmLeftPaneMenu extends React.Component {
           <div className="modal-background"></div>
           <div className="modal-card">
             <header className="modal-card-head">
-              <p className="modal-card-title">About</p>
+              <p className="modal-card-title">About Author</p>
               <button className="delete" aria-label="close" onClick={this.toggleAboutMeModal}></button>
             </header>
             <section className="modal-card-body">
               <div className="content">
-                <h1>What is Swmm-Online</h1>
-                <p>This is a read-only online version of <a href="https://www.epa.gov/water-research/storm-water-management-model-swmm">Storm Water Management Model</a></p>
-                <h1>Source Code</h1>
-                <p>Will upload to github</p>
-                <h1>Who am I</h1>
+                <h1>Who Am I</h1>
                 <p>My name is Paul Chen. A web developer working at SAP Shanghai Labs.</p>
                 <h1>Contact Me</h1>
-                <p><embed src="/img/gmail.svg" type="image/svg+xml" style={{width: 28}}/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:superchen14@email.com">superchen14@gmail.com</a></p>
-                <p><i className="fa fa-github fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/superchen14">https://github.com/superchen14</a></p>
+                <p><i className="fa fa-envelope fa-2x" aria-hidden="true"/>&nbsp;&nbsp;&nbsp;<a href="mailto:superchen14@email.com">superchen14@gmail.com</a></p>
+                <p><i className="fa fa-github-square fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/superchen14">https://github.com/superchen14</a></p>
                 <p><i className="fa fa-qq fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<a href="">511744534</a></p>
                 <p><i className="fa fa-weixin fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;<a href="">superchen14</a></p>
               </div>
             </section>
             <footer className="modal-card-foot">
-              <a className="button" onClick={this.toggleAboutMeModal}>Close</a>
+            </footer>
+          </div>
+        </div>
+        <div className={aboutSwmmModalClassName}>
+          <div className="modal-background"></div>
+          <div className="modal-card">
+            <header className="modal-card-head">
+              <p className="modal-card-title">About SWMM-Online</p>
+              <button className="delete" aria-label="close" onClick={this.toggleAboutSwmmModal}></button>
+            </header>
+            <section className="modal-card-body">
+              <div className="content">
+                <h1>What is SWMM-Online</h1>
+                <p>This is a read-only online version of <a href="https://www.epa.gov/water-research/storm-water-management-model-swmm">Storm Water Management Model</a></p>
+                <h1>Source Code</h1>
+                <p>Will upload to github</p>
+              </div>
+            </section>
+            <footer className="modal-card-foot">
             </footer>
           </div>
         </div>
