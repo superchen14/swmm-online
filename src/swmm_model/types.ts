@@ -9,6 +9,10 @@ interface Entity {
 
 interface Node extends Entity {
   position: Point;
+  invertElevation: number;
+}
+
+interface Junction extends Node {
 }
 
 interface Link extends Entity {
@@ -23,7 +27,7 @@ interface Subcatchment extends Entity {
 
 interface Project
 {
-  junctions: Node[];
+  junctions: Junction[];
   outfalls: Node[];
   dividers: Node[];
   storages: Node[];
@@ -35,4 +39,4 @@ interface Project
   subcatchments: Subcatchment[];
 }
 
-export {Point, Entity, Node, Link, Subcatchment, Project};
+export {Point, Entity, Node, Junction, Link, Subcatchment, Project};

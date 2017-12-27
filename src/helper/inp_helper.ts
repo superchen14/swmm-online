@@ -51,10 +51,10 @@ function parseVertices(lines) {
 function parseJunction(line, idPointsMap): Node {
   const items = line.match(/[^ ]+/g);
   const junctionName = items[0];
-  const elevation = Number.parseFloat(items[1]);
+  const invertElevation = Number.parseFloat(items[1]);
 
   const position = idPointsMap[junctionName];
-  return createJunction(junctionName, position);
+  return createJunction(junctionName, position, invertElevation);
 }
 
 function parseOutfall(line, idPointsMap): Node {

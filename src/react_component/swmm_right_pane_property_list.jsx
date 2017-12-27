@@ -9,6 +9,7 @@ const getJunctionProperties = junction => {
       <tr><th>Name</th><th>{junction.name}</th></tr>
       <tr><th>X</th><th>{junction.position.x}</th></tr>
       <tr><th>Y</th><th>{junction.position.y}</th></tr>
+      <tr><th>Invert El.</th><th>{junction.invertElevation}</th></tr>
     </tbody>
   );
 }
