@@ -1,11 +1,7 @@
 import {Project, Point, Node, Subcatchment} from "../swmm_model/types";
 import createPoint from "../swmm_model/point";
-import divider from "../swmm_model/divider";
-import storage_unit from "../swmm_model/storage_unit";
-import subcatchment from "../swmm_model/subcatchment";
 
 class GraphHelper {
-  private project: Project;
   private leftBottom: Point = createPoint(0, 0);
   private rightTop: Point = createPoint(0, 0);
   private width: number = 0;
@@ -16,10 +12,9 @@ class GraphHelper {
   private canvasYOffset: number = 0;
 
   constructor(project: Project) {
-    this.project = project;
     this.calculateBoundingBox = this.calculateBoundingBox.bind(this);
     this.getPointOnCanvas = this.getPointOnCanvas.bind(this);
-    this.calculateBoundingBox();
+    this.calculateBoundingBox(project);
   }
 
   public getPointOnCanvas(point: Point): Point {
@@ -29,12 +24,12 @@ class GraphHelper {
     return createPoint(x, y);
   }
 
-  private calculateBoundingBox(): void {
-    const junctions: Node[] = this.project.junctions || [];
-    const outfalls: Node[] = this.project.outfalls || [];
-    const dividers: Node[] = this.project.dividers || [];
-    const storages: Node[] = this.project.storages || [];
-    const subcatchments: Subcatchment[] = this.project.subcatchments || [];
+  private calculateBoundingBox(project: Project): void {
+    const junctions: Node[] = project.junctions || [];
+    const outfalls: Node[] = project.outfalls || [];
+    const dividers: Node[] = project.dividers || [];
+    const storages: Node[] = project.storages || [];
+    const subcatchments: Subcatchment[] = project.subcatchments || [];
     const nodes = junctions.concat(outfalls).concat(dividers).concat(storages);
 
     let allPts = nodes.map(n => n.position);

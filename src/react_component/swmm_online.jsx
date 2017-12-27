@@ -4,7 +4,7 @@ require('font-awesome-webpack');
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import ConnectedSwmmApp from "./swmm_app.jsx";
 import GraphHelper from "../helper/graph_helper";
 import CONSTS from "./consts";
@@ -56,7 +56,8 @@ const reducer = (state, action) => {
   }
 };
 
-const store = createStore(reducer);
+const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || (a => a);
+const store = createStore(reducer, {}, enhancer(applyMiddleware()));
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedSwmmApp/>
