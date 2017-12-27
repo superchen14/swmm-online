@@ -27,8 +27,10 @@ class SwmmLeftPaneMenu extends React.Component {
   }
 
   onInpFileOpened(e) {
-    const {loadProject} = this.props;
     const file = e.currentTarget.files[0];
+    if (!file) return;
+
+    const {loadProject} = this.props;
     const fileReader = new FileReader();
     fileReader.onloadend = function(e) {
       const inpHelper = new INPHelper(e.target.result);
