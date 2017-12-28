@@ -117,10 +117,19 @@ tbody th {
   border-right: 1px solid $borderColor;
 }
 
-.menu-list .tree-node-expandable {
-  padding-left: 7px;
-  span {
-    padding-left: 4px;
+.menu-list {
+  .expanded {
+    padding-left: 7px;
+    span {
+      padding-left: 4px;
+    }
+  }
+
+  .unexpanded {
+    padding-left: 10px;
+    span {
+      padding-left: 4px;
+    }
   }
 }
 
