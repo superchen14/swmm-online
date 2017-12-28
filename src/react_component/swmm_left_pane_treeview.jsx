@@ -13,9 +13,18 @@ class SwmmLeftPaneTreeView extends React.Component {
     const { activeFeature, setActiveFeature } = this.props;
     const getClassName = (myFeature) => activeFeature === myFeature ? "is-active" : "";
 
+    const treeNodeWithArrow = text => {
+      return (
+        <a className="tree-node-expandable">
+          <i className="fa fa-angle-down fa-lg" aria-hidden="true"></i>
+          <span>{text}</span>
+        </a>
+      );
+    };
+
     const nodesTreeNode = (
       <li>
-        <a>Nodes</a>
+        { treeNodeWithArrow("Nodes") }
         <ul>
           <li><a onClick={setActiveFeature(CONSTS.JUNCTION_FEATURE)} className={getClassName(CONSTS.JUNCTION_FEATURE)}>Junctions</a></li>
           <li><a onClick={setActiveFeature(CONSTS.OUTFALL_FEATURE)} className={getClassName(CONSTS.OUTFALL_FEATURE)}>Outfalls</a></li>
@@ -27,7 +36,7 @@ class SwmmLeftPaneTreeView extends React.Component {
 
     const linksTreeNode = (
       <li>
-        <a>Links</a>
+        { treeNodeWithArrow("Links") }
         <ul>
           <li><a onClick={setActiveFeature(CONSTS.CONDUIT_FEATURE)} className={getClassName(CONSTS.CONDUIT_FEATURE)}>Conduits</a></li>
           <li><a onClick={setActiveFeature(CONSTS.PUMP_FEATURE)} className={getClassName(CONSTS.PUMP_FEATURE)}>Pumps</a></li>
@@ -41,7 +50,7 @@ class SwmmLeftPaneTreeView extends React.Component {
     const hydraulicsTreeNode = (
       <ul className="menu-list">
         <li>
-          <a>Hydraulics</a>
+          { treeNodeWithArrow("Hydraulics") }
           <ul>
             { nodesTreeNode }
             { linksTreeNode }
@@ -53,7 +62,7 @@ class SwmmLeftPaneTreeView extends React.Component {
     const hydrologyTreeNode = (
       <ul className="menu-list">
         <li>
-          <a>Hydrology</a>
+          { treeNodeWithArrow("Hydrology") }
           <ul>
             <a onClick={setActiveFeature(CONSTS.NONE_FEATURE)}>Rain Gages</a>
             <a onClick={setActiveFeature(CONSTS.SUBCATCHMENT_FEATURE)} className={getClassName(CONSTS.SUBCATCHMENT_FEATURE)}>Subcatchments</a>

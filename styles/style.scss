@@ -117,6 +117,13 @@ tbody th {
   border-right: 1px solid $borderColor;
 }
 
+.menu-list .tree-node-expandable {
+  padding-left: 7px;
+  span {
+    padding-left: 4px;
+  }
+}
+
 #main-pane {
   width: 920px;
   height: 100%;
