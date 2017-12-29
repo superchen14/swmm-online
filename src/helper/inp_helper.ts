@@ -52,9 +52,10 @@ function parseJunction(line, idPointsMap): Node {
   const items = line.match(/[^ ]+/g);
   const junctionName = items[0];
   const invertElevation = Number.parseFloat(items[1]);
+  const maxWaterDepth = Number.parseFloat(items[2]);
 
   const position = idPointsMap[junctionName];
-  return createJunction(junctionName, position, invertElevation);
+  return createJunction(junctionName, position, invertElevation, maxWaterDepth);
 }
 
 function parseOutfall(line, idPointsMap): Node {

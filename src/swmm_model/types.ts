@@ -13,6 +13,7 @@ interface Node extends Entity {
 }
 
 interface Junction extends Node {
+  maxWaterDepth: number;
 }
 
 interface Link extends Entity {

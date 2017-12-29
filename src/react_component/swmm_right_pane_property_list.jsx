@@ -3,27 +3,49 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import CONSTS from "./consts";
 
+const getEntityProperties = entity => ({"Name": entity.name});
+
 const getNodeProperties = node => {
-  return (
-    <tbody>
-      <tr><th>Name</th><th>{node.name}</th></tr>
-      <tr><th>X</th><th>{node.position.x}</th></tr>
-      <tr><th>Y</th><th>{node.position.y}</th></tr>
-      <tr><th>Invert El.</th><th>{node.invertElevation}</th></tr>
-    </tbody>
-  );
-}
+  var properties = getEntityProperties(node);
+  properties["X"] = node.position.x;
+  properties["Y"] = node.position.y;
+  properties["Invert El."] = node.invertElevation;
+
+  return properties;
+};
+
+const getJunctionProperties = junction => {
+  var properties = getNodeProperties(junction);
+  properties["Max. Depth"] = junction.maxWaterDepth;
+
+  return properties;
+};
 
 const getProperties = (activeFeature, activeItem) => {
   switch(activeFeature) {
-    case CONSTS.JUNCTION_FEATURE:
     case CONSTS.OUTFALL_FEATURE:
     case CONSTS.DIVIDER_FEATURE:
     case CONSTS.STORAGE_FEATURE:
       return getNodeProperties(activeItem);
+    case CONSTS.JUNCTION_FEATURE:
+      return getJunctionProperties(activeItem);
     default:
-      return null;
+      return {};
   }
+};
+
+const getPropertiesHtml = (activeFeature, activeItem) => {
+  const properties = getProperties(activeFeature, activeItem);
+  let lists = [];
+  for(const key in properties) {
+    lists.push(<tr key={`property-item-${key}`}><th>{key}</th><th>{properties[key]}</th></tr>);
+  }
+
+  return (
+    <tbody>
+      {lists}
+    </tbody>
+  );
 }
 
 class SwmmRightPanePropertyList extends React.Component{
@@ -38,7 +60,7 @@ class SwmmRightPanePropertyList extends React.Component{
         <thead>
           <tr><th>Property</th><th>Value</th></tr>
         </thead>
-        {activeItem !== null && getProperties(activeFeature, activeItem)}
+        {activeItem !== null && getPropertiesHtml(activeFeature, activeItem)}
       </table>
     );
   }
