@@ -41,9 +41,16 @@ body {
   font-size: 14px;
 }
 
-tbody th {
-  font-weight: normal;
-  width: 50%;
+th {
+  &.property-col {
+    font-weight: normal;
+    width: 65%;
+  }
+
+  &.value-col {
+    font-weight: normal;
+    width: 35%;
+  }
 }
 
 #swmm-app {

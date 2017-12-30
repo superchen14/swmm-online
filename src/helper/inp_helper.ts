@@ -53,9 +53,20 @@ function parseJunction(line, idPointsMap): Node {
   const junctionName = items[0];
   const invertElevation = Number.parseFloat(items[1]);
   const maxWaterDepth = Number.parseFloat(items[2]);
+  const initialWaterDepth = Number.parseFloat(items[3]);
+  const surchargeWaterDepth = Number.parseFloat(items[4]);
+  const pondedWaterArea = Number.parseFloat(items[5]);
 
   const position = idPointsMap[junctionName];
-  return createJunction(junctionName, position, invertElevation, maxWaterDepth);
+  return createJunction(
+    junctionName,
+    position,
+    invertElevation,
+    maxWaterDepth,
+    initialWaterDepth,
+    surchargeWaterDepth,
+    pondedWaterArea
+  );
 }
 
 function parseOutfall(line, idPointsMap): Node {

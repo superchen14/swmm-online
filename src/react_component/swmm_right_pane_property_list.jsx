@@ -17,6 +17,9 @@ const getNodeProperties = node => {
 const getJunctionProperties = junction => {
   var properties = getNodeProperties(junction);
   properties["Max. Depth"] = junction.maxWaterDepth;
+  properties["Init Depth"] = junction.initialWaterDepth;
+  properties["Surcharge Depth"] = junction.surchargeWaterDepth;
+  properties["Ponded Area"] = junction.pondedWaterArea;
 
   return properties;
 };
@@ -38,7 +41,7 @@ const getPropertiesHtml = (activeFeature, activeItem) => {
   const properties = getProperties(activeFeature, activeItem);
   let lists = [];
   for(const key in properties) {
-    lists.push(<tr key={`property-item-${key}`}><th>{key}</th><th>{properties[key]}</th></tr>);
+    lists.push(<tr key={`property-item-${key}`}><th className="property-col">{key}</th><th className="value-col">{properties[key]}</th></tr>);
   }
 
   return (
@@ -58,7 +61,7 @@ class SwmmRightPanePropertyList extends React.Component{
     return (
       <table className="table is-hoverable is-bordered" id="swmm-property-list">
         <thead>
-          <tr><th>Property</th><th>Value</th></tr>
+          <tr><th className="property-col">Property</th><th className="value-col">Value</th></tr>
         </thead>
         {activeItem !== null && getPropertiesHtml(activeFeature, activeItem)}
       </table>
