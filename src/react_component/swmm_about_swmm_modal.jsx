@@ -16,7 +16,7 @@ const SwmmAboutSwmmModal = ({isActive, onClose}) => {
               <h1>What is SWMM-Online</h1>
               <p>This is a read-only online version of <a href="https://www.epa.gov/water-research/storm-water-management-model-swmm">Storm Water Management Model</a></p>
               <h1>Source Code</h1>
-              <p>Will upload to github</p>
+              <p><a href="https://github.com/superchen14/swmm-online">https://github.com/superchen14/swmm-online</a></p>
               <h1>Completion</h1>
               <p><progress className="progress is-large" value="10" max="100">10%</progress></p>
             </div>
