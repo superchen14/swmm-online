@@ -1,0 +1,22 @@
+language: node_js
+node_js: stable
+
+install:
+  - npm install
+
+
+script:
+  - npm run build
+
+after_script:
+  - cd ./dist
+  - git init
+  - git config user.name "Paul Chen"
+  - git config user.email "superchen14@gmail.com"
+  - git add .
+  - git commit -m "Update Swmm-Online"
+  - git push --force --quiet "https://${GITHUB_TOKEN}@github.com/swmm-online/swmm-online.github.io.git" master:master
+
+branches:
+  only:
+    - master
