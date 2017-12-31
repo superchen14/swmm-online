@@ -1,4 +1,4 @@
-# swmm_online
+# swmm_online [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/superchen14/swmm-online/blob/master/LICENCE) ![TravisCI Status](https://www.travis-ci.org/superchen14/swmm-online.svg?branch=master)
 
 ## Online Demo
 http://swmm-online.github.io
