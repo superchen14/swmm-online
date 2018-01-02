@@ -26,7 +26,9 @@ interface Link extends Entity {
 }
 
 interface Subcatchment extends Entity {
+  position: Point;
   vertices: Point[];
+  outletNode: Node;
 }
 
 interface Project

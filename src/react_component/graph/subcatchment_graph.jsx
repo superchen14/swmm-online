@@ -1,5 +1,5 @@
 import React from "react";
-import { Line } from "react-konva";
+import { Group, Line } from "react-konva";
 import PropTypes from 'prop-types';
 import getGraphProps from "./graph_props";
 
@@ -9,7 +9,7 @@ class SubcatchmentGraph extends React.Component {
   }
 
   render() {
-    const {isActive, setActiveId, points} = this.props;
+    const {isActive, setActiveId, points, centerPt, outletPt} = this.props;
     let graphProps = getGraphProps(isActive);
     const xyArray = points.reduce((acc, cur) => acc.concat([cur.x, cur.y]), []);
     graphProps.points = xyArray;
@@ -17,11 +17,23 @@ class SubcatchmentGraph extends React.Component {
     graphProps.scale = 1; // overwrite scale gotten from getGraphProps
     graphProps.closed = true;
     graphProps.fill = "transparent";
-    return <Line {...graphProps}/>;
+
+    let outletLineProps = getGraphProps(isActive);
+    outletLineProps.points = [centerPt.x, centerPt.y, outletPt.x, outletPt.y];
+    outletLineProps.scale = 1; // overwrite scale gotten from getGraphProps
+    outletLineProps.dash = [10, 5];
+    return (
+      <Group>
+        <Line {...graphProps}/>
+        <Line {...outletLineProps}/>
+      </Group>
+    );
   }
 }
 
 SubcatchmentGraph.propTypes = {
+  centerPt: PropTypes.object.isRequired,
+  outletPt: PropTypes.object.isRequired,
   points: PropTypes.array.isRequired,
   isActive: PropTypes.bool.isRequired,
   setActiveId: PropTypes.func.isRequired,

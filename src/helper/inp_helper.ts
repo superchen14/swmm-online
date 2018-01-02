@@ -138,11 +138,12 @@ function parseOutlet(line, idVerticesMap, nodes): Link {
   return createOutlet(outletName, inletNode, outletNode, idVerticesMap[outletName] || []);
 }
 
-function parseSubcatchment(line, idPolygonsMap): Subcatchment {
+function parseSubcatchment(line, idPolygonsMap, nodes): Subcatchment {
   const items = line.match(/[^ ]+/g);
   const subcatchmentName = items[0];
+  const outletNode = nodes.find(n => n.name === items[2]);
 
-  return createSubcatchment(subcatchmentName, idPolygonsMap[subcatchmentName]);
+  return createSubcatchment(subcatchmentName, idPolygonsMap[subcatchmentName], outletNode);
 }
 
 class INPhelper {
@@ -225,7 +226,7 @@ class INPhelper {
     const idPolygonsMap = parseVertices(inpData[title] || []);
     title = "SUBCATCHMENTS";
     const subcatchmentLines = inpData[title] || [];
-    project.subcatchments = subcatchmentLines.map(line => parseSubcatchment(line, idPolygonsMap));
+    project.subcatchments = subcatchmentLines.map(line => parseSubcatchment(line, idPolygonsMap, nodes));
 
     return project;
   }

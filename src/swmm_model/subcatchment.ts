@@ -1,7 +1,10 @@
-import {Point, Subcatchment} from "./types";
+import {Point, Node, Subcatchment} from "./types";
 
-function createSubcatchment(name: string, vertices: Point[]): Subcatchment {
-  return {name, vertices};
+function createSubcatchment(name: string, vertices: Point[], outletNode: Node): Subcatchment {
+  const x: number = vertices.reduce((acc, v) => acc + v.x, 0) / vertices.length;
+  const y: number = vertices.reduce((acc, v) => acc + v.y, 0) / vertices.length;
+  const position: Point = {x, y};
+  return {name, vertices, position, outletNode};
 }
 
 export default createSubcatchment;
