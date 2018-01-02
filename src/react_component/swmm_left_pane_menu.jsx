@@ -70,8 +70,8 @@ class SwmmLeftPaneMenu extends React.Component {
             onChange={this.onInpFileOpened}
           />
         </div>
-        { <SwmmAboutMeModal isActive={isAboutMeActive} onClose={this.toggleAboutMeModal}/> }
-        { <SwmmAboutSwmmModel isActive={isAboutSwmmActive} onClose={this.toggleAboutSwmmModal} /> }
+        { <SwmmAboutMeModal isActive={isAboutMeActive} onClose={this.toggleAboutMeModal} title="About Author"/> }
+        { <SwmmAboutSwmmModel isActive={isAboutSwmmActive} onClose={this.toggleAboutSwmmModal} title="About SWMM-Online"/> }
       </div>
     );
   }
