@@ -1,4 +1,4 @@
-import {Point, Node, Link, Subcatchment, Project} from "../swmm_model/types";
+import {Point, Node, Link, Subcatchment, Pollutant, Project} from "../swmm_model/types";
 import createPoint from "../swmm_model/point";
 import createJunction from "../swmm_model/junction";
 import createOutfall from "../swmm_model/outfall";
@@ -10,6 +10,7 @@ import createOrifice from "../swmm_model/orifice";
 import createWeir from "../swmm_model/weir";
 import createOutlet from "../swmm_model/outlet";
 import createSubcatchment from "../swmm_model/subcatchment";
+import createPollutant from "../swmm_model/pollutant";
 import createProject from "../swmm_model/project";
 
 const isCommentLine = line => line.startsWith(";");
@@ -146,6 +147,13 @@ function parseSubcatchment(line, idPolygonsMap, nodes): Subcatchment {
   return createSubcatchment(subcatchmentName, idPolygonsMap[subcatchmentName], outletNode);
 }
 
+function parsePollutant(line: string): Pollutant {
+  const items = line.match(/[^ ]+/g);
+  const pollutantName = items[0];
+  const units = items[1];
+  return createPollutant(pollutantName, units);
+}
+
 class INPhelper {
   private text: string;
 
@@ -221,6 +229,10 @@ class INPhelper {
     title = "OUTLETS";
     const outletLines = inpData[title] || [];
     project.outlets = outletLines.map(line => parseOutlet(line, idVerticesMap, nodes));
+
+    title = "POLLUTANTS";
+    const pollutantLines = inpData[title] || [];
+    project.pollutants = pollutantLines.map(line => parsePollutant(line));
 
     title = "Polygons";
     const idPolygonsMap = parseVertices(inpData[title] || []);

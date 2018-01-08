@@ -11,6 +11,7 @@ function createProject(): Project {
     orifices: [],
     weirs: [],
     outlets: [],
+    pollutants: [],
     subcatchments: []
   };
 }

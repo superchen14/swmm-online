@@ -31,6 +31,10 @@ interface Subcatchment extends Entity {
   outletNode: Node;
 }
 
+interface Pollutant extends Entity {
+  units: string;
+}
+
 interface Project
 {
   junctions: Junction[];
@@ -42,7 +46,8 @@ interface Project
   orifices: Link[];
   weirs: Link[];
   outlets: Link[];
+  pollutants: Pollutant[];
   subcatchments: Subcatchment[];
 }
 
-export {Point, Entity, Node, Junction, Link, Subcatchment, Project};
+export {Point, Entity, Node, Junction, Link, Subcatchment, Pollutant, Project};

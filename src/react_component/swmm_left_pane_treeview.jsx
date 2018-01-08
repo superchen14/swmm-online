@@ -12,12 +12,14 @@ class SwmmLeftPaneTreeView extends React.Component {
       isLinksTreeNodeExpanded: false,
       isHydraulicsTreeNodeExpanded: true,
       isHydrologyTreeNodeExpanded: true,
+      isQualityTreeNodeExpanded: true,
     };
 
     this.toggleNodesTreeNode = this.toggleNodesTreeNode.bind(this);
     this.toggleLinksTreeNode = this.toggleLinksTreeNode.bind(this);
     this.toggleHydraulicsTreeNode = this.toggleHydraulicsTreeNode.bind(this);
     this.toggleHydrologyTreeNode = this.toggleHydrologyTreeNode.bind(this);
+    this.toggleQualityTreeNode = this.toggleQualityTreeNode.bind(this);
   }
 
   toggleNodesTreeNode() {
@@ -36,9 +38,20 @@ class SwmmLeftPaneTreeView extends React.Component {
     this.setState({isHydrologyTreeNodeExpanded: !this.state.isHydrologyTreeNodeExpanded});
   }
 
+  toggleQualityTreeNode() {
+    this.setState({isQualityTreeNodeExpanded: !this.state.isQualityTreeNodeExpanded});
+  }
+
   render() {
     const { activeFeature, setActiveFeature } = this.props;
-    const { isNodesTreeNodeExpanded, isLinksTreeNodeExpanded, isHydraulicsTreeNodeExpanded, isHydrologyTreeNodeExpanded } = this.state;
+    const {
+      isNodesTreeNodeExpanded,
+      isLinksTreeNodeExpanded,
+      isHydraulicsTreeNodeExpanded,
+      isHydrologyTreeNodeExpanded,
+      isQualityTreeNodeExpanded
+    } = this.state;
+
     const getClassName = (myFeature) => activeFeature === myFeature ? "is-active" : "";
 
     const treeNodeWithArrow = (text, isExpanded, onClick) => {
@@ -115,10 +128,25 @@ class SwmmLeftPaneTreeView extends React.Component {
       </ul>
     );
 
+    const qualityTreeNode = (
+      <ul className="menu-list">
+        <li>
+          { treeNodeWithArrow("Quality", isQualityTreeNodeExpanded, this.toggleQualityTreeNode) }
+          { isQualityTreeNodeExpanded && (
+              <ul>
+                <a onClick={setActiveFeature(CONSTS.POLLUTANT_FEATURE)} className={getClassName(CONSTS.POLLUTANT_FEATURE)}>Pollutants</a>
+              </ul>
+            )
+          }
+        </li>
+      </ul>
+    );
+
     return (
       <aside id="left-pane-treeview" className="menu">
         { hydrologyTreeNode }
         { hydraulicsTreeNode }
+        { qualityTreeNode }
       </aside>
     );
   }

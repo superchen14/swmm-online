@@ -154,6 +154,15 @@ const mapStateToProps = state => {
           shouldShowEditIcon,
           listFilter,
         };
+      case CONSTS.POLLUTANT_FEATURE:
+        return {
+          items: state.project.pollutants,
+          idPrefix: CONSTS.POLLUTANT_ID_PREFIX,
+          activeFeature,
+          activeId,
+          shouldShowEditIcon,
+          listFilter,
+        };
     }
   }
 

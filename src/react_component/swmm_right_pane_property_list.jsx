@@ -24,6 +24,13 @@ const getJunctionProperties = junction => {
   return properties;
 };
 
+const getPollutantProperties = pollutant => {
+  var properties = getEntityProperties(pollutant);
+  properties["Units"] = pollutant.units;
+
+  return properties;
+}
+
 const getProperties = (activeFeature, activeItem) => {
   switch(activeFeature) {
     case CONSTS.OUTFALL_FEATURE:
@@ -32,6 +39,8 @@ const getProperties = (activeFeature, activeItem) => {
       return getNodeProperties(activeItem);
     case CONSTS.JUNCTION_FEATURE:
       return getJunctionProperties(activeItem);
+    case CONSTS.POLLUTANT_FEATURE: 
+      return getPollutantProperties(activeItem);
     default:
       return {};
   }
@@ -39,6 +48,7 @@ const getProperties = (activeFeature, activeItem) => {
 
 const getPropertiesHtml = (activeFeature, activeItem) => {
   const properties = getProperties(activeFeature, activeItem);
+  debugger;
   let lists = [];
   for(const key in properties) {
     lists.push(<tr key={`property-item-${key}`}><th className="property-col">{key}</th><th className="value-col">{properties[key]}</th></tr>);
@@ -88,6 +98,8 @@ const getActiveItem = state => {
       return project.dividers.find(d => d.name === activeId);
     case CONSTS.STORAGE_FEATURE:
       return project.storages.find(s => s.name === activeId);
+    case CONSTS.POLLUTANT_FEATURE:
+      return project.pollutants.find(p => p.name === activeId);
     }
   }
 
