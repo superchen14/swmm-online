@@ -6,7 +6,8 @@ function createPollutant(
   concentrationInRainWater: number,
   concentrationInGroundWater: number,
   concentrationInII: number,
-  concentrationInDWF: number
+  concentrationInDWF: number,
+  concentrationInit: number
 ): Pollutant {
   return {
     name,
@@ -14,7 +15,8 @@ function createPollutant(
     concentrationInRainWater,
     concentrationInGroundWater,
     concentrationInII,
-    concentrationInDWF
+    concentrationInDWF,
+    concentrationInit
   };
 }
 

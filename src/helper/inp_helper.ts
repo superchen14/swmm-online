@@ -155,13 +155,15 @@ function parsePollutant(line: string): Pollutant {
   const concentrationInGroundWater = Number.parseFloat(items[3]);
   const concentrationInII = Number.parseFloat(items[4]);
   const concentrationInDWF = Number.parseFloat(items[5]);
+  const concentrationInit = Number.parseFloat(items[10]);
   return createPollutant(
     pollutantName,
     unit,
     concentrationInRainWater,
     concentrationInGroundWater,
     concentrationInII,
-    concentrationInDWF
+    concentrationInDWF,
+    concentrationInit
   );
 }
 

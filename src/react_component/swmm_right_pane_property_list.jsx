@@ -31,6 +31,7 @@ const getPollutantProperties = pollutant => {
   properties["GW Concen."] = pollutant.concentrationInGroundWater;
   properties["I&I Concen."] = pollutant.concentrationInII;
   properties["DWF Concen."] = pollutant.concentrationInDWF;
+  properties["Init Concen."] = pollutant.concentrationInit;
 
   return properties;
 }

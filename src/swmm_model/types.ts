@@ -37,6 +37,7 @@ interface Pollutant extends Entity {
   concentrationInGroundWater: number;
   concentrationInII: number;
   concentrationInDWF: number;
+  concentrationInit: number;
 }
 
 interface Project
