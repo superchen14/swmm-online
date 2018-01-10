@@ -3,16 +3,16 @@ import {Pollutant} from "./types";
 function createPollutant(
   name: string,
   unit: string,
-  rainWaterConcentration: number,
-  groundWaterConcentration: number,
-  iiConcentration: number,
+  concentrationInRainWater: number,
+  concentrationInGroundWater: number,
+  concentrationInII: number,
 ): Pollutant {
   return {
     name,
     unit,
-    rainWaterConcentration,
-    groundWaterConcentration,
-    iiConcentration
+    concentrationInRainWater,
+    concentrationInGroundWater,
+    concentrationInII,
   };
 }
 
