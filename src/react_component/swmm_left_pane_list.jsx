@@ -47,126 +47,70 @@ SwmmLeftPaneList.propTypes = {
 };
 
 const isRightPaneVisible = state => {
-  const isRightPaneEnabled = (state && state.ui && state.ui.isRightPaneEnabled) || false;
-  const isRightPanePinned = (state && state.ui && state.ui.isRightPanePinned) || false;
+  const isRightPaneEnabled = state.ui.isRightPaneEnabled;
+  const isRightPanePinned = state.ui.isRightPanePinned;
   return isRightPaneEnabled || isRightPanePinned;
 };
 
 const mapStateToProps = state => {
-  let listFilter = "";
-  if (state && state.ui && state.ui.listFilter) {
-    listFilter = state.ui.listFilter;
-  }
+  let items = [];
+  let idPrefix = "";
+  const activeId = state.ui.activeId;
+  const activeFeature = state.ui.activeFeature;
+  let shouldShowEditIcon = true;
+  const listFilter = state.ui.listFilter;
 
-  if (state && state.ui && state.project && state.ui.activeFeature !== CONSTS.NONE_FEATURE) {
-    const shouldShowEditIcon = !isRightPaneVisible(state);
-
-    const activeId = state.ui.activeId;
-    const activeFeature = state.ui.activeFeature;
+  if (state.project && state.ui.activeFeature !== CONSTS.NONE_FEATURE) {
+    shouldShowEditIcon = !isRightPaneVisible(state);
     switch(activeFeature) {
       case CONSTS.JUNCTION_FEATURE:
-        return {
-          items: state.project.junctions,
-          idPrefix: CONSTS.JUNCTION_ID_PREFIX,
-          activeFeature,
-          activeId,
-          shouldShowEditIcon,
-          listFilter,
-        };
+        items = state.project.junctions;
+        idPrefix = CONSTS.JUNCTION_ID_PREFIX;
+        break;
       case CONSTS.OUTFALL_FEATURE:
-        return {
-          items: state.project.outfalls,
-          idPrefix: CONSTS.OUTFALL_ID_PREFIX,
-          activeFeature,
-          activeId,
-          shouldShowEditIcon,
-          listFilter,
-        };
+        items = state.project.outfalls;
+        idPrefix = CONSTS.OUTFALL_ID_PREFIX;
+        break;
       case CONSTS.DIVIDER_FEATURE:
-        return {
-          items: state.project.dividers,
-          idPrefix: CONSTS.DIVIDER_ID_PREFIX,
-          activeFeature,
-          activeId,
-          shouldShowEditIcon,
-          listFilter,
-        };
+        items = state.project.dividers;
+        idPrefix = CONSTS.DIVIDER_ID_PREFIX;
+        break;
       case CONSTS.STORAGE_FEATURE:
-        return {
-          items: state.project.storages,
-          idPrefix: CONSTS.STORAGE_ID_PREFIX,
-          activeFeature,
-          activeId,
-          shouldShowEditIcon,
-          listFilter,
-        };
+        items = state.project.storages;
+        idPrefix = CONSTS.STORAGE_ID_PREFIX;
+        break;
       case CONSTS.CONDUIT_FEATURE:
-        return {
-          items: state.project.conduits,
-          idPrefix: CONSTS.CONDUIT_ID_PREFIX,
-          activeFeature,
-          activeId,
-          shouldShowEditIcon,
-          listFilter,
-        };
+        items = state.project.conduits;
+        idPrefix = CONSTS.CONDUIT_ID_PREFIX;
+        break;
       case CONSTS.PUMP_FEATURE:
-        return {
-          items: state.project.pumps,
-          idPrefix: CONSTS.PUMP_ID_PREFIX,
-          activeFeature,
-          activeId,
-          shouldShowEditIcon,
-          listFilter,
-        };
+        items = state.project.pumps;
+        idPrefix = CONSTS.PUMP_ID_PREFIX;
+        break;
       case CONSTS.ORIFICE_FEATURE:
-        return {
-          items: state.project.orifices,
-          idPrefix: CONSTS.ORIFICE_ID_PREFIX,
-          activeFeature,
-          activeId,
-          shouldShowEditIcon,
-          listFilter,
-        };
+        items = state.project.orifices;
+        idPrefix = CONSTS.ORIFICE_ID_PREFIX;
+        break;
       case CONSTS.WEIR_FEATURE:
-        return {
-          items: state.project.weirs,
-          idPrefix: CONSTS.WEIR_ID_PREFIX,
-          activeFeature,
-          activeId,
-          shouldShowEditIcon,
-          listFilter,
-        }
+        items = state.project.weirs;
+        idPrefix = CONSTS.WEIR_ID_PREFIX;
+        break;
       case CONSTS.OUTLET_FEATURE:
-        return {
-          items: state.project.outlets,
-          idPrefix: CONSTS.OUTLET_ID_PREFIX,
-          activeFeature,
-          activeId,
-          shouldShowEditIcon,
-          listFilter,
-        };
+        items = state.project.outlets;
+        idPrefix = CONSTS.OUTLET_ID_PREFIX;
+        break;
       case CONSTS.SUBCATCHMENT_FEATURE:
-        return {
-          items: state.project.subcatchments,
-          idPrefix: CONSTS.SUBCATCHMENT_ID_PREFIX,
-          activeFeature,
-          activeId,
-          shouldShowEditIcon,
-          listFilter,
-        };
+        items = state.project.subcatchments;
+        idPrefix = CONSTS.SUBCATCHMENT_ID_PREFIX;
+        break;
       case CONSTS.POLLUTANT_FEATURE:
-        return {
-          items: state.project.pollutants,
-          idPrefix: CONSTS.POLLUTANT_ID_PREFIX,
-          activeFeature,
-          activeId,
-          shouldShowEditIcon,
-          listFilter,
-        };
+        items = state.project.pollutants;
+        idPrefix = CONSTS.POLLUTANT_ID_PREFIX;
+        break;
     }
   }
 
-  return {items: [], idPrefix: "", activeId: CONSTS.EMPTY_STRING, activeFeature: CONSTS.NONE_FEATURE, shouldShowEditIcon: true, listFilter};
+  return {items, idPrefix, activeId, activeFeature, shouldShowEditIcon, listFilter};
 };
 
 const mapDispatchToProps = (dispatch) => ({
