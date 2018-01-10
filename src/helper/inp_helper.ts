@@ -154,7 +154,15 @@ function parsePollutant(line: string): Pollutant {
   const concentrationInRainWater = Number.parseFloat(items[2]);
   const concentrationInGroundWater = Number.parseFloat(items[3]);
   const concentrationInII = Number.parseFloat(items[4]);
-  return createPollutant(pollutantName, unit, concentrationInRainWater, concentrationInGroundWater, concentrationInII);
+  const concentrationInDWF = Number.parseFloat(items[5]);
+  return createPollutant(
+    pollutantName,
+    unit,
+    concentrationInRainWater,
+    concentrationInGroundWater,
+    concentrationInII,
+    concentrationInDWF
+  );
 }
 
 class INPhelper {
