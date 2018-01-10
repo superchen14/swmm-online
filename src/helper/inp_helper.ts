@@ -153,7 +153,8 @@ function parsePollutant(line: string): Pollutant {
   const unit = items[1];
   const rainWaterConcentration = Number.parseFloat(items[2]);
   const groundWaterConcentration = Number.parseFloat(items[3]);
-  return createPollutant(pollutantName, unit, rainWaterConcentration, groundWaterConcentration);
+  const iiConcentration = Number.parseFloat(items[4]);
+  return createPollutant(pollutantName, unit, rainWaterConcentration, groundWaterConcentration, iiConcentration);
 }
 
 class INPhelper {

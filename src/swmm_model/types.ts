@@ -35,6 +35,7 @@ interface Pollutant extends Entity {
   unit: string;
   rainWaterConcentration: number;
   groundWaterConcentration: number;
+  iiConcentration: number;
 }
 
 interface Project

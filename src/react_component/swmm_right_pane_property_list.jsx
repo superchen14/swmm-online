@@ -29,6 +29,7 @@ const getPollutantProperties = pollutant => {
   properties["Units"] = pollutant.unit;
   properties["Rain Concen."] = pollutant.rainWaterConcentration;
   properties["GW Concen."] = pollutant.groundWaterConcentration;
+  properties["I&I Concen."] = pollutant.iiConcentration;
 
   return properties;
 }
