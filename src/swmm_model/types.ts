@@ -40,6 +40,7 @@ interface Pollutant extends Entity {
   concentrationInit: number;
   decayCoefficient: number;
   snowOnly: boolean;
+  copollutantName: string;
   copollutantFraction: number;
 }
 

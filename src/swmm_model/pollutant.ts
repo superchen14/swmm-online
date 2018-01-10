@@ -10,6 +10,7 @@ function createPollutant(
   concentrationInit: number,
   decayCoefficient: number,
   snowOnly: boolean,
+  copollutantName: string,
   copollutantFraction: number
 ): Pollutant {
   return {
@@ -22,6 +23,7 @@ function createPollutant(
     concentrationInit,
     decayCoefficient,
     snowOnly,
+    copollutantName,
     copollutantFraction
   };
 }

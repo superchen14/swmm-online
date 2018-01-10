@@ -158,6 +158,7 @@ function parsePollutant(line: string): Pollutant {
   const decayCoefficient = Number.parseFloat(items[5]);
   const concentrationInit = Number.parseFloat(items[10]);
   const snowOnly = items[6] === "YES";
+  const copollutantName = items[7] === "*" ? "" : items[7];
   const copollutantFraction = Number.parseFloat(items[8]);
   return createPollutant(
     pollutantName,
@@ -169,6 +170,7 @@ function parsePollutant(line: string): Pollutant {
     concentrationInit,
     decayCoefficient,
     snowOnly,
+    copollutantName,
     copollutantFraction
   );
 }

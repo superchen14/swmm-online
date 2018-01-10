@@ -34,6 +34,7 @@ const getPollutantProperties = pollutant => {
   properties["Init Concen."] = pollutant.concentrationInit;
   properties["Decay Coeff."] = pollutant.decayCoefficient;
   properties["Snow Only"] = pollutant.snowOnly ? "YES" : "NO";
+  properties["Co-Pollutant"] = pollutant.copollutantName === "" ? "*" : pollutant.copollutantName;
   properties["Co-Fraction"] = pollutant.copollutantFraction;
 
   return properties;
