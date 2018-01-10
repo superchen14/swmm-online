@@ -32,7 +32,7 @@ interface Subcatchment extends Entity {
 }
 
 interface Pollutant extends Entity {
-  units: string;
+  unit: string;
 }
 
 interface Project

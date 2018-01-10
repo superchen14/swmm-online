@@ -26,7 +26,7 @@ const getJunctionProperties = junction => {
 
 const getPollutantProperties = pollutant => {
   var properties = getEntityProperties(pollutant);
-  properties["Units"] = pollutant.units;
+  properties["Units"] = pollutant.unit;
 
   return properties;
 }
@@ -48,7 +48,6 @@ const getProperties = (activeFeature, activeItem) => {
 
 const getPropertiesHtml = (activeFeature, activeItem) => {
   const properties = getProperties(activeFeature, activeItem);
-  debugger;
   let lists = [];
   for(const key in properties) {
     lists.push(<tr key={`property-item-${key}`}><th className="property-col">{key}</th><th className="value-col">{properties[key]}</th></tr>);

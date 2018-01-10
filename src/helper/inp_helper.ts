@@ -150,8 +150,8 @@ function parseSubcatchment(line, idPolygonsMap, nodes): Subcatchment {
 function parsePollutant(line: string): Pollutant {
   const items = line.match(/[^ ]+/g);
   const pollutantName = items[0];
-  const units = items[1];
-  return createPollutant(pollutantName, units);
+  const unit = items[1];
+  return createPollutant(pollutantName, unit);
 }
 
 class INPhelper {
