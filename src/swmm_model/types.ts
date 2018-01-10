@@ -39,6 +39,7 @@ interface Pollutant extends Entity {
   concentrationInDWF: number;
   concentrationInit: number;
   decayCoefficient: number;
+  snowOnly: boolean;
 }
 
 interface Project

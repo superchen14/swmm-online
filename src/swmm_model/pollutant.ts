@@ -8,7 +8,8 @@ function createPollutant(
   concentrationInII: number,
   concentrationInDWF: number,
   concentrationInit: number,
-  decayCoefficient: number
+  decayCoefficient: number,
+  snowOnly: boolean
 ): Pollutant {
   return {
     name,
@@ -18,7 +19,8 @@ function createPollutant(
     concentrationInII,
     concentrationInDWF,
     concentrationInit,
-    decayCoefficient
+    decayCoefficient,
+    snowOnly
   };
 }
 
