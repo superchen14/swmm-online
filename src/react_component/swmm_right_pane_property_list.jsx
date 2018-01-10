@@ -32,6 +32,7 @@ const getPollutantProperties = pollutant => {
   properties["I&I Concen."] = pollutant.concentrationInII;
   properties["DWF Concen."] = pollutant.concentrationInDWF;
   properties["Init Concen."] = pollutant.concentrationInit;
+  properties["Decay Coeff."] = pollutant.decayCoefficient;
 
   return properties;
 }

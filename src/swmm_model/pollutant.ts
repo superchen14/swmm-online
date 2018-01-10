@@ -7,7 +7,8 @@ function createPollutant(
   concentrationInGroundWater: number,
   concentrationInII: number,
   concentrationInDWF: number,
-  concentrationInit: number
+  concentrationInit: number,
+  decayCoefficient: number
 ): Pollutant {
   return {
     name,
@@ -16,7 +17,8 @@ function createPollutant(
     concentrationInGroundWater,
     concentrationInII,
     concentrationInDWF,
-    concentrationInit
+    concentrationInit,
+    decayCoefficient
   };
 }
 
