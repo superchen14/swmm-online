@@ -27,6 +27,7 @@ const getJunctionProperties = junction => {
 const getPollutantProperties = pollutant => {
   var properties = getEntityProperties(pollutant);
   properties["Units"] = pollutant.unit;
+  properties["Rain Concen."] = pollutant.rainWaterConcentration;
 
   return properties;
 }

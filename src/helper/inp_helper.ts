@@ -151,7 +151,8 @@ function parsePollutant(line: string): Pollutant {
   const items = line.match(/[^ ]+/g);
   const pollutantName = items[0];
   const unit = items[1];
-  return createPollutant(pollutantName, unit);
+  const rainWaterConcentration = Number.parseFloat(items[2]);
+  return createPollutant(pollutantName, unit, rainWaterConcentration);
 }
 
 class INPhelper {
