@@ -10,6 +10,8 @@ const getNodeProperties = node => {
   properties["X"] = node.position.x;
   properties["Y"] = node.position.y;
   properties["Invert El."] = node.invertElevation;
+  properties["Treatment"] = node.treatments.length === 0 ? "NO" : "YES";
+  properties["Treatment_OnClick"] = node.treatments.length === 0 ? null : () => console.table(node.treatments);
 
   return properties;
 };
@@ -59,7 +61,27 @@ const getPropertiesHtml = (activeFeature, activeItem) => {
   const properties = getProperties(activeFeature, activeItem);
   let lists = [];
   for(const key in properties) {
-    lists.push(<tr key={`property-item-${key}`}><th className="property-col">{key}</th><th className="value-col">{properties[key]}</th></tr>);
+    if (key.indexOf("OnClick") !== -1) continue;
+
+    let listItem = null;
+    switch(key) {
+      case "Treatment":
+        listItem = (
+          <tr key={`property-item-${key}`}>
+            <th className="property-col">{key}</th>
+            <th className="value-col"><a onClick={properties["Treatment_OnClick"]}>{properties[key]}</a></th>
+          </tr>
+        );
+        break;
+      default:
+        listItem = (
+          <tr key={`property-item-${key}`}>
+            <th className="property-col">{key}</th>
+            <th className="value-col">{properties[key]}</th>
+          </tr>
+        );
+    }
+    lists.push(listItem);
   }
 
   return (
