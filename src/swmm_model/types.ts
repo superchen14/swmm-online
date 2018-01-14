@@ -10,6 +10,7 @@ interface Entity {
 interface Node extends Entity {
   position: Point;
   invertElevation: number;
+  treatments: Treatment[];
 }
 
 interface Junction extends Node {
@@ -44,6 +45,11 @@ interface Pollutant extends Entity {
   copollutantFraction: number;
 }
 
+interface Treatment {
+  pollutantName: string;
+  expression: string;
+}
+
 interface Project
 {
   junctions: Junction[];
@@ -59,4 +65,4 @@ interface Project
   subcatchments: Subcatchment[];
 }
 
-export {Point, Entity, Node, Junction, Link, Subcatchment, Pollutant, Project};
+export {Point, Entity, Node, Junction, Link, Subcatchment, Pollutant, Treatment, Project};

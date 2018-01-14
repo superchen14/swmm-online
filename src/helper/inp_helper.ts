@@ -31,6 +31,25 @@ function parseCoordinates(lines) {
   return idPointMaps;
 }
 
+function parseTreatments(lines) {
+  const idTreatments = {};
+  lines.forEach(line => {
+    const items = line.match(/[^ ]+/g);
+    const nodeName = items[0];
+    const pollutantName = items[1];
+    line = line.replace(nodeName, "");
+    line = line.replace(pollutantName, "");
+    const expression = line.trim();
+    if (nodeName in idTreatments) {
+      idTreatments[nodeName].push({pollutantName, expression});
+    } else {
+      idTreatments[nodeName] = [{pollutantName, expression}];
+    }
+  });
+
+  return idTreatments;
+}
+
 function parseVertices(lines) {
   const idVerticesMaps = {};
   lines.forEach(line => {
@@ -49,7 +68,7 @@ function parseVertices(lines) {
   return idVerticesMaps;
 }
 
-function parseJunction(line, idPointsMap): Node {
+function parseJunction(line, idPointsMap, idTreatmentsMap): Node {
   const items = line.match(/[^ ]+/g);
   const junctionName = items[0];
   const invertElevation = Number.parseFloat(items[1]);
@@ -57,12 +76,14 @@ function parseJunction(line, idPointsMap): Node {
   const initialWaterDepth = Number.parseFloat(items[3]);
   const surchargeWaterDepth = Number.parseFloat(items[4]);
   const pondedWaterArea = Number.parseFloat(items[5]);
+  const treatments = idTreatmentsMap[junctionName] || [];
 
   const position = idPointsMap[junctionName];
   return createJunction(
     junctionName,
     position,
     invertElevation,
+    treatments,
     maxWaterDepth,
     initialWaterDepth,
     surchargeWaterDepth,
@@ -210,9 +231,13 @@ class INPhelper {
     let title = "COORDINATES";
     const idPointsMap = parseCoordinates(inpData[title]);
 
+    title = "TREATMENT";
+    const treatmentLines = inpData[title] || [];
+    const idTreatmentsMap = parseTreatments(treatmentLines);
+
     title = "JUNCTIONS";
     const junctionLines = inpData[title] || [];
-    project.junctions = junctionLines.map(line => parseJunction(line, idPointsMap));
+    project.junctions = junctionLines.map(line => parseJunction(line, idPointsMap, idTreatmentsMap));
 
     title = "OUTFALLS";
     const outfallLines = inpData[title] || [];
