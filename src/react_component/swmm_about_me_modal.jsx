@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import SwmmModal from "./utility/swmm_modal.jsx";
 
 const SwmmAboutMeModal = (props) => {
@@ -24,12 +23,6 @@ const SwmmAboutMeModal = (props) => {
       </div>
     </SwmmModal>
   );
-}
-
-SwmmAboutMeModal.propTypes = {
-  title: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
 }
 
 export default SwmmAboutMeModal;
