@@ -97,8 +97,9 @@ const isNode = activeFeature => activeFeature === CONSTS.JUNCTION_FEATURE;
                             //  || activeFeature === CONSTS.STORAGE_FEATURE;
 
 const isNodeWithTreatments = (activeFeature, activeItem) => {
+  if (!activeItem) return false;
   if (!isNode(activeFeature)) return false;
-  return activeItem && activeItem.treatments && activeItem.treatments.length !== 0;
+  return activeItem.treatments.length !== 0;
 };
 
 class SwmmRightPanePropertyList extends React.Component{

@@ -1,7 +1,7 @@
-import {Node, Point} from "./types";
+import {Node, Point, Treatment} from "./types";
 
-function createDivider(name: string, position: Point, invertElevation: number): Node {
-  return {name, position, invertElevation};
+function createDivider(name: string, position: Point, invertElevation: number, treatments: Treatment[]): Node {
+  return {name, position, invertElevation, treatments};
 }
 
 export default createDivider;

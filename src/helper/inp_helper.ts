@@ -91,28 +91,31 @@ function parseJunction(line, idPointsMap, idTreatmentsMap): Node {
   );
 }
 
-function parseOutfall(line, idPointsMap): Node {
+function parseOutfall(line, idPointsMap, idTreatmentsMap): Node {
   const items = line.match(/[^ ]+/g);
   const outfallName = items[0];
   const position = idPointsMap[outfallName];
   const invertElevation = Number.parseFloat(items[1]);
-  return createOutfall(outfallName, position, invertElevation);
+  const treatments = idTreatmentsMap[outfallName] || [];
+  return createOutfall(outfallName, position, invertElevation, treatments);
 }
 
-function parseDivider(line, idPointsMap): Node {
+function parseDivider(line, idPointsMap, idTreatmentsMap): Node {
   const items = line.match(/[^ ]+/g);
   const dividerName = items[0];
   const position = idPointsMap[dividerName];
   const invertElevation = Number.parseFloat(items[1]);
-  return createDivider(dividerName, position, invertElevation);
+  const treatments = idTreatmentsMap[dividerName] || [];
+  return createDivider(dividerName, position, invertElevation, treatments);
 }
 
-function parseStorage(line, idPointsMap): Node {
+function parseStorage(line, idPointsMap, idTreatmentsMap): Node {
   const items = line.match(/[^ ]+/g);
-  const storageUnitName = items[0];
-  const position = idPointsMap[storageUnitName];
+  const storageName = items[0];
+  const position = idPointsMap[storageName];
   const invertElevation = Number.parseFloat(items[1]);
-  return createStorage(storageUnitName, position, invertElevation);
+  const treatments = idTreatmentsMap[storageName] || [];
+  return createStorage(storageName, position, invertElevation, treatments);
 }
 
 function parseConduit(line, idVerticesMap, nodes): Link {
@@ -241,15 +244,15 @@ class INPhelper {
 
     title = "OUTFALLS";
     const outfallLines = inpData[title] || [];
-    project.outfalls = outfallLines.map(line => parseOutfall(line, idPointsMap));
+    project.outfalls = outfallLines.map(line => parseOutfall(line, idPointsMap, idTreatmentsMap));
 
     title = "DIVIDERS";
     const dividerLines = inpData[title] || [];
-    project.dividers = dividerLines.map(line => parseDivider(line, idPointsMap));
+    project.dividers = dividerLines.map(line => parseDivider(line, idPointsMap, idTreatmentsMap));
 
     title = "STORAGE";
     const storageUnitLines = inpData[title] || [];
-    project.storages = storageUnitLines.map(line => parseStorage(line, idPointsMap));
+    project.storages = storageUnitLines.map(line => parseStorage(line, idPointsMap, idTreatmentsMap));
 
     title = "VERTICES";
     const idVerticesMap = parseVertices(inpData[title] || []);
