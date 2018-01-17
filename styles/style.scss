@@ -42,6 +42,10 @@ body {
 }
 
 th {
+  &.normal-col {
+    font-weight: normal;
+  }
+
   &.property-col {
     font-weight: normal;
     width: 65%;

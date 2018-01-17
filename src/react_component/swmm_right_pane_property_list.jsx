@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import CONSTS from "./consts";
+import SwmmTreatmentsModal from "./swmm_treatments_modal";
 
 const getEntityProperties = entity => ({"Name": entity.name});
 
@@ -10,8 +11,7 @@ const getNodeProperties = node => {
   properties["X"] = node.position.x;
   properties["Y"] = node.position.y;
   properties["Invert El."] = node.invertElevation;
-  properties["Treatment"] = node.treatments.length === 0 ? "NO" : "YES";
-  properties["Treatment_OnClick"] = node.treatments.length === 0 ? null : () => console.table(node.treatments);
+  properties["Treatment"] = node.treatments && node.treatments.length !== 0 ? "YES" : "NO";
 
   return properties;
 };
@@ -57,7 +57,7 @@ const getProperties = (activeFeature, activeItem) => {
   }
 };
 
-const getPropertiesHtml = (activeFeature, activeItem) => {
+const getPropertiesHtml = (activeFeature, activeItem, showNodeTreatment) => {
   const properties = getProperties(activeFeature, activeItem);
   let lists = [];
   for(const key in properties) {
@@ -69,7 +69,7 @@ const getPropertiesHtml = (activeFeature, activeItem) => {
         listItem = (
           <tr key={`property-item-${key}`}>
             <th className="property-col">{key}</th>
-            <th className="value-col"><a onClick={properties["Treatment_OnClick"]}>{properties[key]}</a></th>
+            <th className="value-col"><a onClick={showNodeTreatment}>{properties[key]}</a></th>
           </tr>
         );
         break;
@@ -91,20 +91,50 @@ const getPropertiesHtml = (activeFeature, activeItem) => {
   );
 }
 
+const isNode = activeFeature => activeFeature === CONSTS.JUNCTION_FEATURE;
+                            //  || activeFeature === CONSTS.OUTFALL_FEATURE
+                            //  || activeFeature === CONSTS.DIVIDER_FEATURE
+                            //  || activeFeature === CONSTS.STORAGE_FEATURE;
+
+const isNodeWithTreatments = (activeFeature, activeItem) => {
+  if (!isNode(activeFeature)) return false;
+  return activeItem && activeItem.treatments && activeItem.treatments.length !== 0;
+};
+
 class SwmmRightPanePropertyList extends React.Component{
   constructor(props) {
     super(props);
+    this.showNodeTreatmentsModal = this.showNodeTreatmentsModal.bind(this);
+    this.hideNodeTreatmentsModal = this.hideNodeTreatmentsModal.bind(this);
+    this.state = {isTreatmentsModalActive: false};
+  }
+
+  showNodeTreatmentsModal() {
+    this.setState({isTreatmentsModalActive: true});
+  }
+
+  hideNodeTreatmentsModal() {
+    this.setState({isTreatmentsModalActive: false});
   }
 
   render() {
     const {activeItem, activeFeature} = this.props;
     return (
-      <table className="table is-hoverable is-bordered" id="swmm-property-list">
-        <thead>
-          <tr><th className="property-col">Property</th><th className="value-col">Value</th></tr>
-        </thead>
-        {activeItem !== null && getPropertiesHtml(activeFeature, activeItem)}
-      </table>
+      <div>
+        <table className="table is-hoverable is-bordered" id="swmm-property-list">
+          <thead>
+            <tr><th className="property-col">Property</th><th className="value-col">Value</th></tr>
+          </thead>
+          {activeItem !== null && getPropertiesHtml(activeFeature, activeItem, this.showNodeTreatmentsModal)}
+        </table>
+        { isNodeWithTreatments(activeFeature, activeItem) &&
+          <SwmmTreatmentsModal
+            isActive={this.state.isTreatmentsModalActive}
+            title="Treatments"
+            onClose={this.hideNodeTreatmentsModal}
+            treatments={activeItem.treatments}/>
+        }
+      </div>
     );
   }
 }
