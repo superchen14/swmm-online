@@ -145,7 +145,7 @@ class SwmmCanvas extends React.Component {
       let pts = subcatchment.vertices;
       pts = pts.map(pt => graphHelper.getPointOnCanvas(pt));
       const centerPt = graphHelper.getPointOnCanvas(subcatchment.position);
-      const outletPt = graphHelper.getPointOnCanvas(subcatchment.outletNode.position);
+      const outletPt = subcatchment.outletNode ? graphHelper.getPointOnCanvas(subcatchment.outletNode.position) : null;
       const isActive = activeId === subcatchment.name && activeFeature === CONSTS.SUBCATCHMENT_FEATURE;
       return <SubcatchmentGraph
                 key={CONSTS.SUBCATCHMENT_GRAPH_ID_PREFIX + subcatchment.name}

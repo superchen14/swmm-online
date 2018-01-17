@@ -19,13 +19,15 @@ class SubcatchmentGraph extends React.Component {
     graphProps.fill = "transparent";
 
     let outletLineProps = getGraphProps(isActive);
-    outletLineProps.points = [centerPt.x, centerPt.y, outletPt.x, outletPt.y];
-    outletLineProps.scale = 1; // overwrite scale gotten from getGraphProps
-    outletLineProps.dash = [10, 5];
+    if (outletPt) {
+      outletLineProps.points = [centerPt.x, centerPt.y, outletPt.x, outletPt.y];
+      outletLineProps.scale = 1; // overwrite scale gotten from getGraphProps
+      outletLineProps.dash = [10, 5];
+    }
     return (
       <Group>
         <Line {...graphProps}/>
-        <Line {...outletLineProps}/>
+        {outletPt && <Line {...outletLineProps}/>}
       </Group>
     );
   }
@@ -33,7 +35,7 @@ class SubcatchmentGraph extends React.Component {
 
 SubcatchmentGraph.propTypes = {
   centerPt: PropTypes.object.isRequired,
-  outletPt: PropTypes.object.isRequired,
+  outletPt: PropTypes.object,
   points: PropTypes.array.isRequired,
   isActive: PropTypes.bool.isRequired,
   setActiveId: PropTypes.func.isRequired,
