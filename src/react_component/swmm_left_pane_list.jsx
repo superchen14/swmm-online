@@ -9,6 +9,11 @@ class SwmmLeftPaneList extends React.Component {
     super(props);
   }
 
+  componentDidUpdate() {
+    const selectedItem = this.dom.getElementsByClassName("is-active")[0];
+    if (selectedItem) selectedItem.scrollIntoView(true);
+  }
+
   render() {
     const {items, idPrefix, activeFeature, activeId, setActiveId, editActiveId, shouldShowEditIcon, listFilter} = this.props;
     const onEdit = (activeFeature, activeId) => e => {
@@ -16,7 +21,7 @@ class SwmmLeftPaneList extends React.Component {
       e.stopPropagation();
     }
     return (
-      <div id="left-pane-list">
+      <div id="left-pane-list" ref={dom => {this.dom = dom;}}>
         <nav className="panel">
         { items.filter(i => listFilter === null || i.name.indexOf(listFilter) != -1).map(item => {
           let className = "panel-block";
