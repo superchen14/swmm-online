@@ -11,7 +11,13 @@ class SwmmLeftPaneList extends React.Component {
 
   componentDidUpdate() {
     const selectedItem = this.dom.getElementsByClassName("is-active")[0];
-    if (selectedItem) selectedItem.scrollIntoView(true);
+    if (selectedItem) {
+      const listRect = this.dom.getBoundingClientRect();
+      const itemRect = selectedItem.getBoundingClientRect();
+      if (!(itemRect.top > listRect.top && itemRect.bottom < listRect.bottom)) {
+        selectedItem.scrollIntoView(true);
+      }
+    }
   }
 
   render() {
