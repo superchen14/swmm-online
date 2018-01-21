@@ -65,12 +65,10 @@ class SwmmHeader extends React.Component {
         <div className="navbar-menu">
           <div className="navbar-start">
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link">Menu</a>
-              <div className="navbar-dropdown" id="swmm-dropdown-list">
+              <a className="navbar-link">File</a>
+              <div className="navbar-dropdown">
                 <a className="navbar-item" onClick={this.openInpFile}>Open...</a>
                 <a className="navbar-item" onClick={this.loadSampleFile}>Load Sample INP File</a>
-                <a className="navbar-item" onClick={this.toggleAboutSwmmModal}>About SWMM-Online</a>
-                <a className="navbar-item" onClick={this.toggleAboutMeModal}>About Author</a>
               </div>
               <div>
                 <input
@@ -80,8 +78,15 @@ class SwmmHeader extends React.Component {
                   onChange={this.onInpFileOpened}
                 />
               </div>
-              { <SwmmAboutMeModal isActive={isAboutMeActive} onClose={this.toggleAboutMeModal} title="About Author"/> }
-              { <SwmmAboutSwmmModel isActive={isAboutSwmmActive} onClose={this.toggleAboutSwmmModal} title="About SWMM-Online"/> }
+            </div>
+            <div className="navbar-item has-dropdown is-hoverable">
+              <a className="navbar-link">About</a>
+              <div className="navbar-dropdown">
+                <a className="navbar-item" onClick={this.toggleAboutSwmmModal}>About SWMM-Online</a>
+                <a className="navbar-item" onClick={this.toggleAboutMeModal}>About Author</a>
+                <SwmmAboutMeModal isActive={isAboutMeActive} onClose={this.toggleAboutMeModal} title="About Author"/>
+                <SwmmAboutSwmmModel isActive={isAboutSwmmActive} onClose={this.toggleAboutSwmmModal} title="About SWMM-Online"/>
+              </div>
             </div>
           </div>
           <div className="navbar-end">
