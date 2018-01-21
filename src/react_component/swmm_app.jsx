@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import ConnectedSwmmCanvas from "./swmm_canvas.jsx";
-import ConnectedSwmmLeftPaneMenu from "./swmm_left_pane_menu.jsx";
+import ConnectedSwmmHeader from "./swmm_header.jsx";
 import ConnectedSwmmLeftPaneTreeView from "./swmm_left_pane_treeview.jsx";
 import ConnectedSwmmLeftPaneList from "./swmm_left_pane_list.jsx";
 import ConnectedSwmmRightPane from "./swmm_right_pane.jsx";
@@ -14,33 +14,32 @@ class SwmmApp extends React.Component {
   }
 
   render() {
-    const appWidth = this.props.isRightPanePinned ? 1302 : 1102;
     return(
-      <div id="swmm-app" style={{width: appWidth}}>
-        <div id="swmm-app-dock">
-        <div id="left-pane">
-          <div id="pane-header">
-            <ConnectedSwmmLeftPaneMenu/>
+      <div>
+        <ConnectedSwmmHeader/>
+        <div id="swmm-app">
+          <div id="left-pane">
+            <div id="pane-header">
+            </div>
+            <ConnectedSwmmLeftPaneTreeView/>
+            <div id="left-pane-list-header">
+            </div>
+            <div>
+              <p className="control has-icons-left">
+                <input className="input is-small" type="text" placeholder="search" onInput={this.props.updateListFilter} value={this.props.listFilter}/>
+                <span className="icon is-small is-left"><i className="fa fa-search"/></span>
+              </p>
+            </div>
+            <ConnectedSwmmLeftPaneList/>
           </div>
-          <ConnectedSwmmLeftPaneTreeView/>
-          <div id="left-pane-list-header">
+          <div id="main-pane">
+            <div id="pane-header">
+            </div>
+            <div id="main-pane-body">
+              <ConnectedSwmmCanvas/>
+            </div>
           </div>
-          <div>
-            <p className="control has-icons-left">
-              <input className="input is-small" type="text" placeholder="search" onInput={this.props.updateListFilter} value={this.props.listFilter}/>
-              <span className="icon is-small is-left"><i className="fa fa-search"/></span>
-            </p>
-          </div>
-          <ConnectedSwmmLeftPaneList/>
-        </div>
-        <div id="main-pane">
-          <div id="pane-header">
-          </div>
-          <div id="main-pane-body">
-            <ConnectedSwmmCanvas/>
-          </div>
-        </div>
-        {this.props.isRightPaneVisible && <ConnectedSwmmRightPane/>}
+          <ConnectedSwmmRightPane/>
         </div>
       </div>
     );
@@ -48,22 +47,12 @@ class SwmmApp extends React.Component {
 }
 
 SwmmApp.propTypes = {
-  isRightPanePinned: PropTypes.bool.isRequired,
-  isRightPaneVisible: PropTypes.bool.isRequired,
   updateListFilter: PropTypes.func.isRequired,
   listFilter: PropTypes.string.isRequired,
 };
 
-const isRightPanePinned = state => (state && state.ui && state.ui.isRightPanePinned) || false;
-
-const isRightPaneEnabled = state => (state && state.ui && state.ui.isRightPaneEnabled) || false;
-
-const isRightPaneVisible = state => isRightPaneEnabled(state) || isRightPanePinned(state);
-
 const ConnectedSwmmApp = connect(
   state => ({
-    isRightPanePinned: isRightPanePinned(state),
-    isRightPaneVisible: isRightPaneVisible(state),
     listFilter: state && state.ui && state.ui.listFilter ? state.ui.listFilter : "",
   }),
   dispatch => ({

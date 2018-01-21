@@ -48,30 +48,37 @@ th {
 
   &.property-col {
     font-weight: normal;
-    width: 65%;
+    width: 55%;
   }
 
   &.value-col {
     font-weight: normal;
-    width: 35%;
+    width: 45%;
   }
+}
+
+#swmm-online {
+  min-height: 768px;
+  min-width: 1024px;
 }
 
 #swmm-app {
   background: white;
-  width: 1102px;
-  height: 700px;
+  position: fixed;
+  top: 52px;
+  bottom: 2px;
+  width: 100%;
   border: 1px solid $borderColor;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 30px;
+  min-height: 600px;
+  min-width: 1000px;
 }
 
 #left-pane {
-  width: 180px;
+  width: 200px;
   border-right: 1px solid $borderColor;
   height: 100%;
   float: left;
+  position: relative;
 }
 
 #pane-header {
@@ -113,7 +120,7 @@ th {
 }
 
 #left-pane-list {
-  height: 227px;
+  height: calc(100% - 467px);
   overflow: auto;
 }
 
@@ -123,9 +130,7 @@ th {
 
 #left-pane-treeview {
   height: 350px;
-  width: 180px;
   overflow: auto;
-  border-right: 1px solid $borderColor;
 }
 
 .menu-list {
@@ -145,26 +150,18 @@ th {
 }
 
 #main-pane {
-  width: 920px;
+  width: calc(100% - 200px - 250px);
   height: 100%;
   float: left;
 }
 
 #main-pane-body {
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 20px;
-  width: 920px;
-  height: 600px;
-}
-
-#swmm-app-dock {
-  position: relative;
-  height: 700px;
+  width: 100%;
+  height: calc(100% - 45px);
 }
 
 .right-pane {
-  width: 200px;
+  width: 250px;
   border-left: 1px solid $borderColor;
   height: 100%;
   float: right;
@@ -178,12 +175,6 @@ th {
 
 #swmm-file-input {
   display: none;
-}
-
-#swmm-dropdown-menu {
-  height: 44px;
-  font-size: 14px;
-  font-weight: 700;
 }
 
 #swmm-dropdown-list {

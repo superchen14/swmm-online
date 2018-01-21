@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import CONSTS from "./consts";
-import { setActiveItemAction, editActiveItemAction } from "./actions";
+import { setActiveItemAction } from "./actions";
 
 class SwmmLeftPaneList extends React.Component {
   constructor(props) {
@@ -21,11 +21,7 @@ class SwmmLeftPaneList extends React.Component {
   }
 
   render() {
-    const {items, idPrefix, activeFeature, activeId, setActiveId, editActiveId, shouldShowEditIcon, listFilter} = this.props;
-    const onEdit = (activeFeature, activeId) => e => {
-      editActiveId(activeFeature, activeId);
-      e.stopPropagation();
-    }
+    const {items, idPrefix, activeFeature, activeId, setActiveId, listFilter} = this.props;
     return (
       <div id="left-pane-list" ref={dom => {this.dom = dom;}}>
         <nav className="panel">
@@ -36,7 +32,6 @@ class SwmmLeftPaneList extends React.Component {
           return (
             <a key={idPrefix + item.name} className={className} onClick={setActiveId(activeFeature, item.name)}>
               <div style={{width: "90%"}}>{item.name}</div>
-              {shouldShowEditIcon && isSelected && <i className="panel-icon fa fa-edit edit-item" onClick={onEdit(activeFeature, item.name)}/>}
             </a>
           );
         })}
@@ -52,15 +47,7 @@ SwmmLeftPaneList.propTypes = {
   idPrefix: PropTypes.string.isRequired,
   activeFeature: PropTypes.string.isRequired,
   activeId: PropTypes.string.isRequired,
-  shouldShowEditIcon: PropTypes.bool.isRequired,
   setActiveId: PropTypes.func.isRequired,
-  editActiveId: PropTypes.func.isRequired,
-};
-
-const isRightPaneVisible = state => {
-  const isRightPaneEnabled = state.ui.isRightPaneEnabled;
-  const isRightPanePinned = state.ui.isRightPanePinned;
-  return isRightPaneEnabled || isRightPanePinned;
 };
 
 const mapStateToProps = state => {
@@ -68,11 +55,9 @@ const mapStateToProps = state => {
   let idPrefix = "";
   const activeId = state.ui.activeId;
   const activeFeature = state.ui.activeFeature;
-  let shouldShowEditIcon = true;
   const listFilter = state.ui.listFilter;
 
   if (state.project && state.ui.activeFeature !== CONSTS.NONE_FEATURE) {
-    shouldShowEditIcon = !isRightPaneVisible(state);
     switch(activeFeature) {
       case CONSTS.JUNCTION_FEATURE:
         items = state.project.junctions;
@@ -121,12 +106,11 @@ const mapStateToProps = state => {
     }
   }
 
-  return {items, idPrefix, activeId, activeFeature, shouldShowEditIcon, listFilter};
+  return {items, idPrefix, activeId, activeFeature, listFilter};
 };
 
 const mapDispatchToProps = (dispatch) => ({
   setActiveId: (activeFeature, activeId) => () => dispatch(setActiveItemAction(activeFeature, activeId)),
-  editActiveId: (activeFeature, activeId) => dispatch(editActiveItemAction(activeFeature, activeId)),
 });
 const ConnectedSwmmLeftPaneList = connect(mapStateToProps, mapDispatchToProps)(SwmmLeftPaneList);
 
