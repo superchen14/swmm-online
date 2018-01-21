@@ -15,6 +15,8 @@ const reducer = (state, action) => {
     case CONSTS.LOAD_PROJECT:
       newState.project = action.project;
       newState.graphHelper = new GraphHelper(action.project);
+      newState.ui.activeFeature = CONSTS.NONE_FEATURE;
+      newState.ui.activeId = CONSTS.EMPTY_STRING;
       return newState;
     case CONSTS.SET_ACTIVE_FEATURE:
       newState.ui.activeFeature = action.activeFeature;
