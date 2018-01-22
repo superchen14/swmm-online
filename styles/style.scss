@@ -120,7 +120,7 @@ th {
 }
 
 #left-pane-list {
-  height: calc(100% - 467px);
+  height: calc(50% - 45px - 27px);
   overflow: auto;
 }
 
@@ -129,7 +129,7 @@ th {
 }
 
 #left-pane-treeview {
-  height: 350px;
+  height: calc(50% - 45px);
   overflow: auto;
 }
 
@@ -171,6 +171,7 @@ th {
 
 #right-pane-body {
   height: 653px;
+  background-color: white;
 }
 
 #swmm-file-input {
