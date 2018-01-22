@@ -26,6 +26,14 @@ const getJunctionProperties = junction => {
   return properties;
 };
 
+const getLinkProperties = link => {
+  var properties = getEntityProperties(link);
+  properties["Inlet Node"] = link.inletNode.name;
+  properties["Outlet Node"] = link.outletNode.name;
+
+  return properties;
+};
+
 const getPollutantProperties = pollutant => {
   var properties = getEntityProperties(pollutant);
   properties["Units"] = pollutant.unit;
@@ -50,6 +58,12 @@ const getProperties = (activeFeature, activeItem) => {
       return getNodeProperties(activeItem);
     case CONSTS.JUNCTION_FEATURE:
       return getJunctionProperties(activeItem);
+    case CONSTS.CONDUIT_FEATURE:
+    case CONSTS.PUMP_FEATURE:
+    case CONSTS.ORIFICE_FEATURE:
+    case CONSTS.WEIR_FEATURE:
+    case CONSTS.OUTLET_FEATURE:
+      return getLinkProperties(activeItem);
     case CONSTS.POLLUTANT_FEATURE: 
       return getPollutantProperties(activeItem);
     default:
@@ -161,6 +175,16 @@ const getActiveItem = state => {
       return project.storages.find(s => s.name === activeId);
     case CONSTS.POLLUTANT_FEATURE:
       return project.pollutants.find(p => p.name === activeId);
+    case CONSTS.CONDUIT_FEATURE:
+      return project.conduits.find(c => c.name === activeId);
+    case CONSTS.PUMP_FEATURE:
+      return project.pumps.find(p => p.name === activeId);
+    case CONSTS.ORIFICE_FEATURE:
+      return project.orifices.find(o => o.name === activeId);
+    case CONSTS.WEIR_FEATURE:
+      return project.weirs.find(w => w.name === activeId);
+    case CONSTS.OUTLET_FEATURE:
+      return project.outlets.find(o => o.name === activeId);
     }
   }
 
