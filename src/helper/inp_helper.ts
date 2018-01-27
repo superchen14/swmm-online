@@ -125,8 +125,10 @@ function parseConduit(line, idVerticesMap, nodes): Conduit {
   const outletNode = nodes.find(node => node.name === items[2]);
   const length = Number.parseFloat(items[3]);
   const roughness = Number.parseFloat(items[4]);
+  const inletOffset = Number.parseFloat(items[5]);
+  const outletOffset = Number.parseFloat(items[6]);
 
-  return createConduit(conduitName, inletNode, outletNode, idVerticesMap[conduitName] || [], length, roughness);
+  return createConduit(conduitName, inletNode, outletNode, idVerticesMap[conduitName] || [], length, roughness, inletOffset, outletOffset);
 }
 
 function parsePump(line, idVerticesMap, nodes): Link {

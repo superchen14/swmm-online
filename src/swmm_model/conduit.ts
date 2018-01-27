@@ -6,7 +6,9 @@ function createConduit(
   outletNode: Node,
   vertices: Point[],
   length: number,
-  roughness: number
+  roughness: number,
+  inletOffset: number,
+  outletOffset: number
 ): Conduit {
   return {
     name,
@@ -14,7 +16,9 @@ function createConduit(
     outletNode,
     vertices,
     length,
-    roughness
+    roughness,
+    inletOffset,
+    outletOffset
   };
 }
 

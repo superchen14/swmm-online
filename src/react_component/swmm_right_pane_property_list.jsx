@@ -38,6 +38,8 @@ const getConduitProperties = conduit => {
   var properties = getLinkProperties(conduit);
   properties["Length"] = conduit.length;
   properties["Roughness"] = conduit.roughness;
+  properties["Inlet Offset"] = conduit.inletOffset;
+  properties["Outlet Offset"] = conduit.outletOffset;
 
   return properties;
 };
