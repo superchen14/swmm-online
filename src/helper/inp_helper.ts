@@ -51,21 +51,39 @@ function parseTreatments(lines) {
 }
 
 function parseVertices(lines) {
-  const idVerticesMaps = {};
+  const idVerticesMap = {};
   lines.forEach(line => {
     const items = line.match(/[^ ]+/g);
     const id = items[0];
     const x = Number.parseFloat(items[1]);
     const y = Number.parseFloat(items[2]);
 
-    if (id in idVerticesMaps) {
-      idVerticesMaps[id].push(createPoint(x, y));
+    if (id in idVerticesMap) {
+      idVerticesMap[id].push(createPoint(x, y));
     } else {
-      idVerticesMaps[id] = [createPoint(x, y)];
+      idVerticesMap[id] = [createPoint(x, y)];
     }
   });
 
-  return idVerticesMaps;
+  return idVerticesMap;
+}
+
+function parseLosses(lines) {
+  const idLossMap = {};
+
+  lines.forEach(line => {
+    const items = line.match(/[^ ]+/g);
+    const id = items[0];
+    const entryLossCoefficient = Number.parseFloat(items[1]);
+    const exitLossCoefficient = Number.parseFloat(items[2]);
+    const averageLossCoefficient = Number.parseFloat(items[3]);
+    const seepageLossRate = Number.parseFloat(items[4]);
+    const flapGate = items[4] === "YES";
+
+    idLossMap[id] = {entryLossCoefficient, exitLossCoefficient, averageLossCoefficient, flapGate, seepageLossRate};
+  });
+
+  return idLossMap;
 }
 
 function parseJunction(line, idPointsMap, idTreatmentsMap): Node {
@@ -118,7 +136,7 @@ function parseStorage(line, idPointsMap, idTreatmentsMap): Node {
   return createStorage(storageName, position, invertElevation, treatments);
 }
 
-function parseConduit(line, idVerticesMap, nodes): Conduit {
+function parseConduit(line, idVerticesMap, idLossMap, nodes): Conduit {
   const items = line.match(/[^ ]+/g);
   const conduitName = items[0];
   const inletNode = nodes.find(node => node.name === items[1]);
@@ -129,6 +147,16 @@ function parseConduit(line, idVerticesMap, nodes): Conduit {
   const outletOffset = Number.parseFloat(items[6]);
   const initFlow = Number.parseFloat(items[7]);
   const maxFlow = Number.parseFloat(items[8]);
+  let loss = {
+    entryLossCoefficient: 0,
+    exitLossCoefficient: 0,
+    averageLossCoefficient: 0,
+    seepageLossRate: 0,
+    flapGate: false
+  };
+  if (conduitName in idLossMap) {
+    loss = idLossMap[conduitName];
+  }
 
   return createConduit(
     conduitName,
@@ -140,7 +168,8 @@ function parseConduit(line, idVerticesMap, nodes): Conduit {
     inletOffset,
     outletOffset,
     initFlow,
-    maxFlow
+    maxFlow,
+    loss
   );
 }
 
@@ -276,9 +305,12 @@ class INPhelper {
 
     const nodes = (project.junctions).concat(project.outfalls).concat(project.dividers).concat(project.storages);
 
+    title = "LOSSES";
+    const idLossMap = parseLosses(inpData[title] || []);
+
     title = "CONDUITS";
     const conduitLines = inpData[title] || [];
-    project.conduits = conduitLines.map(line => parseConduit(line, idVerticesMap, nodes));
+    project.conduits = conduitLines.map(line => parseConduit(line, idVerticesMap, idLossMap, nodes));
 
     title = "PUMPS";
     const pumpLines = inpData[title] || [];

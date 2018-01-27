@@ -42,6 +42,11 @@ const getConduitProperties = conduit => {
   properties["Outlet Offset"] = conduit.outletOffset;
   properties["Initial Flow"] = conduit.initFlow;
   properties["Maximum Flow"] = conduit.maxFlow;
+  properties["Entry Loss Coeff."] = conduit.loss.entryLossCoefficient;
+  properties["Exit Loss Coeff."] = conduit.loss.exitLossCoefficient;
+  properties["Avg. Loss Coeff."] = conduit.loss.averageLossCoefficient;
+  properties["Seepage Loss Rate"] = conduit.loss.seepageLossRate;
+  properties["Flap Gate"] = conduit.loss.flapGate ? "YES" : "NO";
 
   return properties;
 };

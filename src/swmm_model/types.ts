@@ -33,6 +33,15 @@ interface Conduit extends Link {
   outletOffset: number;
   initFlow: number;
   maxFlow: number;
+  loss: Loss;
+}
+
+interface Loss {
+  entryLossCoefficient: number,
+  exitLossCoefficient: number,
+  averageLossCoefficient: number,
+  seepageLossRate: number,
+  flapGate: boolean
 }
 
 interface Subcatchment extends Entity {
@@ -74,4 +83,4 @@ interface Project
   subcatchments: Subcatchment[];
 }
 
-export {Point, Entity, Node, Junction, Link, Conduit, Subcatchment, Pollutant, Treatment, Project};
+export {Point, Entity, Node, Junction, Link, Conduit, Loss, Subcatchment, Pollutant, Treatment, Project};

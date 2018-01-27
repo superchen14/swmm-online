@@ -1,4 +1,4 @@
-import {Point, Node, Conduit} from "./types";
+import {Point, Node, Loss, Conduit} from "./types";
 
 function createConduit(
   name: string,
@@ -10,7 +10,8 @@ function createConduit(
   inletOffset: number,
   outletOffset: number,
   initFlow: number,
-  maxFlow: number
+  maxFlow: number,
+  loss: Loss
 ): Conduit {
   return {
     name,
@@ -22,7 +23,8 @@ function createConduit(
     inletOffset,
     outletOffset,
     initFlow,
-    maxFlow
+    maxFlow,
+    loss
   };
 }
 
