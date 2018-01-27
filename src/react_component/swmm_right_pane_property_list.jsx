@@ -37,6 +37,7 @@ const getLinkProperties = link => {
 const getConduitProperties = conduit => {
   var properties = getLinkProperties(conduit);
   properties["Length"] = conduit.length;
+  properties["Roughness"] = conduit.roughness;
 
   return properties;
 };

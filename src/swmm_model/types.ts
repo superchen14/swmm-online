@@ -28,6 +28,7 @@ interface Link extends Entity {
 
 interface Conduit extends Link {
   length: number;
+  roughness: number;
 }
 
 interface Subcatchment extends Entity {
