@@ -1,4 +1,4 @@
-import {Point, Node, Link, Subcatchment, Pollutant, Project} from "../swmm_model/types";
+import {Point, Node, Link, Conduit, Subcatchment, Pollutant, Project} from "../swmm_model/types";
 import createPoint from "../swmm_model/point";
 import createJunction from "../swmm_model/junction";
 import createOutfall from "../swmm_model/outfall";
@@ -118,13 +118,14 @@ function parseStorage(line, idPointsMap, idTreatmentsMap): Node {
   return createStorage(storageName, position, invertElevation, treatments);
 }
 
-function parseConduit(line, idVerticesMap, nodes): Link {
+function parseConduit(line, idVerticesMap, nodes): Conduit {
   const items = line.match(/[^ ]+/g);
   const conduitName = items[0];
   const inletNode = nodes.find(node => node.name === items[1]);
   const outletNode = nodes.find(node => node.name === items[2]);
+  const length = Number.parseFloat(items[3]);
 
-  return createConduit(conduitName, inletNode, outletNode, idVerticesMap[conduitName] || []);
+  return createConduit(conduitName, inletNode, outletNode, idVerticesMap[conduitName] || [], length);
 }
 
 function parsePump(line, idVerticesMap, nodes): Link {

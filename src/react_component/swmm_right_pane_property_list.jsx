@@ -34,6 +34,13 @@ const getLinkProperties = link => {
   return properties;
 };
 
+const getConduitProperties = conduit => {
+  var properties = getLinkProperties(conduit);
+  properties["Length"] = conduit.length;
+
+  return properties;
+};
+
 const getPollutantProperties = pollutant => {
   var properties = getEntityProperties(pollutant);
   properties["Units"] = pollutant.unit;
@@ -59,6 +66,7 @@ const getProperties = (activeFeature, activeItem) => {
     case CONSTS.JUNCTION_FEATURE:
       return getJunctionProperties(activeItem);
     case CONSTS.CONDUIT_FEATURE:
+      return getConduitProperties(activeItem);
     case CONSTS.PUMP_FEATURE:
     case CONSTS.ORIFICE_FEATURE:
     case CONSTS.WEIR_FEATURE:

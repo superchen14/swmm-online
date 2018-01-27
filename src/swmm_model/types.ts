@@ -26,6 +26,10 @@ interface Link extends Entity {
   vertices: Point[];
 }
 
+interface Conduit extends Link {
+  length: number;
+}
+
 interface Subcatchment extends Entity {
   position: Point;
   vertices: Point[];
@@ -56,7 +60,7 @@ interface Project
   outfalls: Node[];
   dividers: Node[];
   storages: Node[];
-  conduits: Link[];
+  conduits: Conduit[];
   pumps: Link[];
   orifices: Link[];
   weirs: Link[];
@@ -65,4 +69,4 @@ interface Project
   subcatchments: Subcatchment[];
 }
 
-export {Point, Entity, Node, Junction, Link, Subcatchment, Pollutant, Treatment, Project};
+export {Point, Entity, Node, Junction, Link, Conduit, Subcatchment, Pollutant, Treatment, Project};
