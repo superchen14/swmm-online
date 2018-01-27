@@ -36,7 +36,9 @@ class SwmmApp extends React.Component {
             <div id="pane-header">
             </div>
             <div id="main-pane-body">
+              <div style={{height: 600, width: 900}}>
               <ConnectedSwmmCanvas/>
+              </div>
             </div>
           </div>
           <ConnectedSwmmRightPane/>
