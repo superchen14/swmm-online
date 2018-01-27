@@ -8,7 +8,9 @@ function createConduit(
   length: number,
   roughness: number,
   inletOffset: number,
-  outletOffset: number
+  outletOffset: number,
+  initFlow: number,
+  maxFlow: number
 ): Conduit {
   return {
     name,
@@ -18,7 +20,9 @@ function createConduit(
     length,
     roughness,
     inletOffset,
-    outletOffset
+    outletOffset,
+    initFlow,
+    maxFlow
   };
 }
 

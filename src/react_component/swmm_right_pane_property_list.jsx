@@ -40,6 +40,8 @@ const getConduitProperties = conduit => {
   properties["Roughness"] = conduit.roughness;
   properties["Inlet Offset"] = conduit.inletOffset;
   properties["Outlet Offset"] = conduit.outletOffset;
+  properties["Initial Flow"] = conduit.initFlow;
+  properties["Maximum Flow"] = conduit.maxFlow;
 
   return properties;
 };

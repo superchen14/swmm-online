@@ -31,6 +31,8 @@ interface Conduit extends Link {
   roughness: number;
   inletOffset: number;
   outletOffset: number;
+  initFlow: number;
+  maxFlow: number;
 }
 
 interface Subcatchment extends Entity {
