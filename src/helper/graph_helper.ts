@@ -35,19 +35,21 @@ class GraphHelper {
     let allPts = nodes.map(n => n.position);
     subcatchments.forEach(s => { allPts = allPts.concat(s.vertices); });
 
+    const margin = 10;
+
     const xArray: number[] = allPts.map(pt => pt.x);
     let minX: number = Math.min(...xArray);
     let maxX: number = Math.max(...xArray);
     const width = maxX - minX;
-    minX = minX - width * 0.05;
-    maxX = maxX + width * 0.05;
+    minX = minX - margin;
+    maxX = maxX + margin;
 
     const yArray: number[] = allPts.map(pt => pt.y);
     let minY: number = Math.min(...yArray);
     let maxY: number = Math.max(...yArray);
     const height = maxY - minY;
-    minY = minY - height * 0.05;
-    maxY = maxY + height * 0.05; 
+    minY = minY - margin;
+    maxY = maxY + margin; 
 
     this.leftBottom = createPoint(minX, minY);
     this.rightTop = createPoint(maxX, maxY);
