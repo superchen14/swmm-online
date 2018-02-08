@@ -90,7 +90,7 @@ const getProperties = (activeFeature, activeItem) => {
   }
 };
 
-const getPropertiesHtml = (activeFeature, activeItem, showNodeTreatment) => {
+const getPropertiesHtml = (activeFeature, activeItem, toggleNodeTreatment) => {
   const properties = getProperties(activeFeature, activeItem);
   let lists = [];
   for(const key in properties) {
@@ -102,7 +102,7 @@ const getPropertiesHtml = (activeFeature, activeItem, showNodeTreatment) => {
         listItem = (
           <tr key={`property-item-${key}`}>
             <th className="property-col">{key}</th>
-            <th className="value-col"><a onClick={showNodeTreatment}>{properties[key]}</a></th>
+            <th className="value-col"><a onClick={toggleNodeTreatment}>{properties[key]}</a></th>
           </tr>
         );
         break;
