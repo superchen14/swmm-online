@@ -138,17 +138,13 @@ const isNodeWithTreatments = (activeFeature, activeItem) => {
 class SwmmRightPanePropertyList extends React.Component{
   constructor(props) {
     super(props);
-    this.showNodeTreatmentsModal = this.showNodeTreatmentsModal.bind(this);
-    this.hideNodeTreatmentsModal = this.hideNodeTreatmentsModal.bind(this);
+    this.toggleNodeTreatmentsModal = this.toggleNodeTreatmentsModal.bind(this);
     this.state = {isTreatmentsModalActive: false};
   }
 
-  showNodeTreatmentsModal() {
-    this.setState({isTreatmentsModalActive: true});
-  }
-
-  hideNodeTreatmentsModal() {
-    this.setState({isTreatmentsModalActive: false});
+  toggleNodeTreatmentsModal() {
+    const isTreatmentsModalActive = !this.state.isTreatmentsModalActive;
+    this.setState({isTreatmentsModalActive});
   }
 
   render() {
@@ -159,13 +155,13 @@ class SwmmRightPanePropertyList extends React.Component{
           <thead>
             <tr><th className="property-col">Property</th><th className="value-col">Value</th></tr>
           </thead>
-          {activeItem !== null && getPropertiesHtml(activeFeature, activeItem, this.showNodeTreatmentsModal)}
+          {activeItem !== null && getPropertiesHtml(activeFeature, activeItem, this.toggleNodeTreatmentsModal)}
         </table>
         { isNodeWithTreatments(activeFeature, activeItem) &&
           <SwmmTreatmentsModal
             isActive={this.state.isTreatmentsModalActive}
             title="Treatments"
-            onClose={this.hideNodeTreatmentsModal}
+            onClose={this.toggleNodeTreatmentsModal}
             treatments={activeItem.treatments}/>
         }
       </div>
