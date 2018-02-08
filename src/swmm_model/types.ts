@@ -34,6 +34,12 @@ interface Conduit extends Link {
   initFlow: number;
   maxFlow: number;
   loss: Loss;
+  section: Section;
+}
+
+interface Section {
+  shape: string;
+  numberOfBarrels: number;
 }
 
 interface Loss {
@@ -83,4 +89,4 @@ interface Project
   subcatchments: Subcatchment[];
 }
 
-export {Point, Entity, Node, Junction, Link, Conduit, Loss, Subcatchment, Pollutant, Treatment, Project};
+export {Point, Entity, Node, Junction, Link, Conduit, Section, Loss, Subcatchment, Pollutant, Treatment, Project};

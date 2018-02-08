@@ -86,6 +86,20 @@ function parseLosses(lines) {
   return idLossMap;
 }
 
+function parseSections(lines) {
+  const idSectionMap = {};
+
+  lines.forEach(line => {
+    const items = line.match(/[^ ]+/g);
+    const id = items[0];
+    const shape = items[1];
+    const numberOfBarrels = Number.parseInt(items[6]);
+    idSectionMap[id] = {shape, numberOfBarrels};
+  });
+
+  return idSectionMap;
+}
+
 function parseJunction(line, idPointsMap, idTreatmentsMap): Node {
   const items = line.match(/[^ ]+/g);
   const junctionName = items[0];
@@ -136,7 +150,7 @@ function parseStorage(line, idPointsMap, idTreatmentsMap): Node {
   return createStorage(storageName, position, invertElevation, treatments);
 }
 
-function parseConduit(line, idVerticesMap, idLossMap, nodes): Conduit {
+function parseConduit(line, idVerticesMap, idLossMap, idSectionMap, nodes): Conduit {
   const items = line.match(/[^ ]+/g);
   const conduitName = items[0];
   const inletNode = nodes.find(node => node.name === items[1]);
@@ -169,7 +183,8 @@ function parseConduit(line, idVerticesMap, idLossMap, nodes): Conduit {
     outletOffset,
     initFlow,
     maxFlow,
-    loss
+    loss,
+    idSectionMap[conduitName]
   );
 }
 
@@ -308,9 +323,12 @@ class INPhelper {
     title = "LOSSES";
     const idLossMap = parseLosses(inpData[title] || []);
 
+    title = "XSECTIONS";
+    const idSectionMap = parseSections(inpData[title] || []);
+
     title = "CONDUITS";
     const conduitLines = inpData[title] || [];
-    project.conduits = conduitLines.map(line => parseConduit(line, idVerticesMap, idLossMap, nodes));
+    project.conduits = conduitLines.map(line => parseConduit(line, idVerticesMap, idLossMap, idSectionMap, nodes));
 
     title = "PUMPS";
     const pumpLines = inpData[title] || [];
