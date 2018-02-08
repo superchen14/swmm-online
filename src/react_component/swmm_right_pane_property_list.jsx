@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import CONSTS from "./consts";
 import SwmmTreatmentsModal from "./swmm_treatments_modal";
+import SwmmConduitSectionModal from "./swmm_conduit_section_modal";
 
 const getEntityProperties = entity => ({"Name": entity.name});
 
@@ -90,7 +91,8 @@ const getProperties = (activeFeature, activeItem) => {
   }
 };
 
-const getPropertiesHtml = (activeFeature, activeItem, toggleNodeTreatment) => {
+const getPropertiesHtml = (activeFeature, activeItem, onClickCallBacks) => {
+  const {toggleNodeTreatmentsModal, toggleConduitSectionModal} = onClickCallBacks;
   const properties = getProperties(activeFeature, activeItem);
   let lists = [];
   for(const key in properties) {
@@ -102,7 +104,15 @@ const getPropertiesHtml = (activeFeature, activeItem, toggleNodeTreatment) => {
         listItem = (
           <tr key={`property-item-${key}`}>
             <th className="property-col">{key}</th>
-            <th className="value-col"><a onClick={toggleNodeTreatment}>{properties[key]}</a></th>
+            <th className="value-col"><a onClick={toggleNodeTreatmentsModal}>{properties[key]}</a></th>
+          </tr>
+        );
+        break;
+      case "Shape":
+        listItem = (
+          <tr key={`property-item-${key}`}>
+            <th className="property-col">{key}</th>
+            <th className="value-col"><a onClick={toggleConduitSectionModal}>{properties[key]}</a></th>
           </tr>
         );
         break;
@@ -135,11 +145,14 @@ const isNodeWithTreatments = (activeFeature, activeItem) => {
   return activeItem.treatments.length !== 0;
 };
 
+const isConduit = activeFeature => activeFeature === CONSTS.CONDUIT_FEATURE;
+
 class SwmmRightPanePropertyList extends React.Component{
   constructor(props) {
     super(props);
     this.toggleNodeTreatmentsModal = this.toggleNodeTreatmentsModal.bind(this);
-    this.state = {isTreatmentsModalActive: false};
+    this.toggleConduitSectionModal = this.toggleConduitSectionModal.bind(this);
+    this.state = {isTreatmentsModalActive: false, isSectionModalActive: false};
   }
 
   toggleNodeTreatmentsModal() {
@@ -147,15 +160,24 @@ class SwmmRightPanePropertyList extends React.Component{
     this.setState({isTreatmentsModalActive});
   }
 
+  toggleConduitSectionModal() {
+    const isSectionModalActive = !this.state.isSectionModalActive;
+    this.setState({isSectionModalActive});
+  }
+
   render() {
     const {activeItem, activeFeature} = this.props;
+    debugger;
     return (
       <div>
         <table className="table is-hoverable is-bordered" id="swmm-property-list">
           <thead>
             <tr><th className="property-col">Property</th><th className="value-col">Value</th></tr>
           </thead>
-          {activeItem !== null && getPropertiesHtml(activeFeature, activeItem, this.toggleNodeTreatmentsModal)}
+          {activeItem !== null && getPropertiesHtml(activeFeature, activeItem, {
+            toggleNodeTreatmentsModal: this.toggleNodeTreatmentsModal,
+            toggleConduitSectionModal: this.toggleConduitSectionModal
+          })}
         </table>
         { isNodeWithTreatments(activeFeature, activeItem) &&
           <SwmmTreatmentsModal
@@ -163,6 +185,14 @@ class SwmmRightPanePropertyList extends React.Component{
             title="Treatments"
             onClose={this.toggleNodeTreatmentsModal}
             treatments={activeItem.treatments}/>
+        }
+        {
+          isConduit(activeFeature) && activeItem &&
+          <SwmmConduitSectionModal
+            isActive={this.state.isSectionModalActive}
+            title="Section"
+            onClose={this.toggleConduitSectionModal}
+            section={activeItem.section}/>
         }
       </div>
     );
