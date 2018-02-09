@@ -40,6 +40,7 @@ interface Conduit extends Link {
 interface Section {
   shape: string;
   numberOfBarrels: number;
+  maximumHeight: number;
 }
 
 interface Loss {

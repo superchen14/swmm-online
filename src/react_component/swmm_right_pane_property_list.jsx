@@ -167,7 +167,6 @@ class SwmmRightPanePropertyList extends React.Component{
 
   render() {
     const {activeItem, activeFeature} = this.props;
-    debugger;
     return (
       <div>
         <table className="table is-hoverable is-bordered" id="swmm-property-list">

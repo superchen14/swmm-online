@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-const SwmmModal = ({title, isActive, onClose, children}) => {
+const SwmmModal = ({title, isActive, onClose, width, children}) => {
   const className = isActive ? "modal is-active" : "modal";
+  width = width ? width : 640;
   return (
     <div className={className}>
       <div className="modal-background"></div>
-      <div className="modal-card">
+      <div className="modal-card" style={{width: width}}>
         <header className="modal-card-head">
           <p className="modal-card-title">{title}</p>
           <button className="delete" aria-label="close" onClick={onClose}></button>
@@ -26,6 +27,7 @@ SwmmModal.propTypes = {
   isActive: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
+  width: PropTypes.number,
 }
 
 export default SwmmModal;

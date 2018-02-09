@@ -93,8 +93,9 @@ function parseSections(lines) {
     const items = line.match(/[^ ]+/g);
     const id = items[0];
     const shape = items[1];
+    const maximumHeight = items[2];
     const numberOfBarrels = Number.parseInt(items[6]);
-    idSectionMap[id] = {shape, numberOfBarrels};
+    idSectionMap[id] = {shape, numberOfBarrels, maximumHeight};
   });
 
   return idSectionMap;
