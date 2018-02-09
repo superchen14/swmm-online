@@ -2,6 +2,11 @@ import React from "react";
 import PropTypes from 'prop-types';
 import SwmmModal from "./utility/swmm_modal.jsx";
 
+const keyNames = {
+  numberOfBarrels: "Number of Barrels",
+  maximumHeight: "Maximum Height"
+};
+
 const SwmmConduitSectionModal = (props) => {
   const {section} = props;
   const imageURL = `/images/section/${section.shape}.bmp`;
@@ -20,7 +25,7 @@ const SwmmConduitSectionModal = (props) => {
   const toHtml = properties => {
     return Object.keys(properties).map(key =>
       <tr key={key}>
-        <th className="property-col">{key}</th>
+        <th className="property-col">{keyNames[key]}</th>
         <th className="value-col">{properties[key]}</th>
       </tr>
     );
