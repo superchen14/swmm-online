@@ -4,23 +4,35 @@ import SwmmModal from "./utility/swmm_modal.jsx";
 
 const SwmmConduitSectionModal = (props) => {
   const {section} = props;
+  const imageURL = `/images/section/${section.shape}.bmp`;
+
+  const getProperties = section => {
+    const numberOfBarrels = section.numberOfBarrels;
+    const maximumHeight = section.maximumHeight;
+    switch(section.shape) {
+    case "CIRCULAR":
+      return {numberOfBarrels, maximumHeight};
+    default:
+      return {};
+    }
+  }
+
+  const toHtml = properties => {
+    return Object.keys(properties).map(key =>
+      <tr key={key}>
+        <th className="property-col">{key}</th>
+        <th className="value-col">{properties[key]}</th>
+      </tr>
+    );
+  }
 
   return (
-    <SwmmModal {...props} width={"400px"}>
+    <SwmmModal {...props} width={400}>
     <div className="columns">
-      <div className="column is-one-quarter"><img src="/images/section/circular.bmp" alt="Image"/></div>
+      <div className="column is-one-quarter"><img src={imageURL}/></div>
       <div className="column">
         <table className="table is-hoverable is-bordered" id="swmm-property-list">
-          <tbody>
-            <tr>
-              <th className="property-col">{"Number of Barrels"}</th>
-              <th className="value-col">{section.numberOfBarrels}</th>
-            </tr>
-            <tr>
-              <th className="property-col">{"Maximum Height"}</th>
-              <th className="value-col">{section.maximumHeight}</th>
-            </tr>
-          </tbody>
+          <tbody>{toHtml(getProperties(section))}</tbody>
         </table>
       </div>
     </div>
