@@ -95,7 +95,15 @@ function parseSections(lines) {
     const shape = items[1];
     const maximumHeight = items[2];
     const numberOfBarrels = Number.parseInt(items[6]);
-    idSectionMap[id] = {shape, numberOfBarrels, maximumHeight};
+    const topWidth = items[3];
+    switch(shape) {
+      case "CIRCULAR":
+        idSectionMap[id] = {shape, numberOfBarrels, maximumHeight};
+        break;
+      case "TRIANGULAR":
+        idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, topWidth};
+        break;
+    }
   });
 
   return idSectionMap;

@@ -129,7 +129,7 @@ RG1              INTENSITY 1:00     1.0      TIMESERIES TS1
 ;;Link           Shape        Geom1            Geom2      Geom3      Geom4      Barrels    Culvert   
 ;;-------------- ------------ ---------------- ---------- ---------- ---------- ---------- ----------
 1                CIRCULAR     1.5              0          0          0          1                    
-4                CIRCULAR     1                0          0          0          1                    
+4                TRIANGULAR   1                3          0          0          1                    
 5                CIRCULAR     1                0          0          0          1                    
 6                CIRCULAR     1                0          0          0          1                    
 7                CIRCULAR     2                0          0          0          1                    

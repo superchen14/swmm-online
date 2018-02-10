@@ -4,11 +4,13 @@ import SwmmModal from "./utility/swmm_modal.jsx";
 
 const keyNames = {
   numberOfBarrels: "Number of Barrels",
-  maximumHeight: "Maximum Height"
+  maximumHeight: "Maximum Height",
+  topWidth: "Top Width",
 };
 
 const shapeMap = {
-  CIRCULAR: "circular"
+  CIRCULAR: "circular",
+  TRIANGULAR: "triangular",
 };
 
 const SwmmConduitSectionModal = (props) => {
@@ -18,9 +20,12 @@ const SwmmConduitSectionModal = (props) => {
   const getProperties = section => {
     const numberOfBarrels = section.numberOfBarrels;
     const maximumHeight = section.maximumHeight;
+    const topWidth = section.topWidth;
     switch(section.shape) {
     case "CIRCULAR":
       return {numberOfBarrels, maximumHeight};
+    case "TRIANGULAR":
+      return {numberOfBarrels, maximumHeight, topWidth};
     default:
       return {};
     }
