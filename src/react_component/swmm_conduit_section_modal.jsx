@@ -11,6 +11,7 @@ const keyNames = {
 const shapeMap = {
   CIRCULAR: "circular",
   TRIANGULAR: "triangular",
+  PARABOLIC: "parabolic",
 };
 
 const SwmmConduitSectionModal = (props) => {
@@ -25,6 +26,7 @@ const SwmmConduitSectionModal = (props) => {
     case "CIRCULAR":
       return {numberOfBarrels, maximumHeight};
     case "TRIANGULAR":
+    case "PARABOLIC":
       return {numberOfBarrels, maximumHeight, topWidth};
     default:
       return {};

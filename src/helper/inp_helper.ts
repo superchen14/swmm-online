@@ -101,6 +101,7 @@ function parseSections(lines) {
         idSectionMap[id] = {shape, numberOfBarrels, maximumHeight};
         break;
       case "TRIANGULAR":
+      case "PARABOLIC":
         idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, topWidth};
         break;
     }
