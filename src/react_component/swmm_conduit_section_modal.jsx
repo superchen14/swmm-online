@@ -7,9 +7,13 @@ const keyNames = {
   maximumHeight: "Maximum Height"
 };
 
+const shapeMap = {
+  CIRCULAR: "circular"
+};
+
 const SwmmConduitSectionModal = (props) => {
   const {section} = props;
-  const imageURL = `/images/section/${section.shape}.bmp`;
+  const imageURL = `/images/section/${shapeMap[section.shape]}.bmp`;
 
   const getProperties = section => {
     const numberOfBarrels = section.numberOfBarrels;
