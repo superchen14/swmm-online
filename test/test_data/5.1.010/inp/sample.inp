@@ -131,8 +131,8 @@ RG1              INTENSITY 1:00     1.0      TIMESERIES TS1
 1                CIRCULAR     1.5              0          0          0          1                    
 4                TRIANGULAR   1                3          0          0          1                    
 5                PARABOLIC    1                3          0          0          1                    
-6                CIRCULAR     1                0          0          0          1                    
-7                CIRCULAR     2                0          0          0          1                    
+6                EGG          1                0          0          0          1                    
+7                HORSESHOE    2                0          0          0          1                    
 8                CIRCULAR     2                0          0          0          1                    
 10               CIRCULAR     2                0          0          0          1                    
 11               CIRCULAR     1.5              0          0          0          1                    

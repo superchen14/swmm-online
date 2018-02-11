@@ -98,6 +98,9 @@ function parseSections(lines) {
     const topWidth = items[3];
     switch(shape) {
       case "CIRCULAR":
+      case "EGG":
+      case "HORSESHOE":
+      debugger;
         idSectionMap[id] = {shape, numberOfBarrels, maximumHeight};
         break;
       case "TRIANGULAR":
