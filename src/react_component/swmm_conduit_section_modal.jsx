@@ -17,6 +17,8 @@ const shapeMap = {
   SEMIELLIPTICAL: "semi_elliptical",
   BASKETHANDLE: "basket_handle",
   SEMICIRCULAR: "semi_circular",
+  GOTHIC: "gothic",
+  CATENARY: "catenary",
 };
 
 const SwmmConduitSectionModal = (props) => {
@@ -34,6 +36,8 @@ const SwmmConduitSectionModal = (props) => {
     case "SEMIELLIPTICAL":
     case "BASKETHANDLE":
     case "SEMICIRCULAR":
+    case "GOTHIC":
+    case "CATENARY":
       return {numberOfBarrels, maximumHeight};
     case "TRIANGULAR":
     case "PARABOLIC":

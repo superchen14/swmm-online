@@ -103,6 +103,8 @@ function parseSections(lines) {
       case "SEMIELLIPTICAL":
       case "BASKETHANDLE":
       case "SEMICIRCULAR":
+      case "GOTHIC":
+      case "CATENARY":
         idSectionMap[id] = {shape, numberOfBarrels, maximumHeight};
         break;
       case "TRIANGULAR":
