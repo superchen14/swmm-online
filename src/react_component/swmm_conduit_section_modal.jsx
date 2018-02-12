@@ -14,6 +14,9 @@ const shapeMap = {
   PARABOLIC: "parabolic",
   EGG: "egg",
   HORSESHOE: "horse_shoe",
+  SEMIELLIPTICAL: "semi_elliptical",
+  BASKETHANDLE: "basket_handle",
+  SEMICIRCULAR: "semi_circular",
 };
 
 const SwmmConduitSectionModal = (props) => {
@@ -28,6 +31,9 @@ const SwmmConduitSectionModal = (props) => {
     case "CIRCULAR":
     case "EGG":
     case "HORSESHOE":
+    case "SEMIELLIPTICAL":
+    case "BASKETHANDLE":
+    case "SEMICIRCULAR":
       return {numberOfBarrels, maximumHeight};
     case "TRIANGULAR":
     case "PARABOLIC":
