@@ -115,6 +115,10 @@ function parseSections(lines) {
         break;
       case "TRAPEZOIDAL":
         idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, bottomWidth: param3, leftSlope: param4, rightSlope: param5};
+        break;
+      case "RECT_OPEN":
+        idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, bottomWidth: param3, sidewallsRemoved: param4 === 0 ? "None" : (param4 === 1 ? "One" : "Both")};
+        break;
     }
   });
 

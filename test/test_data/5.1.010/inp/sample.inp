@@ -139,7 +139,7 @@ RG1              INTENSITY 1:00     1.0      TIMESERIES TS1
 12               GOTHIC       1.5              0          0          0          1                    
 13               CATENARY     1.5              0          0          0          1                    
 14               TRAPEZOIDAL  1                2          1          1          1                    
-15               CIRCULAR     2                0          0          0          1                    
+15               RECT_OPEN    2                3          0          0          1                    
 16               CIRCULAR     2                0          0          0          1                    
 
 [POLLUTANTS]

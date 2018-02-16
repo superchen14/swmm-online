@@ -9,6 +9,7 @@ const keyNames = {
   bottomWidth: "Bottom Width",
   leftSlope: "Left Slope",
   rightSlope: "Right Slope",
+  sidewallsRemoved: "Sidewalls Removed",
 };
 
 const shapeMap = {
@@ -23,6 +24,7 @@ const shapeMap = {
   GOTHIC: "gothic",
   CATENARY: "catenary",
   TRAPEZOIDAL: "trapezoidal",
+  RECT_OPEN: "rectangular",
 };
 
 const SwmmConduitSectionModal = (props) => {
@@ -36,6 +38,7 @@ const SwmmConduitSectionModal = (props) => {
     const bottomWidth = section.bottomWidth;
     const leftSlope = section.leftSlope;
     const rightSlope = section.rightSlope;
+    const sidewallsRemoved = section.sidewallsRemoved;
     switch(section.shape) {
     case "CIRCULAR":
     case "EGG":
@@ -51,6 +54,8 @@ const SwmmConduitSectionModal = (props) => {
       return {numberOfBarrels, maximumHeight, topWidth};
     case "TRAPEZOIDAL":
       return {numberOfBarrels, maximumHeight, bottomWidth, leftSlope, rightSlope};
+    case "RECT_OPEN":
+      return {numberOfBarrels, maximumHeight, bottomWidth, sidewallsRemoved};
     default:
       return {};
     }
