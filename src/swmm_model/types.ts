@@ -42,6 +42,9 @@ interface Section {
   numberOfBarrels: number;
   maximumHeight: number;
   topWidth?: number;
+  bottomWidth?: number;
+  leftSlope?: number;
+  rightSlope?: number;
 }
 
 interface Loss {

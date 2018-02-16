@@ -95,7 +95,9 @@ function parseSections(lines) {
     const shape = items[1];
     const maximumHeight = items[2];
     const numberOfBarrels = Number.parseInt(items[6]);
-    const topWidth = items[3];
+    const param3 = items[3];
+    const param4 = items[4];
+    const param5 = items[5];
     switch(shape) {
       case "CIRCULAR":
       case "EGG":
@@ -109,8 +111,10 @@ function parseSections(lines) {
         break;
       case "TRIANGULAR":
       case "PARABOLIC":
-        idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, topWidth};
+        idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, topWidth: param3};
         break;
+      case "TRAPEZOIDAL":
+        idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, bottomWidth: param3, leftSlope: param4, rightSlope: param5};
     }
   });
 

@@ -6,6 +6,9 @@ const keyNames = {
   numberOfBarrels: "Number of Barrels",
   maximumHeight: "Maximum Height",
   topWidth: "Top Width",
+  bottomWidth: "Bottom Width",
+  leftSlope: "Left Slope",
+  rightSlope: "Right Slope",
 };
 
 const shapeMap = {
@@ -19,6 +22,7 @@ const shapeMap = {
   SEMICIRCULAR: "semi_circular",
   GOTHIC: "gothic",
   CATENARY: "catenary",
+  TRAPEZOIDAL: "trapezoidal",
 };
 
 const SwmmConduitSectionModal = (props) => {
@@ -29,6 +33,9 @@ const SwmmConduitSectionModal = (props) => {
     const numberOfBarrels = section.numberOfBarrels;
     const maximumHeight = section.maximumHeight;
     const topWidth = section.topWidth;
+    const bottomWidth = section.bottomWidth;
+    const leftSlope = section.leftSlope;
+    const rightSlope = section.rightSlope;
     switch(section.shape) {
     case "CIRCULAR":
     case "EGG":
@@ -42,6 +49,8 @@ const SwmmConduitSectionModal = (props) => {
     case "TRIANGULAR":
     case "PARABOLIC":
       return {numberOfBarrels, maximumHeight, topWidth};
+    case "TRAPEZOIDAL":
+      return {numberOfBarrels, maximumHeight, bottomWidth, leftSlope, rightSlope};
     default:
       return {};
     }
