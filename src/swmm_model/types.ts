@@ -41,7 +41,7 @@ interface Section {
   shape: string;
   numberOfBarrels: number;
   maximumHeight: number;
-  topWidth: number;
+  topWidth?: number;
 }
 
 interface Loss {
