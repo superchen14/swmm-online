@@ -119,6 +119,9 @@ function parseSections(lines) {
       case "RECT_OPEN":
         idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, bottomWidth: param3, sidewallsRemoved: param4 === 0 ? "None" : (param4 === 1 ? "One" : "Both")};
         break;
+      case "POWER":
+        idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, topWidth: param3, power: param4};
+        break;
     }
   });
 

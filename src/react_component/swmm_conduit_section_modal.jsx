@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SwmmModal from "./utility/swmm_modal.jsx";
 
 const keyNames = {
+  shape: "Shape",
   numberOfBarrels: "Number of Barrels",
   maximumHeight: "Maximum Height",
   topWidth: "Top Width",
@@ -10,6 +11,7 @@ const keyNames = {
   leftSlope: "Left Slope",
   rightSlope: "Right Slope",
   sidewallsRemoved: "Sidewalls Removed",
+  power: "Power",
 };
 
 const shapeMap = {
@@ -25,41 +27,12 @@ const shapeMap = {
   CATENARY: "catenary",
   TRAPEZOIDAL: "trapezoidal",
   RECT_OPEN: "rectangular",
+  POWER: "power",
 };
 
 const SwmmConduitSectionModal = (props) => {
   const {section} = props;
   const imageURL = `/images/section/${shapeMap[section.shape]}.bmp`;
-
-  const getProperties = section => {
-    const numberOfBarrels = section.numberOfBarrels;
-    const maximumHeight = section.maximumHeight;
-    const topWidth = section.topWidth;
-    const bottomWidth = section.bottomWidth;
-    const leftSlope = section.leftSlope;
-    const rightSlope = section.rightSlope;
-    const sidewallsRemoved = section.sidewallsRemoved;
-    switch(section.shape) {
-    case "CIRCULAR":
-    case "EGG":
-    case "HORSESHOE":
-    case "SEMIELLIPTICAL":
-    case "BASKETHANDLE":
-    case "SEMICIRCULAR":
-    case "GOTHIC":
-    case "CATENARY":
-      return {numberOfBarrels, maximumHeight};
-    case "TRIANGULAR":
-    case "PARABOLIC":
-      return {numberOfBarrels, maximumHeight, topWidth};
-    case "TRAPEZOIDAL":
-      return {numberOfBarrels, maximumHeight, bottomWidth, leftSlope, rightSlope};
-    case "RECT_OPEN":
-      return {numberOfBarrels, maximumHeight, bottomWidth, sidewallsRemoved};
-    default:
-      return {};
-    }
-  }
 
   const toHtml = properties => {
     return Object.keys(properties).map(key =>
@@ -76,7 +49,7 @@ const SwmmConduitSectionModal = (props) => {
       <div className="column is-one-quarter"><img src={imageURL}/></div>
       <div className="column">
         <table className="table is-hoverable is-bordered" id="swmm-property-list">
-          <tbody>{toHtml(getProperties(section))}</tbody>
+          <tbody>{toHtml(section)}</tbody>
         </table>
       </div>
     </div>
