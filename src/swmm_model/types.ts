@@ -47,6 +47,7 @@ interface Section {
   rightSlope?: number;
   sidewallsRemoved?: string;
   power?: number;
+  roughness?: number;
 }
 
 interface Loss {

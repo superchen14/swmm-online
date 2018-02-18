@@ -12,6 +12,7 @@ const keyNames = {
   rightSlope: "Right Slope",
   sidewallsRemoved: "Sidewalls Removed",
   power: "Power",
+  roughness: "Roughness",
 };
 
 const shapeMap = {
@@ -28,6 +29,7 @@ const shapeMap = {
   TRAPEZOIDAL: "trapezoidal",
   RECT_OPEN: "rectangular",
   POWER: "power",
+  FORCE_MAIN: "force_main",
 };
 
 const SwmmConduitSectionModal = (props) => {

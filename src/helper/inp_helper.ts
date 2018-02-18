@@ -122,6 +122,9 @@ function parseSections(lines) {
       case "POWER":
         idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, topWidth: param3, power: param4};
         break;
+      case "FORCE_MAIN":
+        idSectionMap[id] = {shape, numberOfBarrels, roughness: param3};
+        break;
     }
   });
 
