@@ -141,6 +141,7 @@ function parseSections(lines) {
         idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, bottomWidth: param3, topRadius: param4};
         break;
       case "HORIZ_ELLIPSE":
+      case "VERT_ELLIPSE":
         idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, maximumWidth: param3, sizeCode: param4};
         break;
     }
