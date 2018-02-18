@@ -128,6 +128,9 @@ function parseSections(lines) {
       case "FILLED_CIRCULAR":
         idSectionMap[id] = {shape, numberOfBarrels, filledDepth: param3};
         break;
+      case "RECT_CLOSED":
+        idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, bottomWidth: param3};
+        break;
     }
   });
 

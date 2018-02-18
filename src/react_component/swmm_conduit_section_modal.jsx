@@ -32,6 +32,7 @@ const shapeMap = {
   POWER: "power",
   FORCE_MAIN: "force_main",
   FILLED_CIRCULAR: "filled_circular",
+  RECT_CLOSED: "rect_closed",
 };
 
 const SwmmConduitSectionModal = (props) => {
