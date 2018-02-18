@@ -49,6 +49,7 @@ interface Section {
   power?: number;
   roughness?: number;
   filledDepth?: number;
+  triangleHeight?: number;
 }
 
 interface Loss {
