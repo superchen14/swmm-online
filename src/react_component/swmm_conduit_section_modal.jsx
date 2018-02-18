@@ -13,6 +13,7 @@ const keyNames = {
   sidewallsRemoved: "Sidewalls Removed",
   power: "Power",
   roughness: "Roughness",
+  filledDepth: "Filled Depth",
 };
 
 const shapeMap = {
@@ -30,6 +31,7 @@ const shapeMap = {
   RECT_OPEN: "rectangular",
   POWER: "power",
   FORCE_MAIN: "force_main",
+  FILLED_CIRCULAR: "filled_circular",
 };
 
 const SwmmConduitSectionModal = (props) => {
@@ -46,7 +48,7 @@ const SwmmConduitSectionModal = (props) => {
   }
 
   return (
-    <SwmmModal {...props} width={400}>
+    <SwmmModal {...props} width={500}>
     <div className="columns">
       <div className="column is-one-quarter"><img src={imageURL}/></div>
       <div className="column">

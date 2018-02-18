@@ -48,6 +48,7 @@ interface Section {
   sidewallsRemoved?: string;
   power?: number;
   roughness?: number;
+  filledDepth?: number;
 }
 
 interface Loss {
