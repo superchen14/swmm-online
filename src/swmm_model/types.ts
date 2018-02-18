@@ -50,6 +50,7 @@ interface Section {
   roughness?: number;
   filledDepth?: number;
   triangleHeight?: number;
+  bottomRadius?: number;
 }
 
 interface Loss {

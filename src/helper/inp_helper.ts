@@ -134,6 +134,9 @@ function parseSections(lines) {
       case "RECT_TRIANGULAR":
         idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, topWidth: param3, triangleHeight: param4};
         break;
+      case "RECT_ROUND":
+        idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, topWidth: param3, bottomRadius: param4};
+        break;
     }
   });
 
