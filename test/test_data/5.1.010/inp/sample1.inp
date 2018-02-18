@@ -136,7 +136,7 @@ RG1              INTENSITY 1:00     1.0      TIMESERIES TS1
 8                MODBASKETHANDLE 2                2          10         0          1                    
 10               HORIZ_ELLIPSE 6.000            9.417      16         0          1                    
 11               VERT_ELLIPSE 1.917            1.167      1          0          1                    
-12               GOTHIC       1.5              0          0          0          1                    
+12               ARCH         1.083            1.417      18         0          1                    
 13               CATENARY     1.5              0          0          0          1                    
 14               TRAPEZOIDAL  1                2          1          1          1                    
 15               RECT_OPEN    2                3          0          0          1                    

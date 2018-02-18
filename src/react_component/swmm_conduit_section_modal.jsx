@@ -43,6 +43,7 @@ const shapeMap = {
   MODBASKETHANDLE: "modbaskethandle",
   HORIZ_ELLIPSE: "horiz_ellipse",
   VERT_ELLIPSE: "vert_ellipse",
+  ARCH: "arch",
 };
 
 const SwmmConduitSectionModal = (props) => {
