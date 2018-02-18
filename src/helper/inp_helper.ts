@@ -140,6 +140,9 @@ function parseSections(lines) {
       case "MODBASKETHANDLE":
         idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, bottomWidth: param3, topRadius: param4};
         break;
+      case "HORIZ_ELLIPSE":
+        idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, maximumWidth: param3, sizeCode: param4};
+        break;
     }
   });
 

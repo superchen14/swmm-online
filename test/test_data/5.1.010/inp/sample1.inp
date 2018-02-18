@@ -134,7 +134,7 @@ RG1              INTENSITY 1:00     1.0      TIMESERIES TS1
 6                RECT_TRIANGULAR 2                1          1          0          1                    
 7                RECT_ROUND   2                2          10         0          1                    
 8                MODBASKETHANDLE 2                2          10         0          1                    
-10               BASKETHANDLE 2                0          0          0          1                    
+10               HORIZ_ELLIPSE 6.000            9.417      16         0          1                    
 11               SEMICIRCULAR 1.5              0          0          0          1                    
 12               GOTHIC       1.5              0          0          0          1                    
 13               CATENARY     1.5              0          0          0          1                    

@@ -17,6 +17,8 @@ const keyNames = {
   triangleHeight: "Triangle Height",
   bottomRadius: "Bottom Radius",
   topRadius: "Top Radius",
+  maximumWidth: "Maximum Width",
+  sizeCode: "Size Code",
 };
 
 const shapeMap = {
@@ -39,6 +41,7 @@ const shapeMap = {
   RECT_TRIANGULAR: "rect_triangular",
   RECT_ROUND: "rect_round",
   MODBASKETHANDLE: "modbaskethandle",
+  HORIZ_ELLIPSE: "horiz_ellipse",
 };
 
 const SwmmConduitSectionModal = (props) => {

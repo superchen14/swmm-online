@@ -52,6 +52,8 @@ interface Section {
   triangleHeight?: number;
   bottomRadius?: number;
   topRadius?: number;
+  maximumWidth?: number;
+  sizeCode?: number;
 }
 
 interface Loss {
