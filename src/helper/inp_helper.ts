@@ -137,6 +137,9 @@ function parseSections(lines) {
       case "RECT_ROUND":
         idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, topWidth: param3, bottomRadius: param4};
         break;
+      case "MODBASKETHANDLE":
+        idSectionMap[id] = {shape, numberOfBarrels, maximumHeight, bottomWidth: param3, topRadius: param4};
+        break;
     }
   });
 

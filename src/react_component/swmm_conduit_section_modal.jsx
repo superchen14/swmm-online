@@ -16,6 +16,7 @@ const keyNames = {
   filledDepth: "Filled Depth",
   triangleHeight: "Triangle Height",
   bottomRadius: "Bottom Radius",
+  topRadius: "Top Radius",
 };
 
 const shapeMap = {
@@ -37,6 +38,7 @@ const shapeMap = {
   RECT_CLOSED: "rect_closed",
   RECT_TRIANGULAR: "rect_triangular",
   RECT_ROUND: "rect_round",
+  MODBASKETHANDLE: "modbaskethandle",
 };
 
 const SwmmConduitSectionModal = (props) => {

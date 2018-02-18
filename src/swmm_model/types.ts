@@ -51,6 +51,7 @@ interface Section {
   filledDepth?: number;
   triangleHeight?: number;
   bottomRadius?: number;
+  topRadius?: number;
 }
 
 interface Loss {
