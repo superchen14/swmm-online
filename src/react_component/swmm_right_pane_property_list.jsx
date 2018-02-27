@@ -9,6 +9,8 @@ const getEntityProperties = entity => ({"Name": entity.name});
 
 const getSubcatchmentProperties = subcatchment => {
   let properties = getEntityProperties(subcatchment);
+  properties["X"] = subcatchment.position.x.toFixed(3);
+  properties["Y"] = subcatchment.position.y.toFixed(3);
   return properties;
 };
 
