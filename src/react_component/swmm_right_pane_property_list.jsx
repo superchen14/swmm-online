@@ -7,6 +7,11 @@ import SwmmConduitSectionModal from "./swmm_conduit_section_modal";
 
 const getEntityProperties = entity => ({"Name": entity.name});
 
+const getSubcatchmentProperties = subcatchment => {
+  let properties = getEntityProperties(subcatchment);
+  return properties;
+};
+
 const getNodeProperties = node => {
   var properties = getEntityProperties(node);
   properties["X"] = node.position.x;
@@ -86,6 +91,8 @@ const getProperties = (activeFeature, activeItem) => {
       return getLinkProperties(activeItem);
     case CONSTS.POLLUTANT_FEATURE: 
       return getPollutantProperties(activeItem);
+    case CONSTS.SUBCATCHMENT_FEATURE:
+      return getSubcatchmentProperties(activeItem);
     default:
       return {};
   }
@@ -229,6 +236,8 @@ const getActiveItem = state => {
       return project.weirs.find(w => w.name === activeId);
     case CONSTS.OUTLET_FEATURE:
       return project.outlets.find(o => o.name === activeId);
+    case CONSTS.SUBCATCHMENT_FEATURE:
+      return project.subcatchments.find(s => s.name === activeId);
     }
   }
 
