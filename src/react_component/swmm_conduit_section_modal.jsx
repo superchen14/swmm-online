@@ -21,34 +21,9 @@ const keyNames = {
   sizeCode: "Size Code",
 };
 
-const shapeMap = {
-  CIRCULAR: "circular",
-  TRIANGULAR: "triangular",
-  PARABOLIC: "parabolic",
-  EGG: "egg",
-  HORSESHOE: "horse_shoe",
-  SEMIELLIPTICAL: "semi_elliptical",
-  BASKETHANDLE: "basket_handle",
-  SEMICIRCULAR: "semi_circular",
-  GOTHIC: "gothic",
-  CATENARY: "catenary",
-  TRAPEZOIDAL: "trapezoidal",
-  RECT_OPEN: "rectangular",
-  POWER: "power",
-  FORCE_MAIN: "force_main",
-  FILLED_CIRCULAR: "filled_circular",
-  RECT_CLOSED: "rect_closed",
-  RECT_TRIANGULAR: "rect_triangular",
-  RECT_ROUND: "rect_round",
-  MODBASKETHANDLE: "modbaskethandle",
-  HORIZ_ELLIPSE: "horiz_ellipse",
-  VERT_ELLIPSE: "vert_ellipse",
-  ARCH: "arch",
-};
-
 const SwmmConduitSectionModal = (props) => {
   const {section} = props;
-  const imageURL = `/images/section/${shapeMap[section.shape]}.bmp`;
+  const imageURL = `/images/section/${section.shape.toLowerCase()}.bmp`;
 
   const toHtml = properties => {
     return Object.keys(properties).map(key =>
