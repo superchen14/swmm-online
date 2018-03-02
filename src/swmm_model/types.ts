@@ -69,6 +69,7 @@ interface Subcatchment extends Entity {
   vertices: Point[];
   outletNode: Node;
   area: number;
+  width: number;
 }
 
 interface Pollutant extends Entity {
