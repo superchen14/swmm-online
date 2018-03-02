@@ -12,6 +12,7 @@ const getSubcatchmentProperties = subcatchment => {
   properties["X"] = subcatchment.position.x.toFixed(3);
   properties["Y"] = subcatchment.position.y.toFixed(3);
   properties["Outlet"] = subcatchment.outletNode ? subcatchment.outletNode.name : "";
+  properties["Area"] = subcatchment.area;
   return properties;
 };
 

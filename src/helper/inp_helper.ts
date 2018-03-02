@@ -279,8 +279,9 @@ function parseSubcatchment(line, idPolygonsMap, nodes): Subcatchment {
   const items = line.match(/[^ ]+/g);
   const subcatchmentName = items[0];
   const outletNode = nodes.find(n => n.name === items[2]);
+  const area = Number.parseFloat(items[3]);
 
-  return createSubcatchment(subcatchmentName, idPolygonsMap[subcatchmentName], outletNode);
+  return createSubcatchment(subcatchmentName, idPolygonsMap[subcatchmentName], outletNode, area);
 }
 
 function parsePollutant(line: string): Pollutant {
