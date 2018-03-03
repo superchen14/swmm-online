@@ -74,14 +74,20 @@ th {
 }
 
 #left-pane {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
   width: 200px;
   border-right: 1px solid $borderColor;
   height: 100%;
   float: left;
   position: relative;
+  align-content: flex-start;
 }
 
-#pane-header {
+.pane-header {
+  flex-grow: 0;
   height: 45px;
   background-color: rgb(247, 247, 247);
   border-bottom: 1px solid $borderColor;
@@ -114,23 +120,30 @@ th {
 
 #left-pane-list-header {
   height: 45px;
+  flex-grow: 0;
   background-color: rgb(247, 247, 247);
   border-bottom: 1px solid $borderColor;
   border-top: 1px solid $borderColor;
 }
 
+#left-pane-search {
+  flex-grow: 0;
+}
+
 #left-pane-list {
-  height: calc(50% - 45px - 27px);
+  flex-grow: 1;
+  flex-basis: 0px;
+  overflow: auto;
+}
+
+#left-pane-treeview {
+  flex-grow: 1;
+  flex-basis: 0px;
   overflow: auto;
 }
 
 #left-pane-menu {
   color: black;
-}
-
-#left-pane-treeview {
-  height: calc(50% - 45px);
-  overflow: auto;
 }
 
 .menu-list {

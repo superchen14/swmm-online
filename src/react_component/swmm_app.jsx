@@ -19,21 +19,19 @@ class SwmmApp extends React.Component {
         <ConnectedSwmmHeader/>
         <div id="swmm-app">
           <div id="left-pane">
-            <div id="pane-header">
+            <div className="pane-header">
             </div>
             <ConnectedSwmmLeftPaneTreeView/>
             <div id="left-pane-list-header">
             </div>
-            <div>
-              <p className="control has-icons-left">
-                <input className="input is-small" type="text" placeholder="search" onInput={this.props.updateListFilter} value={this.props.listFilter}/>
-                <span className="icon is-small is-left"><i className="fa fa-search"/></span>
-              </p>
-            </div>
+            <p id="left-pane-search" className="control has-icons-left">
+              <input className="input is-small" type="text" placeholder="search" onInput={this.props.updateListFilter} value={this.props.listFilter}/>
+              <span className="icon is-small is-left"><i className="fa fa-search"/></span>
+            </p>
             <ConnectedSwmmLeftPaneList/>
           </div>
           <div id="main-pane">
-            <div id="pane-header">
+            <div className="pane-header">
             </div>
             <div id="main-pane-body">
               <div style={{height: 600, width: 900}}>

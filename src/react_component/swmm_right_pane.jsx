@@ -10,7 +10,7 @@ class SwmmRightPane extends React.Component {
   render() {
     return (
     <div className="right-pane">
-      <div id="pane-header">
+      <div className="pane-header">
       </div>
       <div id="right-pane-body">
         <ConnectedSwmmRightPanePropertyList/>
