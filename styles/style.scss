@@ -166,14 +166,17 @@ th {
   width: calc(100% - 200px - 250px);
   height: 100%;
   float: left;
+  display: flex;
+  flex-direction: column;
 }
 
 #main-pane-body {
   width: 100%;
-  height: calc(100% - 45px);
+  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: auto;
 }
 
 .right-pane {
@@ -186,7 +189,6 @@ th {
 }
 
 #right-pane-body {
-  height: 653px;
   background-color: white;
 }
 
