@@ -57,20 +57,25 @@ th {
   }
 }
 
-#swmm-online {
-  min-height: 768px;
-  min-width: 1024px;
-}
-
 #swmm-app {
   background: white;
-  position: fixed;
-  top: 52px;
-  bottom: 2px;
   width: 100%;
+  height: 100%;
   border: 1px solid $borderColor;
-  min-height: 600px;
-  min-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  min-width: 1280px;
+  min-height: 700px;
+}
+
+#swmm-header {
+  flex-basis: 0;
+}
+
+#swmm-body {
+  flex-basis: 100%;
+  display: flex;
 }
 
 #left-pane {
@@ -80,17 +85,16 @@ th {
   justify-content: flex-start;
   width: 200px;
   border-right: 1px solid $borderColor;
-  height: 100%;
-  float: left;
-  position: relative;
   align-content: flex-start;
 }
 
 .pane-header {
   flex-grow: 0;
+  flex-shrink: 0;
   height: 45px;
   background-color: rgb(247, 247, 247);
   border-bottom: 1px solid $borderColor;
+  border-top: 1px solid $borderColor;
 }
 
 #right-pane-pin-btn {
@@ -163,11 +167,10 @@ th {
 }
 
 #main-pane {
-  width: calc(100% - 200px - 250px);
-  height: 100%;
-  float: left;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 
 #main-pane-body {
@@ -179,13 +182,9 @@ th {
   overflow: auto;
 }
 
-.right-pane {
+#right-pane {
   width: 250px;
   border-left: 1px solid $borderColor;
-  height: 100%;
-  float: right;
-  position: absolute;
-  right: 0px;
 }
 
 #right-pane-body {

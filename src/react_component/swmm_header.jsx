@@ -54,7 +54,7 @@ class SwmmHeader extends React.Component {
     const isAboutMeActive = this.state.isAboutMeModalActive;
     const isAboutSwmmActive = this.state.isSwmmModalActive;
     return (
-      <nav className="navbar is-white is-fixed-top">
+      <nav id="swmm-header" className="navbar is-white">
         <div className="navbar-brand">
           <a className="navbar-item">
             <img src="/images/swmm.png"/>

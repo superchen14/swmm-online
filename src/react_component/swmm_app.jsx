@@ -15,9 +15,9 @@ class SwmmApp extends React.Component {
 
   render() {
     return(
-      <div>
+      <div id="swmm-app">
         <ConnectedSwmmHeader/>
-        <div id="swmm-app">
+        <div id="swmm-body">
           <div id="left-pane">
             <div className="pane-header">
             </div>
