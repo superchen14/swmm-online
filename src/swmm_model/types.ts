@@ -70,6 +70,7 @@ interface Subcatchment extends Entity {
   outletNode: Node;
   area: number;
   width: number;
+  slope: number;
 }
 
 interface Pollutant extends Entity {
