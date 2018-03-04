@@ -14,7 +14,7 @@ const getSubcatchmentProperties = subcatchment => {
   properties["Outlet"] = subcatchment.outletNode ? subcatchment.outletNode.name : "";
   properties["Area"] = subcatchment.area;
   properties["Width"] = subcatchment.width;
-  properties["% Slope"] = subcatchment.slope;
+  properties["% Slope"] = subcatchment.averageSurfaceSlope;
   properties["% Imperv"] = subcatchment.percentOfImperviousArea;
   return properties;
 };

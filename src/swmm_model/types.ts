@@ -70,7 +70,7 @@ interface Subcatchment extends Entity {
   outletNode: Node;
   area: number;
   width: number;
-  slope: number;
+  averageSurfaceSlope: number;
   percentOfImperviousArea: number;
 }
 
