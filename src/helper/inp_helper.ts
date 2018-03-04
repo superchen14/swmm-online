@@ -282,8 +282,9 @@ function parseSubcatchment(line, idPolygonsMap, nodes): Subcatchment {
   const area = Number.parseFloat(items[3]);
   const width = Number.parseFloat(items[5]);
   const slope = Number.parseFloat(items[6]);
+  const percentOfImperviousArea = Number.parseFloat(items[4]);
 
-  return createSubcatchment(subcatchmentName, idPolygonsMap[subcatchmentName], outletNode, area, width, slope);
+  return createSubcatchment(subcatchmentName, idPolygonsMap[subcatchmentName], outletNode, area, width, slope, percentOfImperviousArea);
 }
 
 function parsePollutant(line: string): Pollutant {

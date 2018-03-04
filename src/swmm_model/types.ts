@@ -71,6 +71,7 @@ interface Subcatchment extends Entity {
   area: number;
   width: number;
   slope: number;
+  percentOfImperviousArea: number;
 }
 
 interface Pollutant extends Entity {
