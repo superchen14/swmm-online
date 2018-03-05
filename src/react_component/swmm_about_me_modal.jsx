@@ -6,7 +6,7 @@ const SwmmAboutMeModal = (props) => {
     <SwmmModal {...props}>
       <div className="content">
         <h1>Who Am I</h1>
-        <p>My name is Paul Chen. A web developer working at SAP Shanghai Labs.</p>
+        <p>My name is Paul Chen. A web developer in Shanghai China.</p>
         <h1>Contact Me</h1>
         <div className="columns is-12">
           <div className="column is-1"><i className="fa fa-envelope fa-2x" aria-hidden="true"/></div>
