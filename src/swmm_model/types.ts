@@ -73,6 +73,11 @@ interface Subcatchment extends Entity {
   averageSurfaceSlope: number;
   percentOfImperviousArea: number;
   curbLength: number;
+  subarea: Subarea;
+}
+
+interface Subarea {
+  manningNForImperviousArea: number;
 }
 
 interface Pollutant extends Entity {
@@ -108,4 +113,4 @@ interface Project
   subcatchments: Subcatchment[];
 }
 
-export {Point, Entity, Node, Junction, Link, Conduit, Section, Loss, Subcatchment, Pollutant, Treatment, Project};
+export {Point, Entity, Node, Junction, Link, Conduit, Section, Loss, Subcatchment, Subarea, Pollutant, Treatment, Project};

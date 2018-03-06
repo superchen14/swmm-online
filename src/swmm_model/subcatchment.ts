@@ -1,4 +1,4 @@
-import {Point, Node, Subcatchment} from "./types";
+import {Point, Node, Subcatchment, Subarea} from "./types";
 
 function createSubcatchment(
   name: string,
@@ -8,7 +8,8 @@ function createSubcatchment(
   width: number,
   averageSurfaceSlope: number,
   percentOfImperviousArea: number,
-  curbLength: number
+  curbLength: number,
+  subarea: Subarea
 ): Subcatchment {
   const x: number = vertices.reduce((acc, v) => acc + v.x, 0) / vertices.length;
   const y: number = vertices.reduce((acc, v) => acc + v.y, 0) / vertices.length;
@@ -22,7 +23,8 @@ function createSubcatchment(
     width,
     averageSurfaceSlope,
     percentOfImperviousArea,
-    curbLength
+    curbLength,
+    subarea
   };
 }
 

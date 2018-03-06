@@ -86,6 +86,20 @@ function parseLosses(lines) {
   return idLossMap;
 }
 
+function parseSubareas(lines) {
+  const idSubareaMap = {};
+
+  lines.forEach(line => {
+    const items = line.match(/[^ ]+/g);
+    const id = items[0];
+    const manningNOfImperviousArea = items[1];
+
+    idSubareaMap[id] = {manningNOfImperviousArea};
+  });
+
+  return idSubareaMap;
+}
+
 function parseSections(lines) {
   const idSectionMap = {};
 
@@ -275,7 +289,7 @@ function parseOutlet(line, idVerticesMap, nodes): Link {
   return createOutlet(outletName, inletNode, outletNode, idVerticesMap[outletName] || []);
 }
 
-function parseSubcatchment(line, idPolygonsMap, nodes): Subcatchment {
+function parseSubcatchment(line, idPolygonsMap, nodes, idSubareaMap): Subcatchment {
   const items = line.match(/[^ ]+/g);
   const subcatchmentName = items[0];
   const outletNode = nodes.find(n => n.name === items[2]);
@@ -284,6 +298,7 @@ function parseSubcatchment(line, idPolygonsMap, nodes): Subcatchment {
   const width = Number.parseFloat(items[5]);
   const averageSurfaceSlope = Number.parseFloat(items[6]);
   const curbLength = Number.parseFloat(items[7]);
+  const subarea = idSubareaMap[subcatchmentName];
 
   return createSubcatchment(
     subcatchmentName,
@@ -293,7 +308,8 @@ function parseSubcatchment(line, idPolygonsMap, nodes): Subcatchment {
     width,
     averageSurfaceSlope,
     percentOfImperviousArea,
-    curbLength
+    curbLength,
+    subarea
   );
 }
 
@@ -417,9 +433,11 @@ class INPhelper {
 
     title = "Polygons";
     const idPolygonsMap = parseVertices(inpData[title] || []);
+    title = "SUBAREAS";
+    const idSubareaMap = parseSubareas(inpData[title] || []);
     title = "SUBCATCHMENTS";
     const subcatchmentLines = inpData[title] || [];
-    project.subcatchments = subcatchmentLines.map(line => parseSubcatchment(line, idPolygonsMap, nodes));
+    project.subcatchments = subcatchmentLines.map(line => parseSubcatchment(line, idPolygonsMap, nodes, idSubareaMap));
 
     return project;
   }
