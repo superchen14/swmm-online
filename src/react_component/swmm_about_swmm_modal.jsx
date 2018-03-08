@@ -10,7 +10,7 @@ const SwmmAboutSwmmModal = (props) => {
         <h1>Source Code</h1>
         <p><a href="https://github.com/superchen14/swmm-online">https://github.com/superchen14/swmm-online</a></p>
         <h1>Completion</h1>
-        <p><progress className="progress is-large" value="10" max="100">10%</progress></p>
+        <p><progress className="progress is-large" value="20" max="100">10%</progress></p>
       </div>
     </SwmmModal>
   );
