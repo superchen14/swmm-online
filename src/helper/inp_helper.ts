@@ -93,8 +93,9 @@ function parseSubareas(lines) {
     const items = line.match(/[^ ]+/g);
     const id = items[0];
     const manningNOfImperviousArea = items[1];
+    const manningNOfPerviousArea = items[2];
 
-    idSubareaMap[id] = {manningNOfImperviousArea};
+    idSubareaMap[id] = {manningNOfImperviousArea, manningNOfPerviousArea};
   });
 
   return idSubareaMap;

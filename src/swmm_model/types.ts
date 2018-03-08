@@ -78,6 +78,7 @@ interface Subcatchment extends Entity {
 
 interface Subarea {
   manningNForImperviousArea: number;
+  manningNForPerviousArea: number;
 }
 
 interface Pollutant extends Entity {

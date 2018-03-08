@@ -17,6 +17,7 @@ const getSubcatchmentProperties = subcatchment => {
   properties["% Slope"] = subcatchment.averageSurfaceSlope;
   properties["% Imperv"] = subcatchment.percentOfImperviousArea;
   properties["N-Imperv"] = subcatchment.subarea.manningNOfImperviousArea;
+  properties["N-Perv"] = subcatchment.subarea.manningNOfPerviousArea;
   properties["Curb Length"] = subcatchment.curbLength;
   return properties;
 };
