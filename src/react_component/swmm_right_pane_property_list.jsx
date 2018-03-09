@@ -18,6 +18,7 @@ const getSubcatchmentProperties = subcatchment => {
   properties["% Imperv"] = subcatchment.percentOfImperviousArea;
   properties["N-Imperv"] = subcatchment.subarea.manningNOfImperviousArea;
   properties["N-Perv"] = subcatchment.subarea.manningNOfPerviousArea;
+  properties["Dstore-Imperv"] = subcatchment.subarea.depthOfDepressionStorageOnImperviousArea;
   properties["Curb Length"] = subcatchment.curbLength;
   return properties;
 };
