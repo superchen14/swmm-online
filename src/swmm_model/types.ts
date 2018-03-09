@@ -57,11 +57,11 @@ interface Section {
 }
 
 interface Loss {
-  entryLossCoefficient: number,
-  exitLossCoefficient: number,
-  averageLossCoefficient: number,
-  seepageLossRate: number,
-  flapGate: boolean
+  entryLossCoefficient: number;
+  exitLossCoefficient: number;
+  averageLossCoefficient: number;
+  seepageLossRate: number;
+  flapGate: boolean;
 }
 
 interface Subcatchment extends Entity {
@@ -80,6 +80,7 @@ interface Subarea {
   manningNForImperviousArea: number;
   manningNForPerviousArea: number;
   depthOfDepressionStorageOnImperviousArea: number;
+  depthOfDepressionStorageOnPerviousArea: number;
 }
 
 interface Pollutant extends Entity {
@@ -100,8 +101,7 @@ interface Treatment {
   expression: string;
 }
 
-interface Project
-{
+interface Project {
   junctions: Junction[];
   outfalls: Node[];
   dividers: Node[];
