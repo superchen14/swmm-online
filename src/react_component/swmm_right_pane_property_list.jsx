@@ -21,6 +21,7 @@ const getSubcatchmentProperties = subcatchment => {
   properties["Dstore-Imperv"] = subcatchment.subarea.depthOfDepressionStorageOnImperviousArea;
   properties["Dstore-Perv"] = subcatchment.subarea.depthOfDepressionStorageOnPerviousArea;
   properties["%Zero-Imperv"] = subcatchment.subarea.percentOfImperviousAreaWithNoDepressionStorage;
+  properties["Subarea Routing"] = subcatchment.subarea.subareaRouting;
   properties["Curb Length"] = subcatchment.curbLength;
   return properties;
 };
