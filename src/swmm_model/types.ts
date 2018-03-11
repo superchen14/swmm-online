@@ -81,6 +81,7 @@ interface Subarea {
   manningNForPerviousArea: number;
   depthOfDepressionStorageOnImperviousArea: number;
   depthOfDepressionStorageOnPerviousArea: number;
+  percentOfImperviousAreaWithNoDepressionStorage: number;
 }
 
 interface Pollutant extends Entity {

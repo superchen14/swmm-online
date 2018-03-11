@@ -96,12 +96,14 @@ function parseSubareas(lines) {
     const manningNOfPerviousArea = items[2];
     const depthOfDepressionStorageOnImperviousArea = items[3];
     const depthOfDepressionStorageOnPerviousArea = items[4];
+    const percentOfImperviousAreaWithNoDepressionStorage = items[5];
 
     idSubareaMap[id] = {
       manningNOfImperviousArea,
       manningNOfPerviousArea,
       depthOfDepressionStorageOnImperviousArea,
-      depthOfDepressionStorageOnPerviousArea
+      depthOfDepressionStorageOnPerviousArea,
+      percentOfImperviousAreaWithNoDepressionStorage
     };
   });
 
