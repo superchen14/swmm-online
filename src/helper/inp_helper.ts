@@ -98,6 +98,10 @@ function parseSubareas(lines) {
     const depthOfDepressionStorageOnPerviousArea = items[4];
     const percentOfImperviousAreaWithNoDepressionStorage = items[5];
     const subareaRouting = items[6];
+    let percentOfRunoffRoutedBetweenSubareas = 100;
+    if (items.length === 8 && items[7]) {
+      percentOfRunoffRoutedBetweenSubareas = Number.parseFloat(items[7]);
+    }
 
     idSubareaMap[id] = {
       manningNOfImperviousArea,
@@ -105,7 +109,8 @@ function parseSubareas(lines) {
       depthOfDepressionStorageOnImperviousArea,
       depthOfDepressionStorageOnPerviousArea,
       percentOfImperviousAreaWithNoDepressionStorage,
-      subareaRouting
+      subareaRouting,
+      percentOfRunoffRoutedBetweenSubareas
     };
   });
 

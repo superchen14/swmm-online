@@ -83,6 +83,7 @@ interface Subarea {
   depthOfDepressionStorageOnPerviousArea: number;
   percentOfImperviousAreaWithNoDepressionStorage: number;
   subareaRouting: string;
+  percentOfRunoffRoutedBetweenSubareas: number;
 }
 
 interface Pollutant extends Entity {
