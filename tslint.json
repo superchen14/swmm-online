@@ -1,23 +1,22 @@
 {
   "defaultSeverity": "error",
-  "extends": [
-    "tslint:recommended"
-  ],
+  "extends": ["tslint:recommended"],
   "jsRules": {},
   "rules": {
-    // okay
-    "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
-    "quotemark": [false],
-    "no-trailing-whitespace": false,
+    "trailing-comma": [true],
+    "no-var-keyword": true,
+    "prefer-const": false,
+    "quotemark": [true],
+    "no-trailing-whitespace": true,
     "max-line-length": [true, 165],
-    "member-access": [false],
+    "member-access": [true],
     "object-literal-sort-keys": false,
     "member-ordering": [false],
-    "interface-over-type-literal": [false],
+    "interface-over-type-literal": [true],
     "array-type": [true, "array"],
     "max-classes-per-file": [true, 5],
     "arrow-parens": [true, "ban-single-arg-parens"],
-    "interface-name": [false],
+    "interface-name": [true],
     "ordered-imports": [false],
     "no-namespace": [false],
     "whitespace": [
@@ -27,7 +26,7 @@
       "check-module",
       "check-separator",
       "check-type",
-      // "check-typecast", // This is the only one we *don't* want - everything else we like
+      "check-typecast",
       "check-preblock"
     ],
     "no-this-assignment": [true, {"allow-destructuring": true}],

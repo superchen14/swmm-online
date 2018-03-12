@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import INPHelper from "../helper/inp_helper";
-import sampleInpText from "../helper/sample_inp";
+import sampleInpText from "../helper/sample_inp.es6";
 import { loadProjectAction } from "./actions";
 import SwmmAboutMeModal from "./swmm_about_me_modal";
 import SwmmAboutSwmmModel from "./swmm_about_swmm_modal";

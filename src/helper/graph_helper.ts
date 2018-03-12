@@ -49,7 +49,7 @@ class GraphHelper {
     let maxY: number = Math.max(...yArray);
     const height = maxY - minY;
     minY = minY - margin;
-    maxY = maxY + margin; 
+    maxY = maxY + margin;
 
     this.leftBottom = createPoint(minX, minY);
     this.rightTop = createPoint(maxX, maxY);

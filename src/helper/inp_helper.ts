@@ -361,7 +361,7 @@ class INPhelper {
     this.parse = this.parse.bind(this);
   }
 
-  parse() {
+  public parse() {
     let lines = this.text.split(/\r\n|\n/);
     lines = lines.filter(isUsefulLine);
 
