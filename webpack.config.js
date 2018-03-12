@@ -48,13 +48,6 @@ module.exports = {
         ]
       },
       {
-        test: /\.ts/,
-        use: [{
-          loader: "awesome-typescript-loader",
-          query: {slient: true}
-        }]
-      },
-      {
         enforce: "pre",
         test: /\.ts/,
         use: [

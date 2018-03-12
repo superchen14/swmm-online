@@ -411,7 +411,7 @@ class INPhelper {
     title = "VERTICES";
     const idVerticesMap = parseVertices(inpData[title] || []);
 
-    const nodes = (project.junctions).concat(project.outfalls).concat(project.dividers).concat(project.storages);
+    const nodes: Node[] = project.outfalls.concat(project.dividers).concat(project.storages).concat(project.junctions);
 
     title = "LOSSES";
     const idLossMap = parseLosses(inpData[title] || []);
