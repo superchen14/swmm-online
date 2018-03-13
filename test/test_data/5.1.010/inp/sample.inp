@@ -211,6 +211,11 @@ TS1                         28:00      0.4
 TS1                         29:00      0.2       
 TS1                         30:00      0.0       
 
+[PATTERNS]
+;;Name           Type       Multipliers
+;;-------------- ---------- -----------
+DailyTimePattern DAILY      1.0   1.0   1.0   1.0   1.0   1.0   1.0  
+
 [REPORT]
 ;;Reporting Options
 INPUT      NO
