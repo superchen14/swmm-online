@@ -147,6 +147,11 @@ class SwmmLeftPaneTreeView extends React.Component {
         { hydrologyTreeNode }
         { hydraulicsTreeNode }
         { qualityTreeNode }
+        <ul className="menu-list">
+          <li>
+            <a onClick={setActiveFeature(CONSTS.TIMEPATTERN_FEATURE)} className={getClassName(CONSTS.TIMEPATTERN_FEATURE)}>Time Patterns</a>
+          </li>
+        </ul>
       </aside>
     );
   }
