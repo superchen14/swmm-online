@@ -103,6 +103,10 @@ const mapStateToProps = state => {
         items = state.project.pollutants;
         idPrefix = CONSTS.POLLUTANT_ID_PREFIX;
         break;
+      case CONSTS.TIMEPATTERN_FEATURE:
+      debugger;
+        items = state.project.timePatterns;
+        idPrefix = CONSTS.TIMEPATTERN_ID_PREFIX;
     }
   }
 
