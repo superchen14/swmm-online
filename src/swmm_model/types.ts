@@ -104,6 +104,10 @@ interface Treatment {
   expression: string;
 }
 
+interface TimePattern extends Entity {
+
+}
+
 interface Project {
   junctions: Junction[];
   outfalls: Node[];
@@ -116,6 +120,7 @@ interface Project {
   outlets: Link[];
   pollutants: Pollutant[];
   subcatchments: Subcatchment[];
+  timePatterns: TimePattern[];
 }
 
-export {Point, Entity, Node, Junction, Link, Conduit, Section, Loss, Subcatchment, Subarea, Pollutant, Treatment, Project};
+export {Point, Entity, Node, Junction, Link, Conduit, Section, Loss, Subcatchment, Subarea, Pollutant, Treatment, TimePattern, Project};

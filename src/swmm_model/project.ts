@@ -12,7 +12,8 @@ function createProject(): Project {
     weirs: [],
     outlets: [],
     pollutants: [],
-    subcatchments: []
+    subcatchments: [],
+    timePatterns: []
   };
 }
 
