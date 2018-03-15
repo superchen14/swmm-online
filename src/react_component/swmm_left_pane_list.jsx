@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import CONSTS from "./consts";
 import { setActiveItemAction } from "./actions";
+import SwmmTimePatternModal from "./swmm_time_pattern_modal";
 
 class SwmmLeftPaneList extends React.Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class SwmmLeftPaneList extends React.Component {
           );
         })}
         </nav>
+        <SwmmTimePatternModal isActive={activeFeature === CONSTS.TIMEPATTERN_FEATURE && activeId !== ""} onClose={setActiveId(activeFeature, activeId)}/>
       </div>
     );
   }
