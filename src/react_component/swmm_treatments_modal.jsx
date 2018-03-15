@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from 'prop-types';
 import SwmmModal from "./utility/swmm_modal.jsx";
 
-const SwmmTreatmentModal = (props) => {
+const SwmmTreatmentsModal = (props) => {
   const {treatments} = props;
   return (
-    <SwmmModal {...props}>
+    <SwmmModal {...props} title="Treatments">
       <table className="table is-hoverable is-bordered" id="swmm-property-list">
         <thead>
           <tr><th>Pollutant</th><th>Treatment Expression</th></tr>
@@ -23,8 +23,8 @@ const SwmmTreatmentModal = (props) => {
   );
 }
 
-SwmmTreatmentModal.propTypes = {
+SwmmTreatmentsModal.propTypes = {
   treatments: PropTypes.array.isRequired,
 }
 
-export default SwmmTreatmentModal;
+export default SwmmTreatmentsModal;

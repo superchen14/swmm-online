@@ -3,7 +3,7 @@ import SwmmModal from "./utility/swmm_modal.jsx";
 
 const SwmmAboutMeModal = (props) => {
   return (
-    <SwmmModal {...props}>
+    <SwmmModal {...props} title="About Author">
       <div className="content">
         <h1>Who Am I</h1>
         <p>My name is Paul Chen. A web developer in Shanghai China.</p>

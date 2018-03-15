@@ -203,7 +203,6 @@ class SwmmRightPanePropertyList extends React.Component{
         { isNodeWithTreatments(activeFeature, activeItem) &&
           <SwmmTreatmentsModal
             isActive={this.state.isTreatmentsModalActive}
-            title="Treatments"
             onClose={this.toggleNodeTreatmentsModal}
             treatments={activeItem.treatments}/>
         }

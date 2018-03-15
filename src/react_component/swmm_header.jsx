@@ -5,7 +5,7 @@ import INPHelper from "../helper/inp_helper";
 import sampleInpText from "../helper/sample_inp.es6";
 import { loadProjectAction } from "./actions";
 import SwmmAboutMeModal from "./swmm_about_me_modal";
-import SwmmAboutSwmmModel from "./swmm_about_swmm_modal";
+import SwmmAboutSwmmModal from "./swmm_about_swmm_modal";
 
 class SwmmHeader extends React.Component {
   constructor(props) {
@@ -84,8 +84,8 @@ class SwmmHeader extends React.Component {
               <div className="navbar-dropdown">
                 <a className="navbar-item" onClick={this.toggleAboutSwmmModal}>About SWMM-Online</a>
                 <a className="navbar-item" onClick={this.toggleAboutMeModal}>About Author</a>
-                <SwmmAboutMeModal isActive={isAboutMeActive} onClose={this.toggleAboutMeModal} title="About Author"/>
-                <SwmmAboutSwmmModel isActive={isAboutSwmmActive} onClose={this.toggleAboutSwmmModal} title="About SWMM-Online"/>
+                <SwmmAboutMeModal isActive={isAboutMeActive} onClose={this.toggleAboutMeModal}/>
+                <SwmmAboutSwmmModal isActive={isAboutSwmmActive} onClose={this.toggleAboutSwmmModal}/>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ import SwmmModal from "./utility/swmm_modal.jsx";
 
 const SwmmAboutSwmmModal = (props) => {
   return (
-    <SwmmModal {...props}>
+    <SwmmModal {...props} title="About SWMM-Online">
       <div className="content">
         <h1>What is SWMM-Online</h1>
         <p>This is a read-only online version of <a href="https://www.epa.gov/water-research/storm-water-management-model-swmm">Storm Water Management Model</a></p>
