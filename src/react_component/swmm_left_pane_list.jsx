@@ -22,7 +22,8 @@ class SwmmLeftPaneList extends React.Component {
   }
 
   render() {
-    const {items, idPrefix, activeFeature, activeId, setActiveId, listFilter} = this.props;
+    const {items, idPrefix, activeFeature, activeId, activeItem, setActiveId, listFilter} = this.props;
+    debugger;
     return (
       <div id="left-pane-list" ref={dom => {this.dom = dom;}}>
         <nav className="panel">
@@ -37,7 +38,7 @@ class SwmmLeftPaneList extends React.Component {
           );
         })}
         </nav>
-        <SwmmTimePatternModal isActive={activeFeature === CONSTS.TIMEPATTERN_FEATURE && activeId !== ""} onClose={setActiveId(activeFeature, activeId)}/>
+        <SwmmTimePatternModal isActive={activeFeature === CONSTS.TIMEPATTERN_FEATURE && activeId !== ""} onClose={setActiveId(activeFeature, activeId)} timePattern={activeItem}/>
       </div>
     );
   }
@@ -58,6 +59,7 @@ const mapStateToProps = state => {
   const activeId = state.ui.activeId;
   const activeFeature = state.ui.activeFeature;
   const listFilter = state.ui.listFilter;
+  let activeItem = null;
 
   if (state.project && state.ui.activeFeature !== CONSTS.NONE_FEATURE) {
     switch(activeFeature) {
@@ -106,14 +108,19 @@ const mapStateToProps = state => {
         idPrefix = CONSTS.POLLUTANT_ID_PREFIX;
         break;
       case CONSTS.TIMEPATTERN_FEATURE:
-      debugger;
         items = state.project.timePatterns;
         idPrefix = CONSTS.TIMEPATTERN_ID_PREFIX;
     }
+    if (activeId !== "") { activeItem = items.find(item => item.name === activeId); }
+    debugger;
   }
 
-  return {items, idPrefix, activeId, activeFeature, listFilter};
+  return {items, idPrefix, activeId, activeItem, activeFeature, listFilter};
 };
+
+SwmmLeftPaneList.propTypes = {
+  activeItem: PropTypes.object
+}
 
 const mapDispatchToProps = (dispatch) => ({
   setActiveId: (activeFeature, activeId) => () => dispatch(setActiveItemAction(activeFeature, activeId)),

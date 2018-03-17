@@ -26,7 +26,7 @@ SwmmModal.propTypes = {
   title: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.element,
   width: PropTypes.number,
 }
 
