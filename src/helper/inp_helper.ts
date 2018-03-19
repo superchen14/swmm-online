@@ -362,7 +362,8 @@ function parsePollutant(line: string): Pollutant {
 function parseTimePattern(line: string): TimePattern {
   const items = line.match(/[^ ]+/g);
   const name = items[0];
-  return createTimePattern(name);
+  const patternType = items[1];
+  return createTimePattern(name, patternType);
 }
 
 class INPhelper {

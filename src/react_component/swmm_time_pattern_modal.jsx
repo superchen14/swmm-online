@@ -17,6 +17,10 @@ const SwmmTimePatternModal = props => {
               <th className="normal-col">Name</th>
               <th className="normal-col">{timePattern && timePattern.name}</th>
             </tr>
+            <tr>
+              <th className="normal-col">Type</th>
+              <th className="normal-col">{timePattern && timePattern.patternType}</th>
+            </tr>
           </tbody>
         </table>
       }

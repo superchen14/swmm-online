@@ -105,7 +105,7 @@ interface Treatment {
 }
 
 interface TimePattern extends Entity {
-
+  patternType: string;
 }
 
 interface Project {
