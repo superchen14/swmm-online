@@ -106,6 +106,7 @@ interface Treatment {
 
 interface TimePattern extends Entity {
   patternType: string;
+  multipliers: number[];
 }
 
 interface Project {

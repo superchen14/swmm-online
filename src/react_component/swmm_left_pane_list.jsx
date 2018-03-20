@@ -23,7 +23,6 @@ class SwmmLeftPaneList extends React.Component {
 
   render() {
     const {items, idPrefix, activeFeature, activeId, activeItem, setActiveId, listFilter} = this.props;
-    debugger;
     return (
       <div id="left-pane-list" ref={dom => {this.dom = dom;}}>
         <nav className="panel">
@@ -112,7 +111,6 @@ const mapStateToProps = state => {
         idPrefix = CONSTS.TIMEPATTERN_ID_PREFIX;
     }
     if (activeId !== "") { activeItem = items.find(item => item.name === activeId); }
-    debugger;
   }
 
   return {items, idPrefix, activeId, activeItem, activeFeature, listFilter};

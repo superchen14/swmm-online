@@ -363,7 +363,8 @@ function parseTimePattern(line: string): TimePattern {
   const items = line.match(/[^ ]+/g);
   const name = items[0];
   const patternType = items[1];
-  return createTimePattern(name, patternType);
+  const multipliers = items.slice(2).map(item => Number.parseFloat(item));
+  return createTimePattern(name, patternType, multipliers);
 }
 
 class INPhelper {
