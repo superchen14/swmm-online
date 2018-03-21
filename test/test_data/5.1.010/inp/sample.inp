@@ -214,7 +214,24 @@ TS1                         30:00      0.0
 [PATTERNS]
 ;;Name           Type       Multipliers
 ;;-------------- ---------- -----------
+;daily
 DailyTimePattern DAILY      1.0   1.0   1.0   1.0   1.0   1.0   1.0  
+;
+;monthly
+MonthlyTimePattern MONTHLY    1.0   1.0   1.0   1.0   1.0   1.0  
+MonthlyTimePattern            1.0   1.0   1.0   1.0   1.0   1.0  
+;
+;weekend
+WeekendTimePattern WEEKEND    1.0   1.0   1.0   1.0   1.0   1.0  
+WeekendTimePattern            1.0   1.0   1.0   1.0   1.0   1.0  
+WeekendTimePattern            1.0   1.0   1.0   1.0   1.0   1.0  
+WeekendTimePattern            1.0   1.0   1.0   1.0   1.0   1.0  
+;
+;hourly
+HourlyTimePattern HOURLY     1.0   1.0   1.0   1.0   1.0   1.0  
+HourlyTimePattern            1.0   1.0   1.0   1.0   1.0   1.0  
+HourlyTimePattern            1.0   1.0   1.0   1.0   1.0   1.0  
+HourlyTimePattern            1.0   1.0   1.0   1.0   1.0   1.0  
 
 [REPORT]
 ;;Reporting Options
