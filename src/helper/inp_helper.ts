@@ -359,11 +359,14 @@ function parsePollutant(line: string): Pollutant {
   );
 }
 
-function parseTimePattern(line: string): TimePattern {
-  const items = line.match(/[^ ]+/g);
-  const name = items[0];
-  const patternType = items[1];
-  const multipliers = items.slice(2).map(item => Number.parseFloat(item));
+function parseTimePattern(lines: string[]): TimePattern {
+  const line0Items = lines[0].match(/[^ ]+/g);
+  const name = line0Items[0];
+  const patternType = line0Items[1];
+  const multipliers = line0Items.slice(2).map(item => Number.parseFloat(item));
+  lines.slice(1).forEach(line => {
+    multipliers.concat(line.match(/[^ ]+/g).slice(1).map(item => Number.parseFloat(item)));
+  });
   return createTimePattern(name, patternType, multipliers);
 }
 
@@ -467,7 +470,17 @@ class INPhelper {
 
     title = "PATTERNS";
     const timePatternLines = inpData[title] || [];
-    project.timePatterns = timePatternLines.map(line => parseTimePattern(line));
+    const getPatternName = line => line.match(/[^ ]+/g)[0];
+    const nameLinesMap = {};
+    timePatternLines.forEach(line => {
+      const name = getPatternName(line);
+      if (name in nameLinesMap) {
+        nameLinesMap[name].push(line);
+      } else {
+        nameLinesMap[name] = [line];
+      }
+    });
+    project.timePatterns = Object.keys(nameLinesMap).map(name => parseTimePattern(nameLinesMap[name]));
 
     return project;
   }

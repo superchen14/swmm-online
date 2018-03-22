@@ -6,7 +6,7 @@ const SwmmTimePatternModal = props => {
   const {timePattern} = props;
 
   return (
-    <SwmmModal {...props} title="Time Pattern" width={250}>
+    <SwmmModal {...props} title="Time Pattern" width={300}>
       {
         timePattern && 
         <table className="table is-hoverable is-bordered" id="swmm-property-list">
