@@ -5,6 +5,40 @@ import SwmmModal from "./utility/swmm_modal.jsx";
 const SwmmTimePatternModal = props => {
   const {timePattern} = props;
 
+  const getDailyMultipliers = timePattern => {
+    const dailyMultipliers = (<tbody>
+      <tr>
+        <th className="normal-col">Sun</th>
+        <th className="normal-col">{timePattern.multipliers[0]}</th>
+      </tr>
+      <tr>
+        <th className="normal-col">Mon</th>
+        <th className="normal-col">{timePattern.multipliers[1]}</th>
+      </tr>
+      <tr>
+        <th className="normal-col">TUE</th>
+        <th className="normal-col">{timePattern.multipliers[2]}</th>
+      </tr>
+      <tr>
+        <th className="normal-col">WED</th>
+        <th className="normal-col">{timePattern.multipliers[3]}</th>
+      </tr>
+      <tr>
+        <th className="normal-col">THU</th>
+        <th className="normal-col">{timePattern.multipliers[4]}</th>
+      </tr>
+      <tr>
+        <th className="normal-col">FRI</th>
+        <th className="normal-col">{timePattern.multipliers[5]}</th>
+      </tr>
+      <tr>
+        <th className="normal-col">SAT</th>
+        <th className="normal-col">{timePattern.multipliers[6]}</th>
+      </tr>
+    </tbody>);
+    return dailyMultipliers;
+  };
+
   return (
     <SwmmModal {...props} title="Time Pattern" width={300}>
       {
@@ -24,39 +58,7 @@ const SwmmTimePatternModal = props => {
               <th className="normal-col"></th>
             </tr>
           </tbody>
-          {
-            timePattern.patternType === "DAILY" &&
-            <tbody>
-              <tr>
-                <th className="normal-col">Sun</th>
-                <th className="normal-col">{timePattern.multipliers[0]}</th>
-              </tr>
-              <tr>
-                <th className="normal-col">Mon</th>
-                <th className="normal-col">{timePattern.multipliers[1]}</th>
-              </tr>
-              <tr>
-                <th className="normal-col">TUE</th>
-                <th className="normal-col">{timePattern.multipliers[2]}</th>
-              </tr>
-              <tr>
-                <th className="normal-col">WED</th>
-                <th className="normal-col">{timePattern.multipliers[3]}</th>
-              </tr>
-              <tr>
-                <th className="normal-col">THU</th>
-                <th className="normal-col">{timePattern.multipliers[4]}</th>
-              </tr>
-              <tr>
-                <th className="normal-col">FRI</th>
-                <th className="normal-col">{timePattern.multipliers[5]}</th>
-              </tr>
-              <tr>
-                <th className="normal-col">SAT</th>
-                <th className="normal-col">{timePattern.multipliers[6]}</th>
-              </tr>
-            </tbody>
-          }
+          { timePattern.patternType === "DAILY" && getDailyMultipliers(timePattern) }
         </table>
       }
     </SwmmModal>
