@@ -89,7 +89,7 @@ const SwmmTimePatternModal = props => {
             </tr>
           </tbody>
           { timePattern.patternType === "DAILY" && getDailyMultipliers(timePattern) }
-          { timePattern.patternType === "HOURLY" && getHourlyMultipliers(timePattern) }
+          { (timePattern.patternType === "HOURLY" || timePattern.patternType === "WEEKEND") && getHourlyMultipliers(timePattern) }
         </table>
       }
     </SwmmModal>
