@@ -363,9 +363,9 @@ function parseTimePattern(lines: string[]): TimePattern {
   const line0Items = lines[0].match(/[^ ]+/g);
   const name = line0Items[0];
   const patternType = line0Items[1];
-  const multipliers = line0Items.slice(2).map(item => Number.parseFloat(item));
+  let multipliers = line0Items.slice(2).map(item => Number.parseFloat(item));
   lines.slice(1).forEach(line => {
-    multipliers.concat(line.match(/[^ ]+/g).slice(1).map(item => Number.parseFloat(item)));
+    multipliers = multipliers.concat(line.match(/[^ ]+/g).slice(1).map(item => Number.parseFloat(item)));
   });
   return createTimePattern(name, patternType, multipliers);
 }
