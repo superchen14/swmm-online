@@ -37,34 +37,13 @@ const SwmmTimePatternModal = props => {
 
   const getDailyMultipliers = timePattern => {
     const hourlyMultipliers = (<tbody>
-      <tr>
-        <th className="normal-col">Sun</th>
-        <th className="normal-col">{timePattern.multipliers[0]}</th>
-      </tr>
-      <tr>
-        <th className="normal-col">Mon</th>
-        <th className="normal-col">{timePattern.multipliers[1]}</th>
-      </tr>
-      <tr>
-        <th className="normal-col">TUE</th>
-        <th className="normal-col">{timePattern.multipliers[2]}</th>
-      </tr>
-      <tr>
-        <th className="normal-col">WED</th>
-        <th className="normal-col">{timePattern.multipliers[3]}</th>
-      </tr>
-      <tr>
-        <th className="normal-col">THU</th>
-        <th className="normal-col">{timePattern.multipliers[4]}</th>
-      </tr>
-      <tr>
-        <th className="normal-col">FRI</th>
-        <th className="normal-col">{timePattern.multipliers[5]}</th>
-      </tr>
-      <tr>
-        <th className="normal-col">SAT</th>
-        <th className="normal-col">{timePattern.multipliers[6]}</th>
-      </tr>
+      <tr><th className="normal-col">Sun</th><th className="normal-col">{timePattern.multipliers[0]}</th></tr>
+      <tr><th className="normal-col">Mon</th><th className="normal-col">{timePattern.multipliers[1]}</th></tr>
+      <tr><th className="normal-col">TUE</th><th className="normal-col">{timePattern.multipliers[2]}</th></tr>
+      <tr><th className="normal-col">WED</th><th className="normal-col">{timePattern.multipliers[3]}</th></tr>
+      <tr><th className="normal-col">THU</th><th className="normal-col">{timePattern.multipliers[4]}</th></tr>
+      <tr><th className="normal-col">FRI</th><th className="normal-col">{timePattern.multipliers[5]}</th></tr>
+      <tr><th className="normal-col">SAT</th><th className="normal-col">{timePattern.multipliers[6]}</th></tr>
     </tbody>);
     return hourlyMultipliers;
   }
