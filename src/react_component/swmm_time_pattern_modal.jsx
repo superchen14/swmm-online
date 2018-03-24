@@ -48,6 +48,24 @@ const SwmmTimePatternModal = props => {
     return hourlyMultipliers;
   }
 
+  const getMonthlyMultipliers = timePattern => {
+    const monthlyMultipliers = (<tbody>
+      <tr><th className="normal-col">Jan</th><th className="normal-col">{timePattern.multipliers[0]}</th></tr>
+      <tr><th className="normal-col">Feb</th><th className="normal-col">{timePattern.multipliers[1]}</th></tr>
+      <tr><th className="normal-col">Mar</th><th className="normal-col">{timePattern.multipliers[2]}</th></tr>
+      <tr><th className="normal-col">Apr</th><th className="normal-col">{timePattern.multipliers[3]}</th></tr>
+      <tr><th className="normal-col">May</th><th className="normal-col">{timePattern.multipliers[4]}</th></tr>
+      <tr><th className="normal-col">Jun</th><th className="normal-col">{timePattern.multipliers[5]}</th></tr>
+      <tr><th className="normal-col">Jul</th><th className="normal-col">{timePattern.multipliers[6]}</th></tr>
+      <tr><th className="normal-col">Aug</th><th className="normal-col">{timePattern.multipliers[7]}</th></tr>
+      <tr><th className="normal-col">Sep</th><th className="normal-col">{timePattern.multipliers[8]}</th></tr>
+      <tr><th className="normal-col">Oct</th><th className="normal-col">{timePattern.multipliers[9]}</th></tr>
+      <tr><th className="normal-col">Nov</th><th className="normal-col">{timePattern.multipliers[10]}</th></tr>
+      <tr><th className="normal-col">Dec</th><th className="normal-col">{timePattern.multipliers[11]}</th></tr>
+    </tbody>);
+    return monthlyMultipliers;
+ }
+
   return (
     <SwmmModal {...props} title="Time Pattern" width={300}>
       {
@@ -69,6 +87,7 @@ const SwmmTimePatternModal = props => {
           </tbody>
           { timePattern.patternType === "DAILY" && getDailyMultipliers(timePattern) }
           { (timePattern.patternType === "HOURLY" || timePattern.patternType === "WEEKEND") && getHourlyMultipliers(timePattern) }
+          { timePattern.patternType === "MONTHLY" && getMonthlyMultipliers(timePattern) }
         </table>
       }
     </SwmmModal>
