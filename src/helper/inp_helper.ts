@@ -1,4 +1,4 @@
-import {Point, Node, Link, Conduit, Subcatchment, Pollutant, Project, TimePattern} from "../swmm_model/types";
+import {Point, Node, Link, Conduit, Subcatchment, Pollutant, Project, TimePattern, LandUse} from "../swmm_model/types";
 import createPoint from "../swmm_model/point";
 import createJunction from "../swmm_model/junction";
 import createOutfall from "../swmm_model/outfall";
@@ -12,6 +12,7 @@ import createOutlet from "../swmm_model/outlet";
 import createSubcatchment from "../swmm_model/subcatchment";
 import createPollutant from "../swmm_model/pollutant";
 import createTimePattern from "../swmm_model/time_pattern";
+import createLandUse from "../swmm_model/land_use";
 import createProject from "../swmm_model/project";
 
 const isCommentLine = line => line.startsWith(";");
@@ -370,6 +371,12 @@ function parseTimePattern(lines: string[]): TimePattern {
   return createTimePattern(name, patternType, multipliers);
 }
 
+function parseLandUse(line): LandUse {
+  const items = line.match(/[^ ]+/g);
+  const name = items[0];
+  return createLandUse(name);
+}
+
 class INPhelper {
   private text: string;
 
@@ -481,6 +488,10 @@ class INPhelper {
       }
     });
     project.timePatterns = Object.keys(nameLinesMap).map(name => parseTimePattern(nameLinesMap[name]));
+
+    title = "LANDUSES";
+    const landUseLines = inpData[title] || [];
+    project.landUses = landUseLines.map(line => parseLandUse(line));
 
     return project;
   }

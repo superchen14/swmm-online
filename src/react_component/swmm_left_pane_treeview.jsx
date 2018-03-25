@@ -135,6 +135,7 @@ class SwmmLeftPaneTreeView extends React.Component {
           { isQualityTreeNodeExpanded && (
               <ul>
                 <a onClick={setActiveFeature(CONSTS.POLLUTANT_FEATURE)} className={getClassName(CONSTS.POLLUTANT_FEATURE)}>Pollutants</a>
+                <a onClick={setActiveFeature(CONSTS.LANDUSE_FEATURE)} className={getClassName(CONSTS.LANDUSE_FEATURE)}>Land Uses</a>
               </ul>
             )
           }

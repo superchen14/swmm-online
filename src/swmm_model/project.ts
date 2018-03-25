@@ -13,7 +13,8 @@ function createProject(): Project {
     outlets: [],
     pollutants: [],
     subcatchments: [],
-    timePatterns: []
+    timePatterns: [],
+    landUses: []
   };
 }
 

@@ -109,6 +109,10 @@ interface TimePattern extends Entity {
   multipliers: number[];
 }
 
+interface LandUse extends Entity {
+
+}
+
 interface Project {
   junctions: Junction[];
   outfalls: Node[];
@@ -122,6 +126,7 @@ interface Project {
   pollutants: Pollutant[];
   subcatchments: Subcatchment[];
   timePatterns: TimePattern[];
+  landUses: LandUse[];
 }
 
-export {Point, Entity, Node, Junction, Link, Conduit, Section, Loss, Subcatchment, Subarea, Pollutant, Treatment, TimePattern, Project};
+export {Point, Entity, Node, Junction, Link, Conduit, Section, Loss, Subcatchment, Subarea, Pollutant, Treatment, TimePattern, LandUse, Project};

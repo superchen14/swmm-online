@@ -109,6 +109,11 @@ const mapStateToProps = state => {
       case CONSTS.TIMEPATTERN_FEATURE:
         items = state.project.timePatterns;
         idPrefix = CONSTS.TIMEPATTERN_ID_PREFIX;
+        break;
+      case CONSTS.LANDUSE_FEATURE:
+        items = state.project.landUses;
+        idPrefix = CONSTS.LANDUSE_ID_PREFIX;
+        break;
     }
     if (activeId !== "") { activeItem = items.find(item => item.name === activeId); }
   }
