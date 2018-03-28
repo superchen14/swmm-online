@@ -6,7 +6,9 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from 'redux';
 import ConnectedSwmmApp from "./swmm_app.jsx";
+import sampleInpText from "../helper/sample_inp.es6";
 import GraphHelper from "../helper/graph_helper";
+import INPHelper from "../helper/inp_helper";
 import CONSTS from "./consts";
 
 const reducer = (state, action) => {
@@ -46,9 +48,11 @@ const reducer = (state, action) => {
   }
 };
 
+const inpHelper = new INPHelper(sampleInpText);
+const project = inpHelper.parse();
 const initState = {
-  project: null,
-  graphHelper: null,
+  project,
+  graphHelper: new GraphHelper(project),
   ui: {
     activeFeature: CONSTS.NONE_FEATURE,
     activeId: CONSTS.EMPTY_STRING,

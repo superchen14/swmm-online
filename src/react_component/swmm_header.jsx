@@ -68,7 +68,7 @@ class SwmmHeader extends React.Component {
               <a className="navbar-link">File</a>
               <div className="navbar-dropdown">
                 <a className="navbar-item" onClick={this.openInpFile}>Open...</a>
-                <a className="navbar-item" onClick={this.loadSampleFile}>Load Sample INP File</a>
+                <a className="navbar-item" onClick={this.loadSampleFile}>Reload Sample INP File</a>
               </div>
               <div>
                 <input
