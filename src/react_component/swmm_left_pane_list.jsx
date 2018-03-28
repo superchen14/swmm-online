@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import CONSTS from "./consts";
 import { setActiveItemAction } from "./actions";
 import SwmmTimePatternModal from "./swmm_time_pattern_modal";
+import SwmmLandUseModal from "./swmm_land_use_modal";
 
 class SwmmLeftPaneList extends React.Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class SwmmLeftPaneList extends React.Component {
         })}
         </nav>
         <SwmmTimePatternModal isActive={activeFeature === CONSTS.TIMEPATTERN_FEATURE && activeId !== ""} onClose={setActiveId(activeFeature, activeId)} timePattern={activeItem}/>
+        <SwmmLandUseModal isActive={activeFeature === CONSTS.LANDUSE_FEATURE && activeId !== ""} onClose={setActiveId(activeFeature, activeId)} landUse={activeItem}/>
       </div>
     );
   }
