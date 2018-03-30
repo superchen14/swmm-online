@@ -20,10 +20,15 @@ const SwmmLandUseModal = props => {
             <tr><th>Property</th><th>Value</th></tr>
           </thead>
           <tbody>
-            <tr>
-              <th className="normal-col">Name</th>
-              <th className="normal-col">{landUse.name}</th>
-            </tr>
+            <tr><th className="normal-col">Name</th><th className="normal-col">{landUse.name}</th></tr>
+          </tbody>
+          <thead>
+            <tr><th>STREET SWEEPING</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr><th className="normal-col">Interval</th><th className="normal-col">{landUse.interval}</th></tr>
+            <tr><th className="normal-col">Availability</th><th className="normal-col">{landUse.availability}</th></tr>
+            <tr><th className="normal-col">Last Swept</th><th className="normal-col">{landUse.lastSwept}</th></tr>
           </tbody>
         </table>
       }

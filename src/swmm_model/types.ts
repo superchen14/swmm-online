@@ -110,7 +110,9 @@ interface TimePattern extends Entity {
 }
 
 interface LandUse extends Entity {
-
+  interval: number;
+  availability: number;
+  lastSwept: number;
 }
 
 interface Project {

@@ -374,7 +374,11 @@ function parseTimePattern(lines: string[]): TimePattern {
 function parseLandUse(line): LandUse {
   const items = line.match(/[^ ]+/g);
   const name = items[0];
-  return createLandUse(name);
+  const interval = items.length <= 1 ? 0 : Number.parseFloat(items[1]);
+  const availability = items.length <= 2 ? 0 : Number.parseFloat(items[2]);
+  const lastSwept = items.length <= 3 ? 0 : Number.parseFloat(items[3]);
+
+  return createLandUse(name, interval, availability, lastSwept);
 }
 
 class INPhelper {
