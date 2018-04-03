@@ -113,6 +113,16 @@ interface LandUse extends Entity {
   interval: number;
   availability: number;
   lastSwept: number;
+  buildups: Buildup[];
+}
+
+interface Buildup {
+  pollutantName: string;
+  function: string;
+  coeff1: number;
+  coeff2: number;
+  coeff3: number;
+  perUnit: string;
 }
 
 interface Project {
@@ -131,4 +141,4 @@ interface Project {
   landUses: LandUse[];
 }
 
-export {Point, Entity, Node, Junction, Link, Conduit, Section, Loss, Subcatchment, Subarea, Pollutant, Treatment, TimePattern, LandUse, Project};
+export {Point, Entity, Node, Junction, Link, Conduit, Section, Loss, Subcatchment, Subarea, Pollutant, Treatment, TimePattern, LandUse, Buildup, Project};

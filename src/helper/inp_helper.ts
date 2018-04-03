@@ -1,4 +1,4 @@
-import {Point, Node, Link, Conduit, Subcatchment, Pollutant, Project, TimePattern, LandUse} from "../swmm_model/types";
+import {Point, Node, Link, Conduit, Subcatchment, Pollutant, Project, TimePattern, LandUse, Buildup} from "../swmm_model/types";
 import createPoint from "../swmm_model/point";
 import createJunction from "../swmm_model/junction";
 import createOutfall from "../swmm_model/outfall";
@@ -371,14 +371,15 @@ function parseTimePattern(lines: string[]): TimePattern {
   return createTimePattern(name, patternType, multipliers);
 }
 
-function parseLandUse(line): LandUse {
+function parseLandUse(line, buildupInfos): LandUse {
   const items = line.match(/[^ ]+/g);
   const name = items[0];
   const interval = items.length <= 1 ? 0 : Number.parseFloat(items[1]);
   const availability = items.length <= 2 ? 0 : Number.parseFloat(items[2]);
   const lastSwept = items.length <= 3 ? 0 : Number.parseFloat(items[3]);
+  const buildups = buildupInfos[name] || [];
 
-  return createLandUse(name, interval, availability, lastSwept);
+  return createLandUse(name, interval, availability, lastSwept, buildups);
 }
 
 class INPhelper {
@@ -493,9 +494,27 @@ class INPhelper {
     });
     project.timePatterns = Object.keys(nameLinesMap).map(name => parseTimePattern(nameLinesMap[name]));
 
+    let buildupInfos = {};
+    title = "BUILDUP";
+    const buildupLines = inpData[title] || [];
+    buildupLines.forEach(line => {
+      const items = line.match(/[^ ]+/g);
+      const landUseName = items[0];
+      const pollutantName = items[1];
+      const func = items[2];
+      const coeff1 = items[3];
+      const coeff2 = items[4];
+      const coeff3 = items[5];
+      const perUnit = items[6];
+      if (!(landUseName in buildupInfos)) {
+        buildupInfos[landUseName] = [];
+      }
+      buildupInfos[landUseName].push({pollutantName, function: func, coeff1, coeff2, coeff3, perUnit});
+    });
+
     title = "LANDUSES";
     const landUseLines = inpData[title] || [];
-    project.landUses = landUseLines.map(line => parseLandUse(line));
+    project.landUses = landUseLines.map(line => parseLandUse(line, buildupInfos));
 
     return project;
   }
