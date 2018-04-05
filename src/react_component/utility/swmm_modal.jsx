@@ -5,7 +5,6 @@ const SwmmModal = ({title, isActive, onClose, width, height, children}) => {
   const className = isActive ? "modal is-active" : "modal";
   width = width ? width : 640;
   let style = {width};
-  debugger;
   height && (style["height"] = height);
   return (
     <div className={className}>
