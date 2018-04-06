@@ -38,8 +38,8 @@ class SwmmLeftPaneList extends React.Component {
           );
         })}
         </nav>
-        <SwmmTimePatternModal isActive={activeFeature === CONSTS.TIMEPATTERN_FEATURE && activeId !== ""} onClose={setActiveId(activeFeature, activeId)} timePattern={activeItem}/>
-        <SwmmLandUseModal isActive={activeFeature === CONSTS.LANDUSE_FEATURE && activeId !== ""} onClose={setActiveId(activeFeature, activeId)} landUse={activeItem}/>
+        { activeFeature === CONSTS.TIMEPATTERN_FEATURE && <SwmmTimePatternModal isActive={activeId !== ""} onClose={setActiveId(activeFeature, activeId)} timePattern={activeItem}/> }
+        { activeFeature === CONSTS.LANDUSE_FEATURE && <SwmmLandUseModal isActive={activeId !== ""} onClose={setActiveId(activeFeature, activeId)} landUse={activeItem}/> }
       </div>
     );
   }

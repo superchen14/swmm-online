@@ -15,6 +15,7 @@ class SwmmLandUseModal extends React.Component {
   render() {
     const {landUse} = this.props;
     let {activeTab, activeBuildupPollutant} = this.state;
+    debugger;
     !activeBuildupPollutant && landUse && landUse.buildups[0] && (activeBuildupPollutant = landUse.buildups[0].pollutantName);
     const activeBuildup = landUse ? landUse.buildups.find(buildup => buildup.pollutantName === activeBuildupPollutant) : null;
     const setActiveTab = activeTab => () => this.setState({activeTab});
