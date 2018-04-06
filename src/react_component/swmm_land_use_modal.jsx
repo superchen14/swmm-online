@@ -15,12 +15,11 @@ class SwmmLandUseModal extends React.Component {
   render() {
     const {landUse} = this.props;
     let {activeTab, activeBuildupPollutant} = this.state;
-    debugger;
     !activeBuildupPollutant && landUse && landUse.buildups[0] && (activeBuildupPollutant = landUse.buildups[0].pollutantName);
     const activeBuildup = landUse ? landUse.buildups.find(buildup => buildup.pollutantName === activeBuildupPollutant) : null;
     const setActiveTab = activeTab => () => this.setState({activeTab});
     return (
-      <SwmmModal {...this.props} title="Land Use" width={350} height={520}>
+      <SwmmModal {...this.props} title="Land Use" width={350} height={500}>
         <div className="tabs is-centered is-boxed">
           <ul>
             <li className={activeTab === GENERAL_TAB ? "is-active" : ""} onClick={setActiveTab(GENERAL_TAB)}><a><span>General</span></a></li>
