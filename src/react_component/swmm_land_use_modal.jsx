@@ -9,14 +9,18 @@ class SwmmLandUseModal extends React.Component {
   constructor(props) {
     super(props);
     const {landUse} = this.props;
-    this.state = {activeTab: GENERAL_TAB, activeBuildupPollutant: landUse && landUse.buildups[0] ? landUse.buildups[0].pollutantName : ""};
+    this.state = {activeTab: GENERAL_TAB, activeBuildupIndex: landUse && landUse.buildups[0] ? 0 : -1};
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {landUse} = nextProps;
+    this.setState({activeBuildupIndex: landUse && landUse.buildups[0] ? 0 : -1});
   }
 
   render() {
     const {landUse} = this.props;
-    let {activeTab, activeBuildupPollutant} = this.state;
-    !activeBuildupPollutant && landUse && landUse.buildups[0] && (activeBuildupPollutant = landUse.buildups[0].pollutantName);
-    const activeBuildup = landUse ? landUse.buildups.find(buildup => buildup.pollutantName === activeBuildupPollutant) : null;
+    let {activeTab, activeBuildupIndex} = this.state;
+    const activeBuildup = activeBuildupIndex !== -1 ? landUse.buildups[activeBuildupIndex] : null;
     const setActiveTab = activeTab => () => this.setState({activeTab});
     return (
       <SwmmModal {...this.props} title="Land Use" width={350} height={500}>
@@ -53,7 +57,7 @@ class SwmmLandUseModal extends React.Component {
               <tr><th>Property</th><th>Value</th></tr>
             </thead>
             <tbody>
-              <tr><th className="normal-col">Pollutant</th><th className="normal-col">{activeBuildupPollutant}</th></tr>
+              <tr><th className="normal-col">Pollutant</th><th className="normal-col">{activeBuildup && activeBuildup.pollutantName}</th></tr>
               <tr><th className="normal-col">Function</th><th className="normal-col">{activeBuildup && activeBuildup.function}</th></tr>
               <tr><th className="normal-col">Max. Buildup</th><th className="normal-col">{activeBuildup && activeBuildup.coeff1}</th></tr>
               <tr><th className="normal-col">Rate Constant</th><th className="normal-col">{activeBuildup && activeBuildup.coeff2}</th></tr>
