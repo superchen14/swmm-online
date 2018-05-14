@@ -12,7 +12,7 @@ class SwmmLandUseModal extends React.Component {
     this.state = {activeTab: GENERAL_TAB, activeBuildupIndex: landUse && landUse.buildups[0] ? 0 : -1};
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const {landUse} = nextProps;
     this.setState({activeBuildupIndex: landUse && landUse.buildups[0] ? 0 : -1});
   }
