@@ -20,8 +20,18 @@ class SwmmLandUseModal extends React.Component {
   render() {
     const {landUse} = this.props;
     let {activeTab, activeBuildupIndex} = this.state;
+    let pollutantNames = landUse ? landUse.buildups.map(buildup => buildup.pollutantName) : [];
     const activeBuildup = activeBuildupIndex !== -1 ? landUse.buildups[activeBuildupIndex] : null;
     const setActiveTab = activeTab => () => this.setState({activeTab});
+
+    let pollutantSelect = "";
+    if (pollutantNames.length > 0) {
+      pollutantSelect = (
+        <select id="pollutant-select" value={activeBuildup.pollutantName}>
+        { pollutantNames.map(p => <option key={p}>{p}</option>) }
+        </select>
+      );
+    }
     return (
       <SwmmModal {...this.props} title="Land Use" width={350} height={500}>
         <div className="tabs is-centered is-boxed">
@@ -57,7 +67,10 @@ class SwmmLandUseModal extends React.Component {
               <tr><th>Property</th><th>Value</th></tr>
             </thead>
             <tbody>
-              <tr><th className="normal-col">Pollutant</th><th className="normal-col">{activeBuildup && activeBuildup.pollutantName}</th></tr>
+              <tr>
+                <th className="normal-col">Pollutant</th>
+                <th className="normal-col">{ pollutantSelect }</th>
+              </tr>
               <tr><th className="normal-col">Function</th><th className="normal-col">{activeBuildup && activeBuildup.function}</th></tr>
               <tr><th className="normal-col">Max. Buildup</th><th className="normal-col">{activeBuildup && activeBuildup.coeff1}</th></tr>
               <tr><th className="normal-col">Rate Constant</th><th className="normal-col">{activeBuildup && activeBuildup.coeff2}</th></tr>
