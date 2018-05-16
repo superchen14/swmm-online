@@ -34,6 +34,7 @@ class SwmmLandUseModal extends React.Component {
     }
     return (
       <SwmmModal {...this.props} title="Land Use" width={350} height={500}>
+        <React.Fragment>
         <div className="tabs is-centered is-boxed">
           <ul>
             <li className={activeTab === GENERAL_TAB ? "is-active" : ""} onClick={setActiveTab(GENERAL_TAB)}><a><span>General</span></a></li>
@@ -79,6 +80,7 @@ class SwmmLandUseModal extends React.Component {
             </tbody>
           </table>
         }
+        </React.Fragment>
       </SwmmModal>
     );
   }
