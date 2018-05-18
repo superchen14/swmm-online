@@ -23,11 +23,15 @@ class SwmmLandUseModal extends React.Component {
     let pollutantNames = landUse ? landUse.buildups.map(buildup => buildup.pollutantName) : [];
     const activeBuildup = activeBuildupIndex !== -1 ? landUse.buildups[activeBuildupIndex] : null;
     const setActiveTab = activeTab => () => this.setState({activeTab});
+    const onChangePollutant = e => {
+      const activeBuildupIndex = pollutantNames.indexOf(e.target.value);
+      this.setState({activeBuildupIndex});
+    }
 
     let pollutantSelect = "";
     if (pollutantNames.length > 0) {
       pollutantSelect = (
-        <select id="pollutant-select" value={activeBuildup.pollutantName}>
+        <select id="pollutant-select" value={activeBuildup.pollutantName} onChange={onChangePollutant}>
         { pollutantNames.map(p => <option key={p}>{p}</option>) }
         </select>
       );
