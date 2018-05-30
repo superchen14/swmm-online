@@ -371,15 +371,16 @@ function parseTimePattern(lines: string[]): TimePattern {
   return createTimePattern(name, patternType, multipliers);
 }
 
-function parseLandUse(line, buildupInfos): LandUse {
+function parseLandUse(line, buildupInfos, washoffInfos): LandUse {
   const items = line.match(/[^ ]+/g);
   const name = items[0];
   const interval = items.length <= 1 ? 0 : Number.parseFloat(items[1]);
   const availability = items.length <= 2 ? 0 : Number.parseFloat(items[2]);
   const lastSwept = items.length <= 3 ? 0 : Number.parseFloat(items[3]);
   const buildups = buildupInfos[name] || [];
+  const washoffs = washoffInfos[name] || [];
 
-  return createLandUse(name, interval, availability, lastSwept, buildups);
+  return createLandUse(name, interval, availability, lastSwept, buildups, washoffs);
 }
 
 class INPhelper {
@@ -512,9 +513,27 @@ class INPhelper {
       buildupInfos[landUseName].push({pollutantName, function: func, coeff1, coeff2, coeff3, perUnit});
     });
 
+    let washoffInfos = {};
+    title = "WASHOFF";
+    const washoffLines = inpData[title] || [];
+    washoffLines.forEach(line => {
+      const items = line.match(/[^ ]+/g);
+      const landUseName = items[0];
+      const pollutantName = items[1];
+      const func = items[2];
+      const coefficient = items[3];
+      const runoffExponent = items[4];
+      const cleaningEfficiency = items[5];
+      const bmpEfficiency = items[6];
+      if (!(landUseName in washoffInfos)) {
+        washoffInfos[landUseName] = [];
+      }
+      washoffInfos[landUseName].push({pollutantName, function: func, coefficient, runoffExponent, cleaningEfficiency, bmpEfficiency});
+    });
+
     title = "LANDUSES";
     const landUseLines = inpData[title] || [];
-    project.landUses = landUseLines.map(line => parseLandUse(line, buildupInfos));
+    project.landUses = landUseLines.map(line => parseLandUse(line, buildupInfos, washoffInfos));
 
     return project;
   }

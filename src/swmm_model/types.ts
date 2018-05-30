@@ -114,6 +114,7 @@ interface LandUse extends Entity {
   availability: number;
   lastSwept: number;
   buildups: Buildup[];
+  washoffs: Washoff[];
 }
 
 interface Buildup {
@@ -123,6 +124,15 @@ interface Buildup {
   coeff2: number;
   coeff3: number;
   perUnit: string;
+}
+
+interface Washoff {
+  pollutantName: string;
+  function: string;
+  coefficient: number;
+  runoffExponent: number;
+  cleaningEfficiency: number;
+  bmpEfficiency: number;
 }
 
 interface Project {
@@ -141,4 +151,4 @@ interface Project {
   landUses: LandUse[];
 }
 
-export {Point, Entity, Node, Junction, Link, Conduit, Section, Loss, Subcatchment, Subarea, Pollutant, Treatment, TimePattern, LandUse, Buildup, Project};
+export {Point, Entity, Node, Junction, Link, Conduit, Section, Loss, Subcatchment, Subarea, Pollutant, Treatment, TimePattern, LandUse, Buildup, Washoff, Project};
