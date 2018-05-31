@@ -503,14 +503,14 @@ class INPhelper {
       const landUseName = items[0];
       const pollutantName = items[1];
       const func = items[2];
-      const coeff1 = items[3];
-      const coeff2 = items[4];
-      const coeff3 = items[5];
-      const perUnit = items[6];
+      const maxBuildup = items[3];
+      const rateConstant = items[4];
+      const powerSatConstant = items[5];
+      const normalizer = items[6];
       if (!(landUseName in buildupInfos)) {
         buildupInfos[landUseName] = [];
       }
-      buildupInfos[landUseName].push({pollutantName, function: func, coeff1, coeff2, coeff3, perUnit});
+      buildupInfos[landUseName].push({pollutantName, function: func, maxBuildup, rateConstant, powerSatConstant, normalizer});
     });
 
     let washoffInfos = {};

@@ -120,10 +120,10 @@ interface LandUse extends Entity {
 interface Buildup {
   pollutantName: string;
   function: string;
-  coeff1: number;
-  coeff2: number;
-  coeff3: number;
-  perUnit: string;
+  maxBuildup: number;
+  rateConstant: number;
+  powerSatConstant: number;
+  normalizer: string;
 }
 
 interface Washoff {

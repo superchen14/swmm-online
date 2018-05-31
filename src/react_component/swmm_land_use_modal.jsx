@@ -78,10 +78,10 @@ class SwmmLandUseModal extends React.Component {
                 <th className="normal-col">{ pollutantSelect }</th>
               </tr>
               <tr><th className="normal-col">Function</th><th className="normal-col">{activeBuildup && activeBuildup.function}</th></tr>
-              <tr><th className="normal-col">Max. Buildup</th><th className="normal-col">{activeBuildup && activeBuildup.coeff1}</th></tr>
-              <tr><th className="normal-col">Rate Constant</th><th className="normal-col">{activeBuildup && activeBuildup.coeff2}</th></tr>
-              <tr><th className="normal-col">Power/Sat. Constant</th><th className="normal-col">{activeBuildup && activeBuildup.coeff3}</th></tr>
-              <tr><th className="normal-col">Normalizer</th><th className="normal-col">{activeBuildup && activeBuildup.perUnit}</th></tr>
+              <tr><th className="normal-col">Max. Buildup</th><th className="normal-col">{activeBuildup && activeBuildup.maxBuildup}</th></tr>
+              <tr><th className="normal-col">Rate Constant</th><th className="normal-col">{activeBuildup && activeBuildup.rateConstant}</th></tr>
+              <tr><th className="normal-col">Power/Sat. Constant</th><th className="normal-col">{activeBuildup && activeBuildup.powerSatConstant}</th></tr>
+              <tr><th className="normal-col">Normalizer</th><th className="normal-col">{activeBuildup && activeBuildup.normalizer}</th></tr>
             </tbody>
           </table>
         }
