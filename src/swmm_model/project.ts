@@ -14,7 +14,8 @@ function createProject(): Project {
     pollutants: [],
     subcatchments: [],
     timePatterns: [],
-    landUses: []
+    landUses: [],
+    rainGages: [],
   };
 }
 

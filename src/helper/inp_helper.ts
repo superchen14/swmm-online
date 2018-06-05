@@ -1,5 +1,6 @@
-import {Point, Node, Link, Conduit, Subcatchment, Pollutant, Project, TimePattern, LandUse, Buildup} from "../swmm_model/types";
+import {Point, RainGage, Node, Link, Conduit, Subcatchment, Pollutant, Project, TimePattern, LandUse, Buildup} from "../swmm_model/types";
 import createPoint from "../swmm_model/point";
+import createRainGage from "../swmm_model/rain_gage";
 import createJunction from "../swmm_model/junction";
 import createOutfall from "../swmm_model/outfall";
 import createDivider from "../swmm_model/divider";
@@ -182,6 +183,12 @@ function parseSections(lines) {
   });
 
   return idSectionMap;
+}
+
+function parseRainGage(line, idSymbolsMap): RainGage {
+  const items = line.match(/[^ ]+/g);
+  const name = items[0];
+  return createRainGage(name, idSymbolsMap[name]);
 }
 
 function parseJunction(line, idPointsMap, idTreatmentsMap): Node {
@@ -415,7 +422,14 @@ class INPhelper {
 
     const project: Project = createProject();
 
-    let title = "COORDINATES";
+    let title = "SYMBOLS";
+    const idSymbolsMap = parseCoordinates(inpData[title]);
+
+    title = "RAINGAGES";
+    const rainGageLines = inpData[title] || [];
+    project.rainGages = rainGageLines.map(line => parseRainGage(line, idSymbolsMap));
+
+    title = "COORDINATES";
     const idPointsMap = parseCoordinates(inpData[title]);
 
     title = "TREATMENT";

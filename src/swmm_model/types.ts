@@ -7,6 +7,10 @@ interface Entity {
   name: string;
 }
 
+interface RainGage extends Entity {
+  position: Point;
+}
+
 interface Node extends Entity {
   position: Point;
   invertElevation: number;
@@ -136,6 +140,7 @@ interface Washoff {
 }
 
 interface Project {
+  rainGages: RainGage[];
   junctions: Junction[];
   outfalls: Node[];
   dividers: Node[];
@@ -151,4 +156,4 @@ interface Project {
   landUses: LandUse[];
 }
 
-export {Point, Entity, Node, Junction, Link, Conduit, Section, Loss, Subcatchment, Subarea, Pollutant, Treatment, TimePattern, LandUse, Buildup, Washoff, Project};
+export {Point, Entity, RainGage, Node, Junction, Link, Conduit, Section, Loss, Subcatchment, Subarea, Pollutant, Treatment, TimePattern, LandUse, Buildup, Washoff, Project};
