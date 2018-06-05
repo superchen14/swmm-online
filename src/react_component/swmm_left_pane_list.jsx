@@ -64,6 +64,10 @@ const mapStateToProps = state => {
 
   if (state.project && state.ui.activeFeature !== CONSTS.NONE_FEATURE) {
     switch(activeFeature) {
+      case CONSTS.RAINGAGE_FEATURE:
+        items = state.project.rainGages;
+        idPrefix = CONSTS.RAINGAGE_ID_PREFIX;
+        break;
       case CONSTS.JUNCTION_FEATURE:
         items = state.project.junctions;
         idPrefix = CONSTS.JUNCTION_ID_PREFIX;

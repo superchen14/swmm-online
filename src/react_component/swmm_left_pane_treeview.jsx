@@ -23,7 +23,7 @@ class SwmmLeftPaneTreeView extends React.Component {
   }
 
   toggleNodesTreeNode() {
-    this.setState({isNodesTreeNodeExpanded: !this.state.isNodesTreeNodeExpanded });
+    this.setState({isNodesTreeNodeExpanded: !this.state.isNodesTreeNodeExpanded});
   }
 
   toggleLinksTreeNode() {
@@ -119,7 +119,7 @@ class SwmmLeftPaneTreeView extends React.Component {
           { treeNodeWithArrow("Hydrology", isHydrologyTreeNodeExpanded, this.toggleHydrologyTreeNode) }
           { isHydrologyTreeNodeExpanded && (
               <ul>
-                <a onClick={setActiveFeature(CONSTS.NONE_FEATURE)}>Rain Gages</a>
+                <a onClick={setActiveFeature(CONSTS.RAINGAGE_FEATURE)} className={getClassName(CONSTS.RAINGAGE_FEATURE)}>Rain Gages</a>
                 <a onClick={setActiveFeature(CONSTS.SUBCATCHMENT_FEATURE)} className={getClassName(CONSTS.SUBCATCHMENT_FEATURE)}>Subcatchments</a>
               </ul>
             )

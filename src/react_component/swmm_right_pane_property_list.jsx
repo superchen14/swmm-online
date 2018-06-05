@@ -27,6 +27,14 @@ const getSubcatchmentProperties = subcatchment => {
   return properties;
 };
 
+const getRainGageProperties = rainGage => {
+  var properties = getEntityProperties(rainGage);
+  properties["X"] = rainGage.position.x;
+  properties["Y"] = rainGage.position.y;
+
+  return properties;
+};
+
 const getNodeProperties = node => {
   var properties = getEntityProperties(node);
   properties["X"] = node.position.x;
@@ -91,6 +99,8 @@ const getPollutantProperties = pollutant => {
 
 const getProperties = (activeFeature, activeItem) => {
   switch(activeFeature) {
+    case CONSTS.RAINGAGE_FEATURE:
+      return getRainGageProperties(activeItem);
     case CONSTS.OUTFALL_FEATURE:
     case CONSTS.DIVIDER_FEATURE:
     case CONSTS.STORAGE_FEATURE:
@@ -230,6 +240,8 @@ const getActiveItem = state => {
   const activeFeature = state.ui.activeFeature;
   if (activeFeature !== CONSTS.NONE_FEATURE &&activeId !== CONSTS.EMPTY_STRING) {
     switch(activeFeature) {
+    case CONSTS.RAINGAGE_FEATURE:
+      return project.rainGages.find(rg => rg.name === activeId);
     case CONSTS.JUNCTION_FEATURE:
       return project.junctions.find(j => j.name === activeId);
     case CONSTS.OUTFALL_FEATURE:
