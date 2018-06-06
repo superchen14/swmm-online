@@ -31,9 +31,11 @@ class GraphHelper {
     const storages: Node[] = project.storages || [];
     const subcatchments: Subcatchment[] = project.subcatchments || [];
     const nodes = junctions.concat(outfalls).concat(dividers).concat(storages);
+    const rainGages = project.rainGages || [];
 
     let allPts = nodes.map(n => n.position);
     subcatchments.forEach(s => { allPts = allPts.concat(s.vertices); });
+    allPts.concat(rainGages.map(rg => rg.position));
 
     const margin = 10;
 

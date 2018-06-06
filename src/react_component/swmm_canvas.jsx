@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { Layer, Stage } from "react-konva";
 import { setActiveItemAction } from "./actions";
+import RainGageGraph from "./graph/raingage_graph.jsx";
 import JunctionGraph from "./graph/junction_graph.jsx";
 import OutfallGraph from "./graph/outfall_graph.jsx";
 import DividerGraph from "./graph/divider_graph.jsx";
@@ -22,6 +23,7 @@ class SwmmCanvas extends React.Component {
 
   render() {
     const {graphHelper, project, activeId, activeFeature, setActiveId} = this.props;
+    const rainGages = project.rainGages || [];
     const junctions = project.junctions || [];
     const outfalls = project.outfalls || [];
     const dividers = project.dividers || [];
@@ -32,6 +34,15 @@ class SwmmCanvas extends React.Component {
     const weirs = project.weirs || [];
     const outlets = project.outlets || [];
     const subcatchments = project.subcatchments || [];
+
+    const getRainGageGraph = rainGage => {
+      const pt = graphHelper.getPointOnCanvas(rainGage.position);
+      return <RainGageGraph
+        key={CONSTS.RAINGAGE_GRAPH_ID_PREFIX + rainGage.name}
+        x={pt.x}
+        y={pt.y}
+      />;
+    };
 
     const getJunctionGraph = junction => {
       const pt = graphHelper.getPointOnCanvas(junction.position);
@@ -160,6 +171,7 @@ class SwmmCanvas extends React.Component {
     return (
       <Stage width={900} height={600}>
         <Layer>
+          { rainGages.map(getRainGageGraph) }
           { subcatchments.map(getSubcatchmentGraph) }
           { junctions.map(getJunctionGraph) }
           { outfalls.map(getOutfallGraph) }
