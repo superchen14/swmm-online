@@ -37,10 +37,13 @@ class SwmmCanvas extends React.Component {
 
     const getRainGageGraph = rainGage => {
       const pt = graphHelper.getPointOnCanvas(rainGage.position);
+      const isActive = activeId === rainGage.name && activeFeature === CONSTS.RAINGAGE_FEATURE;
       return <RainGageGraph
         key={CONSTS.RAINGAGE_GRAPH_ID_PREFIX + rainGage.name}
         x={pt.x}
         y={pt.y}
+        isActive={isActive}
+        setActiveId={setActiveId(CONSTS.RAINGAGE_FEATURE, rainGage.name)}
       />;
     };
 

@@ -1,6 +1,7 @@
 import React from "react";
-import { Image } from "react-konva";
+import { Group, Rect, Image } from "react-konva";
 import PropTypes from 'prop-types';
+import getGraphProps from "./graph_props";
 
 class RainGageGraph extends React.Component {
   constructor(props) {
@@ -9,8 +10,19 @@ class RainGageGraph extends React.Component {
   }
 
   render() {
-    const {x, y} = this.props;
-    return <Image image={this.state.image} x={x} y={y}/>;
+    const {x, y, isActive, setActiveId} = this.props;
+    let rectProps = getGraphProps(true);
+    rectProps.width = 33;
+    rectProps.height = 33;
+    rectProps.x = x;
+    rectProps.y = y;
+    rectProps.scale = 1;
+    rectProps.fill = "transparent";
+    return (
+      <Group>
+        {isActive && <Rect {...rectProps}/>}
+        <Image image={this.state.image} x={x} y={y} onClick={setActiveId}/>
+      </Group>);
   }
 
   componentDidMount() {
@@ -23,6 +35,8 @@ class RainGageGraph extends React.Component {
 RainGageGraph.propTypes = {
   x: PropTypes.number.isRequired,
   y: PropTypes.number.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  setActiveId: PropTypes.func.isRequired
 }
 
 export default RainGageGraph;
