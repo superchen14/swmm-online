@@ -5,7 +5,7 @@ const SwmmModal = ({title, isActive, onClose, width, height, children}) => {
   const className = isActive ? "modal is-active" : "modal";
   width = width ? width : 640;
   let style = {width};
-  height && (style["height"] = height);
+  if (height) style["height"] = height;
   return (
     <div className={className}>
       <div className="modal-background"></div>
