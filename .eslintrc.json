@@ -1,4 +1,8 @@
 {
+  "plugins": [
+    "cypress",
+    "chai-friendly"
+  ],
   "env": {
       "browser": true,
       "commonjs": true,
@@ -28,7 +32,9 @@
       "curly": 0,
       "eqeqeq": 0,
       "func-names": 0,
-      "valid-typeof": 1
+      "valid-typeof": 1,
+      "no-unused-expressions": 0,
+      "chai-friendly/no-unused-expressions": 2
   },
   "extends": "plugin:react/recommended"
 }
