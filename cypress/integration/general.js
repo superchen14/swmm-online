@@ -1,6 +1,6 @@
 describe("General Tests", function() {
-  it('Visit localhost:8080', function() {
-    cy.visit("http://localhost:8080");
+  it('Visit swmm-online.github.io', function() {
+    cy.visit("https://swmm-online.github.io");
     assert.isNotNull(cy.get("#swmm-online"));
     assert.isNotNull(cy.get("#swmm-app"));
     assert.isNotNull(cy.get("#swmm-header"));
