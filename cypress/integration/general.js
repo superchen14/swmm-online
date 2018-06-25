@@ -1,6 +1,5 @@
 describe("General Tests", function() {
   it('Visit swmm-online.github.io', function() {
-    cy.visit("https://swmm-online.github.io");
     assert.isNotNull(cy.get("#swmm-online"));
     assert.isNotNull(cy.get("#swmm-app"));
     assert.isNotNull(cy.get("#swmm-header"));
@@ -11,5 +10,5 @@ describe("General Tests", function() {
     assert.isNotNull(cy.get("#swmm-body #left-pane #left-pane-list"));
     assert.isNotNull(cy.get("#swmm-body #main-pane"));
     assert.isNotNull(cy.get("#swmm-body #right-pane"));
-  })
+  });
 });

@@ -18,3 +18,6 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+before(() => {
+  cy.visit("https://swmm-online.github.io");
+});
