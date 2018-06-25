@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "build": "node ./node_modules/webpack/bin/webpack.js --config webpack.production.config.js --display-error-details",
-    "test": "cypress run"
+    "test": "cypress run",
+    "cypress": "cypress open"
   },
   "author": "",
   "license": "ISC",
