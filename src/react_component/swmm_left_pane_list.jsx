@@ -32,7 +32,7 @@ class SwmmLeftPaneList extends React.Component {
           const isSelected = item.name === activeId;
           if (isSelected) { className = className + " is-active"; }
           return (
-            <a key={idPrefix + item.name} className={className} onClick={setActiveId(activeFeature, item.name)}>
+            <a key={idPrefix + item.name} id={idPrefix + item.name} className={className} onClick={setActiveId(activeFeature, item.name)}>
               <div style={{width: "90%"}}>{item.name}</div>
             </a>
           );
