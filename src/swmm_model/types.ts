@@ -10,6 +10,7 @@ interface Entity {
 interface RainGage extends Entity {
   position: Point;
   format: string;
+  timeInterval: string;
 }
 
 interface Node extends Entity {

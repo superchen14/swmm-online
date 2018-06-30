@@ -189,7 +189,8 @@ function parseRainGage(line, idSymbolsMap): RainGage {
   const items = line.match(/[^ ]+/g);
   const name = items[0];
   const format = items[1];
-  return createRainGage(name, idSymbolsMap[name], format);
+  const timeInterval = items[2];
+  return createRainGage(name, idSymbolsMap[name], format, timeInterval);
 }
 
 function parseJunction(line, idPointsMap, idTreatmentsMap): Node {

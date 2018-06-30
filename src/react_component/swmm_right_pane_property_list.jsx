@@ -32,6 +32,7 @@ const getRainGageProperties = rainGage => {
   properties["X"] = rainGage.position.x;
   properties["Y"] = rainGage.position.y;
   properties["Rain Format"] = rainGage.format;
+  properties["Time Interval"] = rainGage.timeInterval;
 
   return properties;
 };
