@@ -19,6 +19,7 @@ describe("RainGage Tests", function() {
       assert.equal("RG1", hash.Name);
       assert.equal("10084.21", hash.X);
       assert.equal("8210.53", hash.Y);
+      assert.equal("INTENSITY", hash["Rain Format"]);
     });
   });
 });
