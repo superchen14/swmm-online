@@ -31,6 +31,7 @@ const getRainGageProperties = rainGage => {
   var properties = getEntityProperties(rainGage);
   properties["X"] = rainGage.position.x;
   properties["Y"] = rainGage.position.y;
+  properties["Rain Format"] = rainGage.format;
 
   return properties;
 };

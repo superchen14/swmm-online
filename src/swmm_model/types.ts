@@ -9,6 +9,7 @@ interface Entity {
 
 interface RainGage extends Entity {
   position: Point;
+  format: string;
 }
 
 interface Node extends Entity {
