@@ -21,6 +21,7 @@ describe("RainGage Tests", function() {
       assert.equal("8210.53", hash.Y);
       assert.equal("INTENSITY", hash["Rain Format"]);
       assert.equal("1:00", hash["Time Interval"]);
+      assert.equal("1", hash["Snow Catch Factor"]);
     });
   });
 });
