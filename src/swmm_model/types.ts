@@ -11,6 +11,7 @@ interface RainGage extends Entity {
   position: Point;
   format: string;
   timeInterval: string;
+  snowCatchFactor: number;
 }
 
 interface Node extends Entity {
