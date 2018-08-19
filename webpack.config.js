@@ -1,5 +1,9 @@
+const webpack = require("webpack");
 module.exports = {
-  entry: __dirname + "/src/react_component/swmm_online.jsx",
+  entry: {
+    app: __dirname + "/src/react_component/swmm_online.jsx",
+    vendor: ["React", "react-dom", "redux", "react-redux", "konva", "react-konva"],
+  },
   devtool: "inline-source-map",
   output: {
     path: __dirname + "/dist",
@@ -64,5 +68,11 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'vendor.js'
+    })
+  ]
 };
