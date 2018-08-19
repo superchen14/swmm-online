@@ -1,7 +1,8 @@
 const webpack = require("webpack");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   entry: {
-    app: __dirname + "/src/react_component/swmm_online.jsx",
+    app: [__dirname + "/src/react_component/swmm_online.jsx", __dirname + "/styles/style.scss"],
     vendor: ["React", "react-dom", "redux", "react-redux", "konva", "react-konva"],
   },
   devtool: "inline-source-map",
@@ -21,7 +22,10 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        })
       },
       {
         test: /.woff|.woff2|.svg|.eot|.ttf/,
@@ -73,6 +77,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'vendor.js'
-    })
+    }),
+    new ExtractTextPlugin("style.css")
   ]
 };
