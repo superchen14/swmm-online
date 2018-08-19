@@ -3,7 +3,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   entry: {
     app: [__dirname + "/src/react_component/swmm_online.jsx", __dirname + "/styles/style.scss"],
-    vendor: ["React", "react-dom", "redux", "react-redux", "konva", "react-konva"],
+    vendor: ["react", "react-dom", "redux", "react-redux", "konva", "react-konva"],
   },
   devtool: "inline-source-map",
   output: {
