@@ -1,9 +1,5 @@
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
-  entry: [
-    __dirname + "/src/react_component/swmm_online.jsx",
-    __dirname + "/styles/style.scss"
-  ],
+  entry: __dirname + "/src/react_component/swmm_online.jsx",
   devtool: "inline-source-map",
   output: {
     path: __dirname + "/dist",
@@ -21,10 +17,7 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
+        use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
         test: /.woff|.woff2|.svg|.eot|.ttf/,
@@ -71,8 +64,5 @@ module.exports = {
         ]
       }
     ]
-  },
-  plugins: [
-    new ExtractTextPlugin("style.css")
-  ]
+  }
 };
