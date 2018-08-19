@@ -128,7 +128,7 @@ function parseSections(lines) {
     const id = items[0];
     const shape = items[1];
     const maximumHeight = items[2];
-    const numberOfBarrels = Number.parseInt(items[6]);
+    const numberOfBarrels = Number.parseInt(items[6], 10);
     const param3 = items[3];
     const param4 = items[4];
     const param5 = items[5];
