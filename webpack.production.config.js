@@ -1,8 +1,11 @@
 const webpack = require("webpack");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const UglifyJsPlugin = require("webpack/lib/optimize/UglifyJsPlugin");
 
 const config = require("./webpack.config");
-config.plugins.push(new UglifyJsPlugin());
+config.plugins.push(new UglifyJsPlugin({
+  beautiful: false,
+  comments: false
+}));
 config.plugins.push(
   new webpack.DefinePlugin({
     'process.env': {
