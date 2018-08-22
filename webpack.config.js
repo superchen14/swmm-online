@@ -1,5 +1,6 @@
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
     app: [__dirname + "/src/react_component/swmm_online.jsx", __dirname + "/styles/style.scss"],
@@ -74,6 +75,21 @@ module.exports = {
     ]
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      title: "SWMM-Online",
+      filename: "index.html",
+      template: "./src/template.html",
+      inject: "body",
+      minify: {
+          caseSensitive: false,
+          collapseBooleanAttributes: true,
+          collapseWhitespace: true
+      },
+      hash: false,
+      cache: true,
+      showErrors: true,
+      chunksSortMode: "auto"
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'vendor.js'
